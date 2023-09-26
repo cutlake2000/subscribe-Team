@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 
 public enum BuildingType
@@ -79,7 +80,6 @@ public class BuildingController : MonoBehaviour
     }
 
     // 레벨업 빌딩
-    // + 루프 만들 것
     public void LevelUpBuilding(bool isLoop)
     {
         if (clickBuilding.upgradeWood >= DataManager.instance.player.Wood && isLoop == false)
@@ -114,7 +114,7 @@ public class BuildingController : MonoBehaviour
     // 클릭 빌딩 파괴
     public void DestroyBuilding()
     {
-        clickBuilding.gameObject.SetActive(false);
+        clickBuilding.gameObject.SetActive(false);// 로직 추가
     }
 
 
