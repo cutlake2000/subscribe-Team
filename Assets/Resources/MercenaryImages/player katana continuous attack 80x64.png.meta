@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7fb9e92ab42404269a1f9c03f7e1a483
+guid: b4baca04bd97e7a4983069cb62cd16ef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,12 +110,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack01
+      name: Katana01
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 80
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,19 +124,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5225dd39673a41a469be5ffff05ab85d
-      internalID: 2027381654
+      spriteID: 992f7ab2f6c64b8489e0eae004224cea
+      internalID: -1396861902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack02
+      name: Katana02
       rect:
         serializedVersion: 2
-        x: 64
+        x: 80
         y: 0
-        width: 64
+        width: 80
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,19 +145,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c4ace78bf530d24e83c3ce3a7010736
-      internalID: 824649159
+      spriteID: d4b1d50f4bfb39f42a727b88496687cb
+      internalID: -1965415605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack03
+      name: Katana03
       rect:
         serializedVersion: 2
-        x: 128
+        x: 160
         y: 0
-        width: 64
+        width: 80
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,19 +166,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c66acdf1bb2e10746a587fd5de4b05b4
-      internalID: 1962173556
+      spriteID: 113a00c55f7393a4cb8e975c002ec551
+      internalID: 1836003492
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack04
+      name: Katana04
       rect:
         serializedVersion: 2
-        x: 192
+        x: 240
         y: 0
-        width: 64
+        width: 80
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -187,40 +187,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1166d4cd137660f48bfaf9e4e5ad35a6
-      internalID: -46380374
+      spriteID: df2c3b573596feb46bb1037c4182ae7b
+      internalID: 558184880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack05
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0d0f27826f6d5144e9c972f5e4f18137
-      internalID: -442582594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack06
+      name: Katana05
       rect:
         serializedVersion: 2
         x: 320
         y: 0
-        width: 64
+        width: 80
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -229,8 +208,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34c6f822df1fc4b4a8a8bc6cd27017c2
-      internalID: 2085290453
+      spriteID: 0490d74ec42647549a6c481a95390c75
+      internalID: -1950433432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Katana06
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe25cbcfb7b606842bfcca28013394b8
+      internalID: -1649400878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Katana07
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cd0ed41dbd4cf34db9d62c8a3aae2e4
+      internalID: -1475121618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Katana08
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a68af4a0099d76428c20d091a922217
+      internalID: -1764501546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Katana09
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 80
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428b76c2ed94bc54b94df7f4220d5a78
+      internalID: 2952167
       vertices: []
       indices: 
       edges: []
@@ -238,7 +301,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: be81b34121d3a5749b10de0571e10405
     internalID: 0
     vertices: []
     indices: 
@@ -246,12 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack01: 2027381654
-      Attack02: 824649159
-      Attack03: 1962173556
-      Attack04: -46380374
-      Attack05: -442582594
-      Attack06: 2085290453
+      Katana01: -1396861902
+      Katana02: -1965415605
+      Katana03: 1836003492
+      Katana04: 558184880
+      Katana05: -1950433432
+      Katana06: -1649400878
+      Katana07: -1475121618
+      Katana08: -1764501546
+      Katana09: 2952167
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

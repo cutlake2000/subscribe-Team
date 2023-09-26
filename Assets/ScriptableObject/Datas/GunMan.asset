@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dff1e5ef68207234989de819be9e0b8a, type: 3}
-  m_Name: SwordMan
+  m_Name: GunMan
   m_EditorClassIdentifier: 
   Attack: 0
   AttackSpeed: 0
   Critical: 0
-  AttackRange: 0.5
+  AttackRange: 3

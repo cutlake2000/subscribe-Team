@@ -7,7 +7,8 @@ using UnityEngine;
 public class MercenaryData : ScriptableObject
 {
     [Header("Mercenary Stats")]
-    public int Attack;
-    public int AttackSpeed;
-    public int Critical;
+    public float Attack;
+    public float AttackSpeed;
+    public float Critical;
+    public float AttackRange;
 }
