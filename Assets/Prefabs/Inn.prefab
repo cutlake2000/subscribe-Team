@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8997701955122170591}
   - component: {fileID: 4397054587196598800}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Inn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb66b20ee905bf4da21fbbf16098252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  data:
-    bidildingType: 0
+  baseData:
+    buildingType: 0
     level: 0
     name: 
     desc: 
     upgradeGold: 0
+  spriteRenderer: {fileID: 0}
   buildingType: 0
   level: 0
   buildingName: 
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 377063193624284501}
   - component: {fileID: 7995548822106928619}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

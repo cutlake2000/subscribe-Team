@@ -6,9 +6,6 @@ using UnityEngine;
 // Inn : 유닛 수 증가
 // Forge : 유닛 업그레이드
 //
-
-
-
 public class BaseBuilding : MonoBehaviour
 {
     public BuildingData baseData;
@@ -36,5 +33,11 @@ public class BaseBuilding : MonoBehaviour
     protected virtual void UpgradeBuilding()
     {
 
+    }
+
+    public virtual void LevelUP()
+    {
+        level++;
+        upgradeGold += (int)(upgradeGold * 0.5f);
     }
 }

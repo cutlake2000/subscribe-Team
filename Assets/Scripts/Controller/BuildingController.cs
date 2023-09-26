@@ -20,17 +20,15 @@ public class BuildingController : MonoBehaviour
     {
         instance = this;
         buildings = new List<BaseBuilding>();
+
     }
 
     public void Start()
     {
-        // 테스트용
+        // - 테스트용
         DeliverNewBuilding(BuildingType.Inn);
         DeliverNewBuilding(BuildingType.Forge);
         //
-
-        DeliverNewBuilding(BuildingType.Inn);
-
     }
 
     // 빌딩 추가와 해당 위치로 이동
@@ -64,6 +62,17 @@ public class BuildingController : MonoBehaviour
         return newBuilding;
     }
 
+    public void UpgradeBuilding(BaseBuilding tagetBuilding)
+    {
+        if (tagetBuilding.upgradeGold >= DataManager.instance.player.Gold)
+        {
+            // + 실패 처리
+        }
+
+        DataManager.instance.player.Gold -= tagetBuilding.upgradeGold;
+        tagetBuilding.LevelUP();
+        // + 성공 처리
+    }
 
 
     // '비활성화'된 빌딩 데이터 초기화
@@ -77,8 +86,50 @@ public class BuildingController : MonoBehaviour
     // 빌딩 UI
     public void ActiveBuildingUI()
     {
-        // 날이 바뀌면 자동으로 꺼짐(이벤트 등록)
-        // 빌딩 누르면 UI 나오기
+        // + 날이 바뀌면 자동으로 꺼지게
+        // + 빌딩 누르면 UI 나오기
+    }
+
+
+    // 여관 효과 갱신
+    public void RefreshInnEffect()
+    {
+        int sum = 0;
+        for (int i = 0; i < buildings.Count; i++)
+        {
+            if (buildings[i].buildingType != BuildingType.Inn)
+                continue;
+            if (buildings[i].gameObject.activeSelf == false)
+                continue;
+
+            InnBuilding building = (InnBuilding)buildings[i];
+            sum += building.MaxUnitValue;
+        }
+
+        DataManager.instance.player.MaxUnitCount = sum;
+        Debug.Log("대장간 효과 : " + DataManager.instance.player.MaxUnitCount);
+        // ++ UI 연결
+    }
+
+    // 대장간 효과 갱신
+    public void RefreshForgeEffect()
+    {
+        int sum = 0;
+        for (int i = 0; i < buildings.Count; i++)
+        {
+            if (buildings[i].buildingType != BuildingType.Forge)
+                continue;
+            if (buildings[i].gameObject.activeSelf == false)
+                continue;
+
+            ForgeBuilding building = (ForgeBuilding)buildings[i];
+            sum += building.AddUnitAtk;
+        }
+
+        DataManager.instance.player.AddUnitAtk = sum;
+        Debug.Log("대장강 효과 : " + DataManager.instance.player.MaxUnitCount);
+
+        // ++ UI 연결
     }
 
 

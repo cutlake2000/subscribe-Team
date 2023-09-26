@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4940021482136390465}
   - component: {fileID: 445907427755492358}
   - component: {fileID: 172288730850425682}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Forge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 709999857973770378}
   - component: {fileID: 4370521669439080243}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
