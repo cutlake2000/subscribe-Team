@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1703412280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b865766959381f4aaf0aa106bb45fc6, type: 3}
+  m_Script: {fileID: 11500000, guid: 30206dab56f592a478020b2a03175fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &1703412283
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1823159308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 955800c50bdf50d4bbd7af39d0328612, type: 3}
+  m_Script: {fileID: 11500000, guid: d5e647a0359c3844da562506e47c908f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingSO: {fileID: 11400000, guid: 30174805bce717b45bd3c1eb33e7453b, type: 2}
@@ -1264,7 +1264,7 @@ MonoBehaviour:
   - {fileID: 5269447685164759032, guid: 318f5fd85271cff48adbe0a3246ef15f, type: 3}
   buildings: []
   clickBuilding: {fileID: 0}
-  clickBuildingUI: {fileID: 1703412282}
+  clickBuildingUI: {fileID: 0}
 --- !u!114 &1823159312
 MonoBehaviour:
   m_ObjectHideFlags: 0

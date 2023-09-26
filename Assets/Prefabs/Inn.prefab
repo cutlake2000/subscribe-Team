@@ -43,7 +43,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 92522642691707451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb66b20ee905bf4da21fbbf16098252, type: 3}
+  m_Script: {fileID: 11500000, guid: 9518ed4fef4eb36489c6a62cda2f3bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseData:
@@ -51,13 +51,13 @@ MonoBehaviour:
     level: 0
     name: 
     desc: 
-    upgradeGold: 0
+    upgradeWood: 0
   spriteRenderer: {fileID: 0}
   buildingType: 0
   level: 0
   buildingName: 
   desc: 
-  upgradeGold: 0
+  upgradeWood: 0
 --- !u!65 &-1311934594014500867
 BoxCollider:
   m_ObjectHideFlags: 0
