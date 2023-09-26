@@ -4,19 +4,11 @@ internal class InnBuilding : BaseBuilding
 {
     int maxUnitValue = 3;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        buildingType = BuildingType.Forge;
-    }
 
-    protected override void Initialization(BuildingData data)
+    public override void Initialization()
     {
-        buildingType = BuildingType.Forge;
-        level = data.level;
-        buildingName = data.name;
-        desc = data.desc;
-        upgradeGold = data.upgradeGold;
+        base.Initialization();
+        maxUnitValue = 3;
     }
 
 }

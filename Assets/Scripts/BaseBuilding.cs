@@ -5,15 +5,14 @@ using UnityEngine;
 // 업그레이드 스스로
 // Inn : 유닛 수 증가
 // Forge : 유닛 업그레이드
+//
 
 
-public enum BuildingType
-{
-    Inn, Forge
-}
 
 public class BaseBuilding : MonoBehaviour
 {
+    public BuildingData baseData;
+    
     [SerializeField] SpriteRenderer spriteRenderer;
 
     public BuildingType buildingType;
@@ -23,20 +22,19 @@ public class BaseBuilding : MonoBehaviour
     public int upgradeGold;
 
 
-    //건물 짓기,
-    protected virtual void Awake() { }
 
-    protected virtual void Initialization(BuildingData data) { }
+    // 데이터 불러오기
+    public virtual void Initialization() 
+    {
+        buildingType = baseData.buildingType;
+        level = baseData.level;
+        buildingName = baseData.name;
+        desc = baseData.desc;
+        upgradeGold = baseData.upgradeGold;
+    }
 
     protected virtual void UpgradeBuilding()
     {
 
     }
-
-    void Start()
-    {
-        
-    }
-
-
 }

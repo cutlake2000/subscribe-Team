@@ -10,7 +10,7 @@ public class BuildingSO : ScriptableObject
 [Serializable]
 public class BuildingData
 {
-    public BuildingType bidildingType;
+    public BuildingType buildingType;
     public int level;
     public string name;
     [Multiline(2)] public string desc;
