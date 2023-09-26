@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public enum MonsterType {Normal,Power,Speed }
+public enum MonsterType {Dog,Ghost,Tiger }
 public class MonsterController : MonoBehaviour
 {
     [SerializeField]
