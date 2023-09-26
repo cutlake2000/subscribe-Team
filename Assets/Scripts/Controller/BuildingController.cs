@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -13,8 +14,11 @@ public class BuildingController : MonoBehaviour
     public static BuildingController instance;
 
     [SerializeField] BuildingSO buildingSO;
-    [SerializeField] GameObject[] BuildingPrefabs;
+    [SerializeField] GameObject[] buildingPrefabs;
     public List<BaseBuilding> buildings;
+
+    public BaseBuilding clickBuilding;
+    public ClickBuildingUI clickBuildingUI;
 
     private void Awake()
     {
@@ -26,8 +30,8 @@ public class BuildingController : MonoBehaviour
     public void Start()
     {
         // - 테스트용
-        DeliverNewBuilding(BuildingType.Inn);
-        DeliverNewBuilding(BuildingType.Forge);
+        SetNewBuildingOnMap(BuildingType.Inn, Vector2.left);
+        SetNewBuildingOnMap(BuildingType.Forge, Vector2.right);
         //
     }
 
@@ -38,7 +42,7 @@ public class BuildingController : MonoBehaviour
         newBuilding.transform.position = pos;
     }
 
-    // 빌딩 오브젝트만 새로 전달
+    // 빌딩만 새로 추가
     private BaseBuilding DeliverNewBuilding(BuildingType type)
     {
         BaseBuilding newBuilding;
@@ -54,7 +58,7 @@ public class BuildingController : MonoBehaviour
             return newBuilding;
         }
 
-        newBuilding = Instantiate(BuildingPrefabs[(int)type]).GetComponent<BaseBuilding>();
+        newBuilding = Instantiate(buildingPrefabs[(int)type]).GetComponent<BaseBuilding>();
         newBuilding.name = type.ToString();
         newBuilding.baseData = buildingSO.buildingDatas[(int)type];
         newBuilding.Initialization();
@@ -62,16 +66,55 @@ public class BuildingController : MonoBehaviour
         return newBuilding;
     }
 
-    public void UpgradeBuilding(BaseBuilding tagetBuilding)
+    // 클릭빌딩 UI 온오프
+    public void ActiveClickBuildingUI(BaseBuilding clickBuilding)
     {
-        if (tagetBuilding.upgradeGold >= DataManager.instance.player.Gold)
+        if (clickBuildingUI.gameObject.activeSelf == true) // 임시
         {
-            // + 실패 처리
+            clickBuildingUI.OFF();
+            return;
+        }
+        this.clickBuilding = clickBuilding;
+        clickBuildingUI.On(clickBuilding);
+    }
+
+    // 레벨업 빌딩
+    // + 루프 만들 것
+    public void LevelUpBuilding(bool isLoop)
+    {
+        if (clickBuilding.upgradeWood >= DataManager.instance.player.Wood && isLoop == false)
+        {
+            if (!isLoop)
+                Debug.Log("골드 부족");
+
+            return;
         }
 
-        DataManager.instance.player.Gold -= tagetBuilding.upgradeGold;
-        tagetBuilding.LevelUP();
-        // + 성공 처리
+        if (isLoop == false)
+        {
+            Debug.Log("레벨업 성공");
+            DataManager.instance.player.Wood -= clickBuilding.upgradeWood;
+            clickBuilding.LevelUP();
+        }
+        else
+        {
+            int upCount = 0;
+            while (clickBuilding.upgradeWood < DataManager.instance.player.Wood)
+            {
+                upCount++;
+                DataManager.instance.player.Wood -= clickBuilding.upgradeWood;
+                clickBuilding.LevelUP();
+            }
+            Debug.Log($"{upCount}만큼 레벨업 성공");
+        }
+
+    }
+
+
+    // 클릭 빌딩 파괴
+    public void DestroyBuilding()
+    {
+        clickBuilding.gameObject.SetActive(false);
     }
 
 
@@ -83,12 +126,7 @@ public class BuildingController : MonoBehaviour
     }
 
 
-    // 빌딩 UI
-    public void ActiveBuildingUI()
-    {
-        // + 날이 바뀌면 자동으로 꺼지게
-        // + 빌딩 누르면 UI 나오기
-    }
+
 
 
     // 여관 효과 갱신
@@ -107,7 +145,7 @@ public class BuildingController : MonoBehaviour
         }
 
         DataManager.instance.player.MaxUnitCount = sum;
-        Debug.Log("대장간 효과 : " + DataManager.instance.player.MaxUnitCount);
+        Debug.Log("여관 효과 : " + DataManager.instance.player.MaxUnitCount);
         // ++ UI 연결
     }
 
@@ -127,7 +165,7 @@ public class BuildingController : MonoBehaviour
         }
 
         DataManager.instance.player.AddUnitAtk = sum;
-        Debug.Log("대장강 효과 : " + DataManager.instance.player.MaxUnitCount);
+        Debug.Log("대장간 효과 : " + DataManager.instance.player.AddUnitAtk);
 
         // ++ UI 연결
     }

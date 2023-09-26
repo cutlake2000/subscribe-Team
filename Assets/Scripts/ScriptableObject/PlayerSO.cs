@@ -6,8 +6,8 @@ public class PlayerSO : ScriptableObject
     int maxUnitCount =0;
     int currentUnitCount=0;
     int addUnitAtk=0;
-    int gold=100;
-    int wood=1;
+    int gold=1000;
+    int wood=100;
 
     public int MaxUnitCount { get { return maxUnitCount; } set { maxUnitCount = value; } }
     public int CurrentUnitCountt { get { return currentUnitCount; } set { currentUnitCount = value; } }

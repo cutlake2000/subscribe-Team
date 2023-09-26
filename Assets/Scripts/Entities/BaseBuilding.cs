@@ -16,7 +16,7 @@ public class BaseBuilding : MonoBehaviour
     public int level;
     public string buildingName;
     public string desc;
-    public int upgradeGold;
+    public int upgradeWood;
 
 
 
@@ -27,17 +27,17 @@ public class BaseBuilding : MonoBehaviour
         level = baseData.level;
         buildingName = baseData.name;
         desc = baseData.desc;
-        upgradeGold = baseData.upgradeGold;
-    }
-
-    protected virtual void UpgradeBuilding()
-    {
-
+        upgradeWood = baseData.upgradeWood;
     }
 
     public virtual void LevelUP()
     {
         level++;
-        upgradeGold += (int)(upgradeGold * 0.5f);
+        upgradeWood *= 2;
+    }
+
+    public void OnMouseDown()
+    {
+        BuildingController.instance.ActiveClickBuildingUI(this);
     }
 }
