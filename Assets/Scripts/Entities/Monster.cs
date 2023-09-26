@@ -14,4 +14,12 @@ public class Monster : MonoBehaviour
         Debug.Log("MonsterSpeed:" + monsterData.MonsterSpeed);
         Debug.Log("-================================================================-");
     }
+
+
+
+    public void FixedUpdate()
+    {
+        transform.Translate(Vector3.forward * monsterData.MonsterSpeed * Time.deltaTime);
+    }
+
 }
