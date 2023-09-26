@@ -5,11 +5,11 @@ public class MonsterData : ScriptableObject
 {
     public string MonsterName;
 
-    public int MonsterHp;
+    public float MonsterHp;
 
-    public int MonsterDF;
+    public float MonsterDF;
 
-    public int MonsterSpeed;
+    public float MonsterSpeed;
 
     public Sprite Monstersprite;
    
