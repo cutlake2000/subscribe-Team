@@ -11,6 +11,6 @@ public class MonsterData : ScriptableObject
 
     public float MonsterSpeed;
 
-    public Sprite Monstersprite;
-   
+    public GameObject dropPrefab;
+
 }

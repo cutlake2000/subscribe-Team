@@ -44,7 +44,7 @@ public class MonsterController : MonoBehaviour
         var newMonster = Instantiate(monsters[Level]).GetComponent<Monster>();
         newMonster.transform.SetParent(Spawnner.transform);
         //newMonster.monsterData = monsterDatas[(int)type];
-        newMonster.name = newMonster.monsterData.MonsterName;    
+        newMonster.name = newMonster.MonsterData.MonsterName;    
         
         return newMonster;
     }

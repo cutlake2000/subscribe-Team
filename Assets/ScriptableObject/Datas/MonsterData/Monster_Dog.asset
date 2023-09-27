@@ -15,5 +15,5 @@ MonoBehaviour:
   MonsterName: "\uAC1C"
   MonsterHp: 3
   MonsterDF: 1
-  MonsterSpeed: 0.5
-  Monstersprite: {fileID: 0}
+  MonsterSpeed: 5
+  dropPrefab: {fileID: 0}

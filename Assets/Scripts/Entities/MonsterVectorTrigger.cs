@@ -12,7 +12,7 @@ public class MonsterVectorTrigger : MonoBehaviour
         {
             Debug.Log("Ãæµ¹");
             Vector3 currentRotation = other.transform.rotation.eulerAngles;
-            currentRotation.y -= 90f;
+            currentRotation.y -= 180f;
             other.transform.rotation = Quaternion.Euler(currentRotation);
         }
     }
