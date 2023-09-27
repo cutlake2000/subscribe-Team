@@ -11,4 +11,5 @@ public class MercenaryData : ScriptableObject
     public float AttackSpeed;
     public float Critical;
     public float AttackRange;
+    public float MovingSpeed;
 }
