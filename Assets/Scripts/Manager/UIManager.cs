@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class UIManger : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static UIManger Instance;
 
     private void Awake()
     {
