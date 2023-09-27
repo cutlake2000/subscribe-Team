@@ -77,6 +77,7 @@ public class BuildingController : MonoBehaviour
             return;
         }
         this.clickBuilding = clickBuilding;
+        clickBuildingUI.Refresh(clickBuilding);
         clickBuildingUI.On(clickBuilding);
     }
 
@@ -108,7 +109,7 @@ public class BuildingController : MonoBehaviour
             }
             Debug.Log($"{upCount}만큼 레벨업 성공");
         }
-
+        clickBuildingUI.Refresh(clickBuilding);
     }
 
 
@@ -125,10 +126,6 @@ public class BuildingController : MonoBehaviour
         newBuilding.Initialization();
         newBuilding.gameObject.SetActive(true);
     }
-
-
-
-
 
     // 여관 효과 갱신
     public void RefreshInnEffect()
