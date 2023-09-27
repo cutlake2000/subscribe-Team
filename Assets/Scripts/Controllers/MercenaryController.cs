@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEditor;
 //using Unity.VisualScripting;
@@ -17,7 +18,7 @@ public class MercenaryController : MonoBehaviour
     public new SpriteRenderer renderer;
     private float targetDistance;
     public string TagName = "Monster";
-    public Monster thisMonster;
+    public MonsterData thisMonster;
     public Monster CloseMonster;
 
     private void Awake()
@@ -26,34 +27,34 @@ public class MercenaryController : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start() { }
+    private void Start() {
+    }
 
+    //한글 깨지는 지 아닌 지 확인용
     private void Update()
     {
         target = new List<GameObject>(GameObject.FindGameObjectsWithTag(TagName));
-
-        // ���� �Ǿ� �����Ӱ� ������϶�
-        //StartCoroutine(MoveObject());
-
-        GameObject CloseEnemy = GetClosest();
-        monster = CloseEnemy.GetComponent<Monster>();
-        CloseMonster = WhichMonster(monster);
-        float distance = GetDistance(CloseEnemy);
-        // ���� ���ʿ� ������� �������ش�.
-        if (CloseEnemy.transform.position.x < gameObject.transform.position.x)
+        if (target.Count <= 0)
         {
-            renderer.flipX = true;
+            StartCoroutine(MoveObject());
         }
-        //���� ����� ���� ���� �����δ�.
-        Moving(CloseEnemy, data.MovingSpeed);
+        else
+        {
+            GameObject CloseEnemy = GetClosest();
+            monster = CloseEnemy.GetComponent<Monster>();
+            monster.monsterData = WhichMonster(monster);
+            float distance = GetDistance(CloseEnemy);
+            if (CloseEnemy.transform.position.x < gameObject.transform.position.x)
+            {
+                renderer.flipX = true;
+            }
+            Moving(CloseEnemy, data.MovingSpeed);
 
-        if (distance < data.AttackRange)
-        {
-            Hit(CloseMonster);
-        }
-        if (CloseMonster.monsterData.MonsterHp <= 0)
-        {
-            Destroy(CloseEnemy);
+            if (distance < data.AttackRange)
+            {
+                //Hit(monster);
+                monster.TakePhysicalDamage(data.Attack);
+            }
         }
     }
 
@@ -92,7 +93,6 @@ public class MercenaryController : MonoBehaviour
 
     void Attacking()
     {
-        // Ÿ�ٰ��� �Ÿ��� ���ݹ������� ������ ����!
         animator.SetTrigger("Attack");
     }
 
@@ -102,12 +102,10 @@ public class MercenaryController : MonoBehaviour
         return targetDistance;
     }
 
-    void Moving(GameObject target, float Objectspeed)
+    void Moving(GameObject target, float speed)
     {
-        // ���� �����̿� �ִ� ������ ����
-        Vector3 speed = Vector3.zero;
         Vector3 destination = target.transform.position;
-        transform.position = Vector3.Lerp(transform.position, destination, 0.001f * Objectspeed);
+        transform.position = Vector3.Lerp(transform.position, destination, 0.001f * speed);
     }
 
     void Hit(Monster target)
@@ -116,21 +114,30 @@ public class MercenaryController : MonoBehaviour
         target.monsterData.MonsterHp -= data.Attack;
     }
 
-    Monster WhichMonster(Monster monster)
+    MonsterData WhichMonster(Monster monster)
     {
-        thisMonster = new Monster();
-        switch (monster.monsterData.MonsterName)
+        thisMonster = new MonsterData();
+        for(int i =0; i < DataManager.instance.monsterDatas.Length; i++)
         {
-            case "��":
-                thisMonster.monsterData = DataManager.instance.monsterDatas[0];
+            MonsterData monsterdata = DataManager.instance.monsterDatas[i]; 
+            if(monsterdata.MonsterName == monster.monsterData.MonsterName)
+            {
+                thisMonster.MonsterHp = DataManager.instance.monsterDatas[i].MonsterHp;
                 break;
-            case "����":
-                thisMonster.monsterData = DataManager.instance.monsterDatas[1];
-                break;
-            case "ȣ����":
-                thisMonster.monsterData = DataManager.instance.monsterDatas[2];
-                break;
+            }
         }
+        //switch (monster.monsterData.MonsterName)
+        //{
+        //    case "개":
+        //        thisMonster.MonsterHp = DataManager.instance.monsterDatas[0].MonsterHp;
+        //        break;
+        //    case "유령":
+        //        thisMonster.MonsterHp = DataManager.instance.monsterDatas[1].MonsterHp;
+        //        break;
+        //    case "호랑이":
+        //        thisMonster.MonsterHp = DataManager.instance.monsterDatas[2].MonsterHp;
+        //        break;
+        //}
         return thisMonster;
     }
 }
