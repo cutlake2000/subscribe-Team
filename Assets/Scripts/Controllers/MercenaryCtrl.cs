@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 //using Unity.VisualScripting;
 using UnityEngine;
@@ -8,16 +9,20 @@ using UnityEngine.PlayerLoop;
 public class MercenaryCtrl : MonoBehaviour
 {
     public Rigidbody mercenary;
-    Animator animator;
     public MercenaryData data;
     public List<GameObject> target;
-    private float targetDistance;
-    public string TagName = "Enemy";
     public GameObject enemy;
+    Animator animator;
+    Monster monster;
+    public SpriteRenderer renderer;
+    private float targetDistance;
+    public string TagName = "Monster";
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         target = new List<GameObject>(GameObject.FindGameObjectsWithTag(TagName));
+        renderer = GetComponent<SpriteRenderer>();
         
     }
     private void Start()
@@ -31,12 +36,20 @@ public class MercenaryCtrl : MonoBehaviour
        //StartCoroutine(MoveObject());
 
         GameObject CloseEnemy = GetClosest();
-        float distance = GetDistance(enemy);
+        monster = CloseEnemy.GetComponent<Monster>();
+        Monster CloseMonster = WhichMonster(monster);
+        float distance = GetDistance(CloseEnemy);
+        // 적이 왼쪽에 있을경우 뒤집어준다.
+        if(CloseEnemy.transform.position.x < gameObject.transform.position.x)
+        {
+            renderer.flipX = true;
+        }
+        //가장 가까운 적을 향해 움직인다.
         Moving(CloseEnemy);
-        Debug.Log(CloseEnemy.name);
+
         if (distance < data.AttackRange) 
         {
-            Attacking();
+            Hit(CloseMonster);
         }
 
     }
@@ -54,6 +67,7 @@ public class MercenaryCtrl : MonoBehaviour
             mercenary.velocity = new Vector3(dir1, 0, dir2);
         }
     }
+
     GameObject GetClosest()
     {
         enemy = target[0];
@@ -73,15 +87,15 @@ public class MercenaryCtrl : MonoBehaviour
     void Attacking()
     {
         // 타겟과의 거리가 공격범위보다 작으면 공격!
-
         animator.SetTrigger("Attack");
-        
     }
+
     float GetDistance(GameObject target)
     { 
         targetDistance = Vector3.Distance(target.transform.position, mercenary.transform.position);
         return targetDistance;
     }
+
     void Moving(GameObject target)
     {
         // 가장 가까이에 있는 적에게 접근
@@ -90,4 +104,29 @@ public class MercenaryCtrl : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, destination, 0.001f);
     }
 
+    void Hit(Monster target)
+    {
+        Attacking();
+        target.monsterData.MonsterHp -= data.Attack;
+        Debug.Log(target.monsterData.MonsterHp);
+    }
+
+    Monster WhichMonster(Monster monster)
+    {
+        Monster thisMonster = new Monster();
+        switch(monster.monsterData.MonsterName)
+        {
+            case "개":
+                thisMonster.monsterData = DataManager.instance.monsterDatas[0];
+                break;
+            case "유령":
+                thisMonster.monsterData = DataManager.instance.monsterDatas[1];
+                break;
+            case "호랑이":
+                thisMonster.monsterData = DataManager.instance.monsterDatas[2];
+                break;
+        }
+        return thisMonster;
+    }
+    
 }
