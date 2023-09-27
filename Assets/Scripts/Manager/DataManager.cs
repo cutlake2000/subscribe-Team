@@ -7,15 +7,15 @@ public class DataManager : MonoBehaviour
     public static DataManager instance;
     public PlayerSO player;
     public MonsterData[] monsterDatas;
+
     public void Awake()
     {
         instance = this;
         MakeNewPlayer();
     }
-    private void Update()
-    {
 
-    }
+    private void Update() { }
+
     void MakeNewPlayer()
     {
         player = ScriptableObject.CreateInstance<PlayerSO>();

@@ -8,7 +8,7 @@ public class Test : MonoBehaviour
     {
         if (other.gameObject.tag == "Monster")
         {
-            Debug.Log("충돌");
+            Debug.Log("�浹");
             Vector3 currentRotation = other.transform.rotation.eulerAngles;
             currentRotation.y -= 90f;
             other.transform.rotation = Quaternion.Euler(currentRotation);
