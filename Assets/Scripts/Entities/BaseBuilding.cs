@@ -11,6 +11,7 @@ public class BaseBuilding : MonoBehaviour
     public BuildingData baseData;
     
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Animator animator;
 
     public BuildingType buildingType;
     public int level;
@@ -34,6 +35,13 @@ public class BaseBuilding : MonoBehaviour
     {
         level++;
         upgradeWood *= 2;
+    }
+
+    
+
+    public void ActiveAnimation(bool isActive)
+    {
+        animator.enabled = isActive;
     }
 
     public void OnMouseDown()

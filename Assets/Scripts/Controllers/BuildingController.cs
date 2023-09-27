@@ -116,7 +116,9 @@ public class BuildingController : MonoBehaviour
     // Å¬¸¯ ºôµù ÆÄ±«
     public void DestroyBuilding()
     {
-        clickBuilding.gameObject.SetActive(false);// ·ÎÁ÷ Ãß°¡
+        clickBuilding.gameObject.SetActive(false);
+        clickBuilding = null;
+        clickBuildingUI.OFF();
     }
 
 
@@ -124,6 +126,7 @@ public class BuildingController : MonoBehaviour
     private void ResetBuildingData(BaseBuilding newBuilding)
     {
         newBuilding.Initialization();
+        newBuilding.ActiveAnimation(true);
         newBuilding.gameObject.SetActive(true);
     }
 

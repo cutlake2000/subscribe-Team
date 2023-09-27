@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4940021482136390465}
   - component: {fileID: -9134369723533578222}
   - component: {fileID: 172288730850425682}
+  - component: {fileID: -829028135518930234}
   m_Layer: 6
   m_Name: Forge
   m_TagString: Untagged
@@ -79,6 +80,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7, y: 1.6, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &-829028135518930234
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269447685164759032}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ceef488d4f2ec14c8063b5b7bb3c302, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9131700799348638953
 GameObject:
   m_ObjectHideFlags: 0
