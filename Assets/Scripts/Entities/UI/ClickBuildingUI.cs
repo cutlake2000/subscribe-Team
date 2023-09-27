@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClickBuildingUI : MonoBehaviour
 {
     enum ClickBuildUIText { Name, CurrentEffect, Upgrade }
 
+    [SerializeField] Image[] buttons;
     [SerializeField] TMP_Text[] texts;
     private StringBuilder newStatusText = new();
 
@@ -22,7 +24,7 @@ public class ClickBuildingUI : MonoBehaviour
 
     public void OFF()
     {
-        ActiveRaycastTargrt(false);
+        DeactivateRaycastTargrt();
         gameObject.SetActive(false);
     }
 
@@ -51,14 +53,22 @@ public class ClickBuildingUI : MonoBehaviour
         newStatusText.Append($"{target.upgradeWood}");
         texts[(int)ClickBuildUIText.Upgrade].text = newStatusText.ToString();
     }
+
     // 아이콘 레이캐스트 스위치
-    public void ActiveRaycastTargrt(bool isON)
+    public void DeactivateRaycastTargrt()
     {
-        foreach (var item in texts)
+        foreach (var item in buttons)
+        {
+            item.raycastTarget = false;
+        }
+    }
+
+    public void ActivateRaycastTargrt()
+    {
+        foreach (var item in buttons)
         {
             item.raycastTarget = true;
         }
     }
-
 
 }
