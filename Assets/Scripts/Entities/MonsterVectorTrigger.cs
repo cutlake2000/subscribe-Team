@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MonsterVectorTrigger : MonoBehaviour
 {
+
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Monster")

@@ -9,9 +9,10 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private List<MonsterData> monsterDatas;
     [SerializeField]
-    private GameObject Spawnner;
+    private List<GameObject> monsters;
     [SerializeField]
-    private GameObject MonsterPrefab;
+    private GameObject Spawnner;
+
     [SerializeField]
     private TextMeshProUGUI TxtMonsterCount;
 
@@ -22,14 +23,46 @@ public class MonsterController : MonoBehaviour
     [Header("level")]
     public int MonsterCount = 10;  
     public int Level = 1;
-    void Start()
+
+    private void Awake()
     {
-      
-        StartCoroutine(SpawnMonsters()) ;    
+        int currentChildCount = Spawnner.transform.childCount;
+    }
+    void Start()
+    {    
+        StartCoroutine(SpawnMonsters(Level)) ;    
     }
     void Update()
     {
-        ChangeCountText();
+        int currentChildCount = Spawnner.transform.childCount;
+        ChangeCountText(currentChildCount);
+        changeLevel(currentChildCount);
+    }
+
+         private Monster SpwanMonster(int Level)
+      {
+
+        var newMonster = Instantiate(monsters[Level]).GetComponent<Monster>();
+        newMonster.transform.SetParent(Spawnner.transform);
+        //newMonster.monsterData = monsterDatas[(int)type];
+        newMonster.name = newMonster.monsterData.MonsterName;    
+        
+        return newMonster;
+    }
+    IEnumerator SpawnMonsters(int Level)
+    {
+        for (int i = 0; i < MonsterCount; i++)
+        {
+            SetPosition(Level);
+            SpwanMonster(Level);         
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    private void SetPosition(int Level)
+    {
+        Vector3 newPosition = Spawnner.transform.position;
+        monsters[Level].transform.position = newPosition;
     }
 
 
@@ -37,12 +70,21 @@ public class MonsterController : MonoBehaviour
 
 
 
-      private void ChangeCountText()// 이전 프레임과 현재 프레임의 자식 오브젝트 개수를 비교 하여 바뀌었을때만 텍스트바꿔줌 
+    private void changeLevel(int currentChildCount) // 몬스터 수다 0이됬을때 
     {
-        int currentChildCount = Spawnner.transform.childCount;
+        if (currentChildCount <= 0)
+        {
+
+        }
 
 
-        if (currentChildCount != previousChildCount) 
+    }
+    private void ChangeCountText(int currentChildCount)// 이전 프레임과 현재 프레임의 자식 오브젝트 개수를 비교 하여 바뀌었을때만 텍스트바꿔줌 
+    {
+
+
+
+        if (currentChildCount != previousChildCount)
         {
 
             TxtMonsterCount.text = currentChildCount.ToString();
@@ -50,33 +92,6 @@ public class MonsterController : MonoBehaviour
 
             previousChildCount = currentChildCount;
         }
-    }
-
-
-         private Monster SpwanMonster(MonsterType type)
-      {
-
-        var newMonster = Instantiate(MonsterPrefab).GetComponent<Monster>();
-        newMonster.transform.SetParent(Spawnner.transform);
-        newMonster.monsterData = monsterDatas[(int)type];
-        newMonster.name = newMonster.monsterData.MonsterName;    
-        
-        return newMonster;
-    }
-    IEnumerator SpawnMonsters()
-    {
-        for (int i = 0; i < MonsterCount; i++)
-        {
-            SetPosition();
-            SpwanMonster((MonsterType)Level);         
-            yield return new WaitForSeconds(1.0f);
-        }
-    }
-
-    private void SetPosition()
-    {
-        Vector3 newPosition = Spawnner.transform.position;
-        MonsterPrefab.transform.position = newPosition;
     }
 
 }
