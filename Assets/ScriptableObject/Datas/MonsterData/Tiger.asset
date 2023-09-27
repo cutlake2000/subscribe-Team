@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Tiger
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  MonsterName: 
-  MonsterHp: 0
+  MonsterName: "\uD638\uB791\uC774"
+  MonsterHp: 50
   MonsterDF: 0
   MonsterSpeed: 0
   Monstersprite: {fileID: 0}

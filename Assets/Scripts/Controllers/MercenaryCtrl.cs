@@ -14,16 +14,14 @@ public class MercenaryCtrl : MonoBehaviour
     public GameObject enemy;
     Animator animator;
     Monster monster;
+    MonsterData thisMonster;
     public SpriteRenderer renderer;
     private float targetDistance;
     public string TagName = "Monster";
-    public Monster thisMonster;
-    public Monster CloseMonster;
     private void Awake()
     {
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
-        
     }
     private void Start()
     {
@@ -39,7 +37,7 @@ public class MercenaryCtrl : MonoBehaviour
 
         GameObject CloseEnemy = GetClosest();
         monster = CloseEnemy.GetComponent<Monster>();
-        CloseMonster = WhichMonster(monster);
+        monster.monsterData = WhichMonster(monster);
         float distance = GetDistance(CloseEnemy);
         // 적이 왼쪽에 있을경우 뒤집어준다.
         if(CloseEnemy.transform.position.x < gameObject.transform.position.x)
@@ -51,9 +49,9 @@ public class MercenaryCtrl : MonoBehaviour
 
         if (distance < data.AttackRange) 
         {
-            Hit(CloseMonster);
+            Hit(monster);
         }
-        if(CloseMonster.monsterData.MonsterHp <= 0)
+        if(monster.monsterData.MonsterHp <= 0)
         {
             Destroy(CloseEnemy);
         }
@@ -115,19 +113,26 @@ public class MercenaryCtrl : MonoBehaviour
         target.monsterData.MonsterHp -= data.Attack;
     }
 
-    Monster WhichMonster(Monster monster)
+    MonsterData WhichMonster(Monster monster)
     {
-        thisMonster = new Monster();
+        thisMonster = new MonsterData();
         switch(monster.monsterData.MonsterName)
         {
             case "개":
-                thisMonster.monsterData = DataManager.instance.monsterDatas[0];
+                thisMonster.MonsterHp = DataManager.instance.monsterDatas[0].MonsterHp;
+                thisMonster.MonsterDF = DataManager.instance.monsterDatas[0].MonsterDF;
+                thisMonster.MonsterSpeed = DataManager.instance.monsterDatas[0].MonsterSpeed;
+
                 break;
             case "유령":
-                thisMonster.monsterData = DataManager.instance.monsterDatas[1];
+                thisMonster.MonsterHp = DataManager.instance.monsterDatas[1].MonsterHp;
+                thisMonster.MonsterDF = DataManager.instance.monsterDatas[1].MonsterDF;
+                thisMonster.MonsterSpeed = DataManager.instance.monsterDatas[1].MonsterSpeed;
                 break;
             case "호랑이":
-                thisMonster.monsterData = DataManager.instance.monsterDatas[2];
+                thisMonster.MonsterHp = DataManager.instance.monsterDatas[2].MonsterHp;
+                thisMonster.MonsterDF = DataManager.instance.monsterDatas[2].MonsterDF;
+                thisMonster.MonsterSpeed = DataManager.instance.monsterDatas[2].MonsterSpeed;
                 break;
         }
         return thisMonster;

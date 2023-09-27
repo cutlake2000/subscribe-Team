@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Monster_Dokaibi
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  MonsterName: 
-  MonsterHp: 0
+  MonsterName: "\uB3C4\uAE68\uBE44"
+  MonsterHp: 50
   MonsterDF: 0
   MonsterSpeed: 0
   Monstersprite: {fileID: 0}

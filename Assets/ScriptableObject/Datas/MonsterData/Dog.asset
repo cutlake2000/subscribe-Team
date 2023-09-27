@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Dog
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  MonsterName: 
-  MonsterHp: 0
+  MonsterName: "\uAC1C"
+  MonsterHp: 50
   MonsterDF: 0
   MonsterSpeed: 0
   Monstersprite: {fileID: 0}
