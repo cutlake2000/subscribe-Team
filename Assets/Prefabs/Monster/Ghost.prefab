@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1814627382033478633
 SpriteRenderer:
@@ -147,7 +147,7 @@ Animator:
   m_GameObject: {fileID: 6979619892660024470}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b45ec9f599489d14ab6da09ff02b4790, type: 2}
+  m_Controller: {fileID: 9100000, guid: c2be45ccefb21b847ab630b2b26b2e0e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -170,7 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4565b8c884274f40ad5100d6af54ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropOnDeath: []
   MonsterData: {fileID: 11400000, guid: 865b2b44f241847478adf0b6b0c1cd6b, type: 2}
 --- !u!114 &5559915476891360527
 MonoBehaviour:

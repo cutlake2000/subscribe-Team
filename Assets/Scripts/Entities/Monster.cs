@@ -16,7 +16,7 @@ public class Monster : MonoBehaviour
     public void TakePhysicalDamage(int damageAmount)
     {
         MonsterHp -= damageAmount;
-        if (MonsterData.MonsterHp <= 0)
+        if (MonsterHp <= 0)
             Die();     
     }
 
