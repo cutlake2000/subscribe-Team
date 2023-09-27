@@ -17,11 +17,11 @@ public class MercenaryCtrl : MonoBehaviour
     public SpriteRenderer renderer;
     private float targetDistance;
     public string TagName = "Monster";
-
+    public Monster thisMonster;
+    public Monster CloseMonster;
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        target = new List<GameObject>(GameObject.FindGameObjectsWithTag(TagName));
         renderer = GetComponent<SpriteRenderer>();
         
     }
@@ -32,12 +32,14 @@ public class MercenaryCtrl : MonoBehaviour
 
     private void Update()
     {
+        target = new List<GameObject>(GameObject.FindGameObjectsWithTag(TagName));
+
         // 낮이 되어 자유롭게 대기중일때
-       //StartCoroutine(MoveObject());
+        //StartCoroutine(MoveObject());
 
         GameObject CloseEnemy = GetClosest();
         monster = CloseEnemy.GetComponent<Monster>();
-        Monster CloseMonster = WhichMonster(monster);
+        CloseMonster = WhichMonster(monster);
         float distance = GetDistance(CloseEnemy);
         // 적이 왼쪽에 있을경우 뒤집어준다.
         if(CloseEnemy.transform.position.x < gameObject.transform.position.x)
@@ -45,13 +47,16 @@ public class MercenaryCtrl : MonoBehaviour
             renderer.flipX = true;
         }
         //가장 가까운 적을 향해 움직인다.
-        Moving(CloseEnemy);
+        Moving(CloseEnemy, data.MovingSpeed);
 
         if (distance < data.AttackRange) 
         {
             Hit(CloseMonster);
         }
-
+        if(CloseMonster.monsterData.MonsterHp <= 0)
+        {
+            Destroy(CloseEnemy);
+        }
     }
 
     IEnumerator MoveObject()
@@ -92,28 +97,27 @@ public class MercenaryCtrl : MonoBehaviour
 
     float GetDistance(GameObject target)
     { 
-        targetDistance = Vector3.Distance(target.transform.position, mercenary.transform.position);
+        targetDistance = Vector3.Distance(target.transform.position, gameObject.transform.position);
         return targetDistance;
     }
 
-    void Moving(GameObject target)
+    void Moving(GameObject target, float Objectspeed)
     {
         // 가장 가까이에 있는 적에게 접근
         Vector3 speed = Vector3.zero;
         Vector3 destination = target.transform.position;
-        transform.position = Vector3.Lerp(transform.position, destination, 0.001f);
+        transform.position = Vector3.Lerp(transform.position, destination, 0.001f * Objectspeed);
     }
 
     void Hit(Monster target)
     {
         Attacking();
         target.monsterData.MonsterHp -= data.Attack;
-        Debug.Log(target.monsterData.MonsterHp);
     }
 
     Monster WhichMonster(Monster monster)
     {
-        Monster thisMonster = new Monster();
+        thisMonster = new Monster();
         switch(monster.monsterData.MonsterName)
         {
             case "개":
