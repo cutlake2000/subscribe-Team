@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6784474449135218849}
   - component: {fileID: 4144756814674409516}
   - component: {fileID: -1439405573112887248}
-  - component: {fileID: 5559915476891360527}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Monster
@@ -35,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1814627382033478633
 SpriteRenderer:
@@ -168,19 +167,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4565b8c884274f40ad5100d6af54ac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MonsterData: {fileID: 11400000, guid: 865b2b44f241847478adf0b6b0c1cd6b, type: 2}
---- !u!114 &5559915476891360527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6979619892660024470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d1cacfee7cf4545a90693df9885582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: 865b2b44f241847478adf0b6b0c1cd6b, type: 2}

@@ -3,34 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public enum MonsterType {Dog,Ghost,Tiger }
+public enum MonsterType
+{
+    Dog,
+    Ghost,
+    Tiger
+}
+
 public class MonsterController : MonoBehaviour
 {
-
     [SerializeField]
     private List<GameObject> monsters;
+
     [SerializeField]
     private GameObject Spawnner;
 
     [SerializeField]
     private TextMeshProUGUI TxtMonsterCount;
 
-
-    private int previousChildCount = -1; //ÀÌÀü ÇÁ·¹ÀÓÀÇ ÀÚ½Ä ¿ÀºêÁ§Æ® °³¼ö
+    private int previousChildCount = -1; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     private int CurMonsterCount;
 
     [Header("level")]
-    public int MonsterCount = 10;  
+    public int MonsterCount = 10;
     public int Level = 1;
 
     private void Awake()
     {
         int currentChildCount = Spawnner.transform.childCount;
     }
+
     void Start()
-    {    
-        StartCoroutine(SpawnMonsters(Level)) ;    
+    {
+        StartCoroutine(SpawnMonsters(Level));
     }
+
     void Update()
     {
         int currentChildCount = Spawnner.transform.childCount;
@@ -38,22 +45,22 @@ public class MonsterController : MonoBehaviour
         changeLevel(currentChildCount);
     }
 
-         private Monster SpwanMonster(int Level)
-      {
-
+    private Monster SpwanMonster(int Level)
+    {
         var newMonster = Instantiate(monsters[Level]).GetComponent<Monster>();
         newMonster.transform.SetParent(Spawnner.transform);
         //newMonster.monsterData = monsterDatas[(int)type];
-        newMonster.name = newMonster.MonsterData.MonsterName;    
-        
+        newMonster.name = newMonster.monsterData.MonsterName;
+
         return newMonster;
     }
+
     IEnumerator SpawnMonsters(int Level)
     {
         for (int i = 0; i < MonsterCount; i++)
         {
             SetPosition(Level);
-            SpwanMonster(Level);         
+            SpwanMonster(Level);
             yield return new WaitForSeconds(1.0f);
         }
     }
@@ -64,33 +71,18 @@ public class MonsterController : MonoBehaviour
         monsters[Level].transform.position = newPosition;
     }
 
-
-
-
-
-
-    private void changeLevel(int currentChildCount) // ¸ó½ºÅÍ ¼ö´Ù 0ÀÌ‰çÀ»¶§ 
+    private void changeLevel(int currentChildCount) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½Ì‰ï¿½ï¿½ï¿½ï¿½ï¿½
     {
-        if (currentChildCount <= 0)
-        {
-
-        }
-
-
+        if (currentChildCount <= 0) { }
     }
-    private void ChangeCountText(int currentChildCount)// ÀÌÀü ÇÁ·¹ÀÓ°ú ÇöÀç ÇÁ·¹ÀÓÀÇ ÀÚ½Ä ¿ÀºêÁ§Æ® °³¼ö¸¦ ºñ±³ ÇÏ¿© ¹Ù²î¾úÀ»¶§¸¸ ÅØ½ºÆ®¹Ù²ãÁÜ 
+
+    private void ChangeCountText(int currentChildCount) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï¿ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®ï¿½Ù²ï¿½ï¿½ï¿½
     {
-
-
-
         if (currentChildCount != previousChildCount)
         {
-
             TxtMonsterCount.text = currentChildCount.ToString();
-
 
             previousChildCount = currentChildCount;
         }
     }
-
 }

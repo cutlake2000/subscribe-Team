@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-   
-    public MonsterData MonsterData;
+    public MonsterData monsterData;
     float MonsterHp;
+
     private void Start()
     {
-        MonsterHp = MonsterData.MonsterHp;
+        MonsterHp = monsterData.MonsterHp;
     }
-
 
     public void TakePhysicalDamage(int damageAmount)
     {
         MonsterHp -= damageAmount;
         if (MonsterHp <= 0)
-            Die();     
+            Die();
     }
-
 
     void Die()
     {
-         //ToDo ÀÚ¿ø Å‰µæ ±â´É 
+        //ToDo ï¿½Ú¿ï¿½ Å‰ï¿½ï¿½ ï¿½ï¿½ï¿½
 
         Destroy(gameObject);
-}
     }
+}

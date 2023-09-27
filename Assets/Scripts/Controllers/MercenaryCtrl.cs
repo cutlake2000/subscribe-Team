@@ -19,41 +19,39 @@ public class MercenaryCtrl : MonoBehaviour
     public string TagName = "Monster";
     public Monster thisMonster;
     public Monster CloseMonster;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
-        
     }
-    private void Start()
-    {
 
-    }
+    private void Start() { }
 
     private void Update()
     {
         target = new List<GameObject>(GameObject.FindGameObjectsWithTag(TagName));
 
-        // ³·ÀÌ µÇ¾î ÀÚÀ¯·Ó°Ô ´ë±âÁßÀÏ¶§
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½
         //StartCoroutine(MoveObject());
 
         GameObject CloseEnemy = GetClosest();
         monster = CloseEnemy.GetComponent<Monster>();
         CloseMonster = WhichMonster(monster);
         float distance = GetDistance(CloseEnemy);
-        // ÀûÀÌ ¿ÞÂÊ¿¡ ÀÖÀ»°æ¿ì µÚÁý¾îÁØ´Ù.
-        if(CloseEnemy.transform.position.x < gameObject.transform.position.x)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
+        if (CloseEnemy.transform.position.x < gameObject.transform.position.x)
         {
             renderer.flipX = true;
         }
-        //°¡Àå °¡±î¿î ÀûÀ» ÇâÇØ ¿òÁ÷ÀÎ´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½.
         Moving(CloseEnemy, data.MovingSpeed);
 
-        if (distance < data.AttackRange) 
+        if (distance < data.AttackRange)
         {
             Hit(CloseMonster);
         }
-        if(CloseMonster.monsterData.MonsterHp <= 0)
+        if (CloseMonster.monsterData.MonsterHp <= 0)
         {
             Destroy(CloseEnemy);
         }
@@ -63,7 +61,7 @@ public class MercenaryCtrl : MonoBehaviour
     {
         mercenary = GetComponent<Rigidbody>();
 
-        while(true)
+        while (true)
         {
             float dir1 = Random.Range(-1f, 1f);
             float dir2 = Random.Range(-1f, 1f);
@@ -76,11 +74,14 @@ public class MercenaryCtrl : MonoBehaviour
     GameObject GetClosest()
     {
         enemy = target[0];
-        float ShortDistance = Vector3.Distance(gameObject.transform.position, enemy.transform.position);
-        foreach(GameObject found in target)
+        float ShortDistance = Vector3.Distance(
+            gameObject.transform.position,
+            enemy.transform.position
+        );
+        foreach (GameObject found in target)
         {
-           float distance =  GetDistance(found);
-            if(distance < ShortDistance)
+            float distance = GetDistance(found);
+            if (distance < ShortDistance)
             {
                 enemy = found;
                 ShortDistance = distance;
@@ -91,19 +92,19 @@ public class MercenaryCtrl : MonoBehaviour
 
     void Attacking()
     {
-        // Å¸°Ù°úÀÇ °Å¸®°¡ °ø°Ý¹üÀ§º¸´Ù ÀÛÀ¸¸é °ø°Ý!
+        // Å¸ï¿½Ù°ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!
         animator.SetTrigger("Attack");
     }
 
     float GetDistance(GameObject target)
-    { 
+    {
         targetDistance = Vector3.Distance(target.transform.position, gameObject.transform.position);
         return targetDistance;
     }
 
     void Moving(GameObject target, float Objectspeed)
     {
-        // °¡Àå °¡±îÀÌ¿¡ ÀÖ´Â Àû¿¡°Ô Á¢±Ù
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Vector3 speed = Vector3.zero;
         Vector3 destination = target.transform.position;
         transform.position = Vector3.Lerp(transform.position, destination, 0.001f * Objectspeed);
@@ -118,19 +119,18 @@ public class MercenaryCtrl : MonoBehaviour
     Monster WhichMonster(Monster monster)
     {
         thisMonster = new Monster();
-        switch(monster.monsterData.MonsterName)
+        switch (monster.monsterData.MonsterName)
         {
-            case "°³":
+            case "ï¿½ï¿½":
                 thisMonster.monsterData = DataManager.instance.monsterDatas[0];
                 break;
-            case "À¯·É":
+            case "ï¿½ï¿½ï¿½ï¿½":
                 thisMonster.monsterData = DataManager.instance.monsterDatas[1];
                 break;
-            case "È£¶ûÀÌ":
+            case "È£ï¿½ï¿½ï¿½ï¿½":
                 thisMonster.monsterData = DataManager.instance.monsterDatas[2];
                 break;
         }
         return thisMonster;
     }
-    
 }

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2752957439068477065}
   - component: {fileID: 8593588620508819693}
   - component: {fileID: 7078714933889790112}
-  - component: {fileID: -7043355651423295551}
   m_Layer: 0
   m_Name: Tiger
   m_TagString: Monster
@@ -168,19 +167,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4565b8c884274f40ad5100d6af54ac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MonsterData: {fileID: 11400000, guid: 147e145aee3218d40849beda854f57b1, type: 2}
---- !u!114 &-7043355651423295551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4248236418219783262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d1cacfee7cf4545a90693df9885582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: 147e145aee3218d40849beda854f57b1, type: 2}

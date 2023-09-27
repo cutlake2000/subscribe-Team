@@ -3936,14 +3936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666e4fa26553d4900922d38869d7c314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  day: 0
-  cloud1: {fileID: 1790593135}
-  cloud2: {fileID: 1172302901}
-  cloud3: {fileID: 923427673}
-  background: {fileID: 1932953509}
-  initTime: 0
-  entireTime: 10
-  currentTime: 0
 --- !u!1 &1445433115
 GameObject:
   m_ObjectHideFlags: 0
