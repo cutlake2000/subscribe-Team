@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4963137743775854707}
   - component: {fileID: 6784474449135218849}
   - component: {fileID: 4144756814674409516}
-  - component: {fileID: -1439405573112887248}
   - component: {fileID: 5621735473338012288}
+  - component: {fileID: 3225836216833118573}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Monster
@@ -158,19 +158,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-1439405573112887248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6979619892660024470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4565b8c884274f40ad5100d6af54ac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterData: {fileID: 11400000, guid: 865b2b44f241847478adf0b6b0c1cd6b, type: 2}
 --- !u!114 &5621735473338012288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +168,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74d1cacfee7cf4545a90693df9885582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterData: {fileID: 11400000, guid: 865b2b44f241847478adf0b6b0c1cd6b, type: 2}
+--- !u!114 &3225836216833118573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6979619892660024470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9be3a32d402bd04996cc2b62678c45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   monsterData: {fileID: 11400000, guid: 865b2b44f241847478adf0b6b0c1cd6b, type: 2}

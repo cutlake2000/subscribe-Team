@@ -16,4 +16,4 @@ MonoBehaviour:
   AttackSpeed: 3
   Critical: 0
   AttackRange: 3
-  MovingSpeed: 0.5
+  MovingSpeed: 1
