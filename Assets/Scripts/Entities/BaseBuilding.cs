@@ -33,6 +33,8 @@ public class BaseBuilding : MonoBehaviour
 
     public virtual void LevelUP()
     {
+        // TODO 최대 레벨 지정하고 달성시
+        // 클릭 UI 색으로 비활성화 나타내기
         level++;
         upgradeWood *= 2;
     }

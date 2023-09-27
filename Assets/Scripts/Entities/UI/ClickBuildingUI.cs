@@ -28,6 +28,7 @@ public class ClickBuildingUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    // 정보 갱신
     public void Refresh(BaseBuilding target)
     {
 

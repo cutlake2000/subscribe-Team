@@ -17,7 +17,5 @@ internal class InnBuilding : BaseBuilding
         base.LevelUP();
         maxUnitValue += 1;
     }
-
-
 }
 

@@ -12,6 +12,7 @@ public class BuildingData
 {
     public BuildingType buildingType;
     public int level;
+    public int maxLevel;
     public string name;
     [Multiline(2)] public string desc;
     public int upgradeWood;
