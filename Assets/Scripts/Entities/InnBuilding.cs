@@ -2,9 +2,11 @@
 
 internal class InnBuilding : BaseBuilding
 {
-
     int maxUnitValue = 3; // 1레벨 수치
-    public int MaxUnitValue {  get { return maxUnitValue; } }
+    public int MaxUnitValue
+    {
+        get { return maxUnitValue; }
+    }
 
     public override void Initialization()
     {
@@ -18,4 +20,3 @@ internal class InnBuilding : BaseBuilding
         maxUnitValue += 1;
     }
 }
-

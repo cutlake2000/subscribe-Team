@@ -1,10 +1,9 @@
 using UnityEngine;
 
-
-// °Ç¹° Áş±â -> ÄÁÆ®·Ñ·¯
-// ¾÷±×·¹ÀÌµå ½º½º·Î
-// Inn : À¯´Ö ¼ö Áõ°¡
-// Forge : À¯´Ö ¾÷±×·¹ÀÌµå
+// ï¿½Ç¹ï¿½ ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
+// ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// Inn : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// Forge : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½
 //
 public class BaseBuilding : MonoBehaviour
 {
@@ -19,10 +18,8 @@ public class BaseBuilding : MonoBehaviour
     public string desc;
     public int upgradeWood;
 
-
-
-    // µ¥ÀÌÅÍ ºÒ·¯¿À±â
-    public virtual void Initialization() 
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
+    public virtual void Initialization()
     {
         buildingType = baseData.buildingType;
         level = baseData.level;
@@ -33,8 +30,8 @@ public class BaseBuilding : MonoBehaviour
 
     public virtual void LevelUP()
     {
-        // TODO ÃÖ´ë ·¹º§ ÁöÁ¤ÇÏ°í ´Ş¼º½Ã
-        // Å¬¸¯ UI »öÀ¸·Î ºñÈ°¼ºÈ­ ³ªÅ¸³»±â
+        // TODO ìµœëŒ€ ë ˆë²¨ ì§€ì •í•˜ê³  ë‹¬ì„±ì‹œ
+        // í´ë¦­ UI ìƒ‰ìœ¼ë¡œ ë¹„í™œì„±í™” ë‚˜íƒ€ë‚´ê¸°
         level++;
         upgradeWood *= 2;
     }
