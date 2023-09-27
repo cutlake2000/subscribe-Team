@@ -70,7 +70,8 @@ public class BuildingController : MonoBehaviour
     // 클릭빌딩 UI 온오프
     public void ActiveClickBuildingUI(BaseBuilding clickBuilding)
     {
-        if (clickBuildingUI.gameObject.activeSelf == true) // 임시
+        if (clickBuildingUI.gameObject.activeSelf == true // 임시
+            && clickBuilding != null && this.clickBuilding == clickBuilding)
         {
             clickBuildingUI.OFF();
             return;
