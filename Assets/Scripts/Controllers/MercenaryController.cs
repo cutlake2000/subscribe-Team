@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class MercenaryCtrl : MonoBehaviour
+public class MercenaryController : MonoBehaviour
 {
     public Rigidbody mercenary;
     public MercenaryData data;
