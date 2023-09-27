@@ -4,18 +4,21 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 
-
 public enum BuildingType
 {
-    Inn, Forge
+    Inn,
+    Forge
 }
 
 public class BuildingController : MonoBehaviour
 {
     public static BuildingController instance;
 
-    [SerializeField] BuildingSO buildingSO;
-    [SerializeField] GameObject[] buildingPrefabs;
+    [SerializeField]
+    BuildingSO buildingSO;
+
+    [SerializeField]
+    GameObject[] buildingPrefabs;
     public List<BaseBuilding> buildings;
 
     public BaseBuilding clickBuilding;
@@ -25,25 +28,24 @@ public class BuildingController : MonoBehaviour
     {
         instance = this;
         buildings = new List<BaseBuilding>();
-
     }
 
     public void Start()
     {
-        // - Å×½ºÆ®¿ë
+        // - ï¿½×½ï¿½Æ®ï¿½ï¿½
         SetNewBuildingOnMap(BuildingType.Inn, Vector2.left);
         SetNewBuildingOnMap(BuildingType.Forge, Vector2.right);
         //
     }
 
-    // ºôµù Ãß°¡¿Í ÇØ´ç À§Ä¡·Î ÀÌµ¿
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
     public void SetNewBuildingOnMap(BuildingType type, Vector3 pos)
     {
         BaseBuilding newBuilding = DeliverNewBuilding(type);
         newBuilding.transform.position = pos;
     }
 
-    // ºôµù¸¸ »õ·Î Ãß°¡
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     private BaseBuilding DeliverNewBuilding(BuildingType type)
     {
         BaseBuilding newBuilding;
@@ -67,11 +69,14 @@ public class BuildingController : MonoBehaviour
         return newBuilding;
     }
 
-    // Å¬¸¯ºôµù UI ¿Â¿ÀÇÁ
+    // Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UI ï¿½Â¿ï¿½ï¿½ï¿½
     public void ActiveClickBuildingUI(BaseBuilding clickBuilding)
     {
-        if (clickBuildingUI.gameObject.activeSelf == true // ÀÓ½Ã
-            && clickBuilding != null && this.clickBuilding == clickBuilding)
+        if (
+            clickBuildingUI.gameObject.activeSelf == true // ï¿½Ó½ï¿½
+            && clickBuilding != null
+            && this.clickBuilding == clickBuilding
+        )
         {
             clickBuildingUI.OFF();
             return;
@@ -80,20 +85,20 @@ public class BuildingController : MonoBehaviour
         clickBuildingUI.On(clickBuilding);
     }
 
-    // ·¹º§¾÷ ºôµù
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void LevelUpBuilding(bool isLoop)
     {
         if (clickBuilding.upgradeWood >= DataManager.instance.player.Wood && isLoop == false)
         {
             if (!isLoop)
-                Debug.Log("°ñµå ºÎÁ·");
+                Debug.Log("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
             return;
         }
 
         if (isLoop == false)
         {
-            Debug.Log("·¹º§¾÷ ¼º°ø");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
             DataManager.instance.player.Wood -= clickBuilding.upgradeWood;
             clickBuilding.LevelUP();
         }
@@ -106,31 +111,24 @@ public class BuildingController : MonoBehaviour
                 DataManager.instance.player.Wood -= clickBuilding.upgradeWood;
                 clickBuilding.LevelUP();
             }
-            Debug.Log($"{upCount}¸¸Å­ ·¹º§¾÷ ¼º°ø");
+            Debug.Log($"{upCount}ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
-
     }
 
-
-    // Å¬¸¯ ºôµù ÆÄ±«
+    // Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½
     public void DestroyBuilding()
     {
-        clickBuilding.gameObject.SetActive(false);// ·ÎÁ÷ Ãß°¡
+        clickBuilding.gameObject.SetActive(false); // ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     }
 
-
-    // 'ºñÈ°¼ºÈ­'µÈ ºôµù µ¥ÀÌÅÍ ÃÊ±âÈ­
+    // 'ï¿½ï¿½È°ï¿½ï¿½È­'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
     private void ResetBuildingData(BaseBuilding newBuilding)
     {
         newBuilding.Initialization();
         newBuilding.gameObject.SetActive(true);
     }
 
-
-
-
-
-    // ¿©°ü È¿°ú °»½Å
+    // ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void RefreshInnEffect()
     {
         int sum = 0;
@@ -146,11 +144,11 @@ public class BuildingController : MonoBehaviour
         }
 
         DataManager.instance.player.MaxUnitCount = sum;
-        Debug.Log("¿©°ü È¿°ú : " + DataManager.instance.player.MaxUnitCount);
-        // ++ UI ¿¬°á
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ : " + DataManager.instance.player.MaxUnitCount);
+        // ++ UI ï¿½ï¿½ï¿½ï¿½
     }
 
-    // ´ëÀå°£ È¿°ú °»½Å
+    // ï¿½ï¿½ï¿½å°£ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void RefreshForgeEffect()
     {
         int sum = 0;
@@ -166,10 +164,8 @@ public class BuildingController : MonoBehaviour
         }
 
         DataManager.instance.player.AddUnitAtk = sum;
-        Debug.Log("´ëÀå°£ È¿°ú : " + DataManager.instance.player.AddUnitAtk);
+        Debug.Log("ï¿½ï¿½ï¿½å°£ È¿ï¿½ï¿½ : " + DataManager.instance.player.AddUnitAtk);
 
-        // ++ UI ¿¬°á
+        // ++ UI ï¿½ï¿½ï¿½ï¿½
     }
-
-
 }

@@ -1,16 +1,16 @@
 using UnityEngine;
 
-
-// °Ç¹° Áþ±â -> ÄÁÆ®·Ñ·¯
-// ¾÷±×·¹ÀÌµå ½º½º·Î
-// Inn : À¯´Ö ¼ö Áõ°¡
-// Forge : À¯´Ö ¾÷±×·¹ÀÌµå
+// ï¿½Ç¹ï¿½ ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
+// ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// Inn : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// Forge : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½
 //
 public class BaseBuilding : MonoBehaviour
 {
     public BuildingData baseData;
-    
-    [SerializeField] SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
 
     public BuildingType buildingType;
     public int level;
@@ -18,10 +18,8 @@ public class BaseBuilding : MonoBehaviour
     public string desc;
     public int upgradeWood;
 
-
-
-    // µ¥ÀÌÅÍ ºÒ·¯¿À±â
-    public virtual void Initialization() 
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
+    public virtual void Initialization()
     {
         buildingType = baseData.buildingType;
         level = baseData.level;

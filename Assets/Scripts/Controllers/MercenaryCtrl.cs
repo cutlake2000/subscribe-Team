@@ -14,7 +14,7 @@ public class MercenaryCtrl : MonoBehaviour
     public GameObject enemy;
     Animator animator;
     Monster monster;
-    public SpriteRenderer renderer;
+    public new SpriteRenderer renderer;
     private float targetDistance;
     public string TagName = "Monster";
     public Monster thisMonster;

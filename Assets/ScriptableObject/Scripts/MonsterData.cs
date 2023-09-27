@@ -1,6 +1,10 @@
-
 using UnityEngine;
-[CreateAssetMenu(fileName = " MonsterData", menuName = "Scriptable Object/ MonsterData", order = int.MaxValue)]
+
+[CreateAssetMenu(
+    fileName = " MonsterData",
+    menuName = "Scriptable Object/ MonsterData",
+    order = int.MaxValue
+)]
 public class MonsterData : ScriptableObject
 {
     public string MonsterName;
@@ -12,5 +16,4 @@ public class MonsterData : ScriptableObject
     public float MonsterSpeed;
 
     public GameObject dropPrefab;
-
 }
