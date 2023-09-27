@@ -6,8 +6,7 @@ using TMPro;
 public enum MonsterType {Dog,Ghost,Tiger }
 public class MonsterController : MonoBehaviour
 {
-    [SerializeField]
-    private List<MonsterData> monsterDatas;
+
     [SerializeField]
     private List<GameObject> monsters;
     [SerializeField]
