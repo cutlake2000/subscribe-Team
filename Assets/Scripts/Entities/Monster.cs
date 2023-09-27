@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-   public MonsterData monsterData;
-
-
-    public void FixedUpdate()
+   
+    public MonsterData MonsterData;
+    float MonsterHp;
+    private void Start()
     {
-        transform.Translate(Vector3.forward * monsterData.MonsterSpeed * Time.deltaTime);
+        MonsterHp = MonsterData.MonsterHp;
     }
 
+
+    public void TakePhysicalDamage(int damageAmount)
+    {
+        MonsterHp -= damageAmount;
+        if (MonsterHp <= 0)
+            Die();     
+    }
+
+
+    void Die()
+    {
+         //ToDo ÀÚ¿ø Å‰µæ ±â´É 
+
+        Destroy(gameObject);
 }
+    }

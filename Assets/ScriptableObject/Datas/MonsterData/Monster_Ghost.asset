@@ -16,4 +16,4 @@ MonoBehaviour:
   MonsterHp: 15
   MonsterDF: 2
   MonsterSpeed: 1
-  Monstersprite: {fileID: 0}
+  dropPrefab: {fileID: 566556780858078677, guid: d97b7554aecdde14d97b454bce2c376f, type: 3}
