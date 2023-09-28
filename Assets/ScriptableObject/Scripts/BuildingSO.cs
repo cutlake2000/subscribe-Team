@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObject/Building", fileName = "Building")]
@@ -18,4 +19,6 @@ public class BuildingData
     [Multiline(2)]
     public string desc;
     public int upgradeWood;
+
+    public List<ClickBtnOptionType> optionTypeList;
 }

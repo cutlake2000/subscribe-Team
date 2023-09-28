@@ -1,4 +1,6 @@
-﻿internal class ForgeBuilding : BaseBuilding
+using System.Collections.Generic;
+
+class ForgeBuilding : BaseBuilding
 {
     int addUnitAtk = 1; // 1레벨 수치
     public int AddUnitAtk

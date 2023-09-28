@@ -34,9 +34,9 @@ public class BuildingController : MonoBehaviour
     public void Start()
     {
         // - �׽�Ʈ��
-        SetNewBuildingOnMap(BuildingType.Inn, Vector2.left);
-        SetNewBuildingOnMap(BuildingType.Forge, Vector2.right);
-        SetNewBuildingOnMap(BuildingType.Market, Vector2.right *2);
+        SetNewBuildingOnMap(BuildingType.Inn, Vector2.left*2);
+        SetNewBuildingOnMap(BuildingType.Forge, Vector2.right*1);
+        SetNewBuildingOnMap(BuildingType.Market, Vector2.right *4);
         //
     }
 
@@ -84,12 +84,12 @@ public class BuildingController : MonoBehaviour
             return;
         }
         this.clickBuilding = clickBuilding;
-        clickBuildingUI.Refresh(clickBuilding);
         clickBuildingUI.On(clickBuilding);
+        clickBuildingUI.Refresh(clickBuilding);
     }
 
     // ������ ����
-    public void LevelUpBuilding(bool isLoop)
+    public void LevelUpBuilding(bool isLoop = false)
     {
         if (clickBuilding.upgradeWood >= DataManager.instance.player.Wood && isLoop == false)
         {
@@ -125,6 +125,16 @@ public class BuildingController : MonoBehaviour
         clickBuilding.gameObject.SetActive(false);
         clickBuilding = null;
         clickBuildingUI.OFF();
+    }
+
+    public void BuyResource()
+    {
+        Debug.Log("아이템 구매");
+    }
+
+    public void SellResource()
+    {
+        Debug.Log("아이템 판매");
     }
 
     // '��Ȱ��ȭ'�� ���� ������ �ʱ�ȭ

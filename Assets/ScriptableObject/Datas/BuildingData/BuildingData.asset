@@ -19,15 +19,18 @@ MonoBehaviour:
     name: "\uC5EC\uAD00"
     desc: 
     upgradeWood: 2
+    optionTypeList: 01000000020000000300000000000000
   - buildingType: 1
     level: 1
     maxLevel: 3
     name: "\uB300\uC7A5\uAC04"
     desc: 
     upgradeWood: 1
+    optionTypeList: 01000000020000000300000000000000
   - buildingType: 2
     level: 1
     maxLevel: 1
     name: "\uC2DC\uC7A5"
     desc: 
     upgradeWood: 0
+    optionTypeList: 04000000050000000300000000000000

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +18,7 @@ public class MarketBuilding : BaseBuilding
 
 
     public float CurrentPrice { get { return currentPrice; } }
+    public List<ClickBtnOptionType> SellResourceOption;
 
     public override void Initialization()
     {
@@ -25,6 +27,7 @@ public class MarketBuilding : BaseBuilding
         CheckTodayPrice();
         BuildingController.instance.DayChange -= CheckTodayPrice;
         BuildingController.instance.DayChange += CheckTodayPrice;
+
     }
 
     public void CheckTodayPrice()

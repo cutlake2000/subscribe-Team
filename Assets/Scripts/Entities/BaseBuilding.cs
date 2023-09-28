@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 // �ǹ� ���� -> ��Ʈ�ѷ�
@@ -13,7 +14,9 @@ public class BaseBuilding : MonoBehaviour
     [SerializeField] Animator animator;
 
     public BuildingType buildingType;
+    public List<ClickBtnOptionType> OptionType;
     public int level;
+    public int maxLevel;
     public string buildingName;
     public string desc;
     public int upgradeWood;
@@ -23,9 +26,11 @@ public class BaseBuilding : MonoBehaviour
     {
         buildingType = baseData.buildingType;
         level = baseData.level;
+        maxLevel = baseData.maxLevel;
         buildingName = baseData.name;
         desc = baseData.desc;
         upgradeWood = baseData.upgradeWood;
+        OptionType = baseData.optionTypeList;
     }
 
     public virtual void LevelUP()
