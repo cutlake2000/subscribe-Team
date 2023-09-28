@@ -6,8 +6,7 @@ using System;
 
 public enum BuildingType
 {
-    Inn,
-    Forge
+    Inn, Forge, Market
 }
 
 public class BuildingController : MonoBehaviour
@@ -24,6 +23,8 @@ public class BuildingController : MonoBehaviour
     public BaseBuilding clickBuilding;
     public ClickBuildingUI clickBuildingUI;
 
+    public Action DayChange;
+
     private void Awake()
     {
         instance = this;
@@ -35,6 +36,7 @@ public class BuildingController : MonoBehaviour
         // - �׽�Ʈ��
         SetNewBuildingOnMap(BuildingType.Inn, Vector2.left);
         SetNewBuildingOnMap(BuildingType.Forge, Vector2.right);
+        SetNewBuildingOnMap(BuildingType.Market, Vector2.right *2);
         //
     }
 
@@ -172,5 +174,11 @@ public class BuildingController : MonoBehaviour
         Debug.Log("���尣 ȿ�� : " + DataManager.instance.player.AddUnitAtk);
 
         // ++ UI ����
+    }
+
+    // 테스트용
+    public void TestDayChangeAction()
+    {
+        DayChange?.Invoke();
     }
 }

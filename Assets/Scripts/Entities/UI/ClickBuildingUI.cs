@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class ClickBuildingUI : MonoBehaviour
 {
-    enum ClickBuildUIText { Name, CurrentEffect, Upgrade }
+    enum BtnOptionType { MaxLvUp, LvUp, Destroy, Back, Buy, Sell }
+    enum InfoTextType { Name, CurrentEffect, Upgrade }
 
     [SerializeField] Image[] buttons;
     [SerializeField] TMP_Text[] texts;
@@ -28,34 +29,39 @@ public class ClickBuildingUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // Á¤º¸ °»½Å
+    // ì •ë³´ ê°±ì‹ 
     public void Refresh(BaseBuilding target)
     {
 
         newStatusText.Clear();
         newStatusText.Append($"Lv. {target.level} {target.buildingName}");
-        texts[(int)ClickBuildUIText.Name].text = newStatusText.ToString();
+        texts[(int)InfoTextType.Name].text = newStatusText.ToString();
 
         newStatusText.Clear();
         switch (target.buildingType)
         {
             case BuildingType.Inn:
-                newStatusText.Append($"ÀÎ±¸ ¼ö Áõ°¡ : {((InnBuilding)target).MaxUnitValue}");
+                newStatusText.Append($"ì¸êµ¬ ìˆ˜ ì¦ê°€ : {((InnBuilding)target).MaxUnitValue}");
                 break;
             case BuildingType.Forge:
-                newStatusText.Append($"°ø°İ·Â Áõ°¡ : {((ForgeBuilding)target).AddUnitAtk}");
+                newStatusText.Append($"ê³µê²©ë ¥ ì¦ê°€ : {((ForgeBuilding)target).AddUnitAtk}");
+                break;
+            case BuildingType.Market:
+                MarketBuilding market = (MarketBuilding)target;
+                int price = (int)(market.CurrentPrice * 100);
+                newStatusText.Append($"í˜„ì¬ ì‹œì„¸ :{price}");
                 break;
             default:
                 break;
         }
-        texts[(int)ClickBuildUIText.CurrentEffect].text = newStatusText.ToString();
+        texts[(int)InfoTextType.CurrentEffect].text = newStatusText.ToString();
 
         newStatusText.Clear();
         newStatusText.Append($"{target.upgradeWood}");
-        texts[(int)ClickBuildUIText.Upgrade].text = newStatusText.ToString();
+        texts[(int)InfoTextType.Upgrade].text = newStatusText.ToString();
     }
 
-    // ¾ÆÀÌÄÜ ·¹ÀÌÄ³½ºÆ® ½ºÀ§Ä¡
+    // ì•„ì´ì½˜ ë ˆì´ìºìŠ¤íŠ¸ ìŠ¤ìœ„ì¹˜
     public void DeactivateRaycastTargrt()
     {
         foreach (var item in buttons)

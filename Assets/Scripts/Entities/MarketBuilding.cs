@@ -3,20 +3,17 @@ using UnityEngine.AI;
 
 public class MarketBuilding : BaseBuilding
 {
-    public GameObject temp;
-    float price = 1.0f; // ±‚¡ÿ Ω√ºº
+    float price = 1.0f; // Í∏∞Ï§Ä ÏãúÏÑ∏
 
-    float currentPrice; // «ˆ¿Á Ω√ºº
-    float minPrice = 0.2f; // √÷º“ Ω√ºº
-    float maxPrice = 3.0f; // √÷¥Î Ω√ºº
-    // 1.0¿ª ±‚¡ÿ¿∏∑Œ ∑π¿œ∏Æ ∫–∆˜?? ∫–∆˜µµ¥¬ ¿ﬂ ∏Ù∂Ûø‰
+    float currentPrice; // ÌòÑÏû¨ ÏãúÏÑ∏
+    float minPrice = 0.2f; // ÏµúÏÜå ÏãúÏÑ∏
+    float maxPrice = 3.0f; // ÏµúÎåÄ ÏãúÏÑ∏
 
-    float buyItem = 1.1f;
-    float sellItem = 0.9f;
-    // ªÏ∂ß ∆»∂ß = 110% 90%?
+    float buyPenalty = 1.1f; // Íµ¨Îß§ Ìå®ÎÑêÌã∞
+    float sellPenalty = 0.9f; // ÌåêÎß§ Ìå®ÎÑêÌã∞
 
     int goldToWood = 10;
-    // ∞ÒµÂ -> ∏Ò¿Á ±≥»Ø∫Ò
+    // Í≥®Îìú -> Î™©Ïû¨ ÍµêÌôòÎπÑ
 
 
     public float CurrentPrice { get { return currentPrice; } }
@@ -25,29 +22,25 @@ public class MarketBuilding : BaseBuilding
     {
         base.Initialization();
         price = 1.0f;
+        CheckTodayPrice();
+        BuildingController.instance.DayChange -= CheckTodayPrice;
+        BuildingController.instance.DayChange += CheckTodayPrice;
     }
 
-
-    private void Update()
+    public void CheckTodayPrice()
     {
-        float A = Random.Range(0f, 0.5f);
-        float B = Random.Range(A, 0.5f);
-        float C = Random.Range(0, 2);
+        // TODO Ïó∞Í≤∞ ÏãúÌÇ§Í∏∞
+        float per = Random.Range(0f, 1f);
+        float Gaussian = Random.Range(per, 1f);
+        float plusminus = Random.Range(0, 2);
 
-        if (C == 1)
+        if (plusminus == 0)
+            currentPrice = (price - minPrice) * Gaussian + minPrice;
+        else
         {
-            B = 1-B;
+            Gaussian = 1 - Gaussian;
+            currentPrice = (maxPrice - price) * Gaussian + price;
         }
-
-        Vector2 AB = new Vector2(B, 10.5f);
-
-        GameObject dot = Instantiate(temp);
-        dot.transform.position = AB;
-    }
-
-    public void CheakTodayPrice()
-    {
-
     }
 
     public void BuyResource()
