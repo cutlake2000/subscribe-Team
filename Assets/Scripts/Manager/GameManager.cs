@@ -41,6 +41,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        DataManager.Instance.EntireTime += Time.deltaTime;
+        DayManager.Instance.EntireTime += Time.deltaTime;
     }
 }
