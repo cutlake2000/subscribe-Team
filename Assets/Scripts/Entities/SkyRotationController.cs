@@ -13,8 +13,7 @@ public abstract class SkyRotationController : MonoBehaviour
 {
     public DayNight day;
 
-    public float currentTime = 0.0f;
-
+    protected float nowTime;
     protected float entireTime = 5.0f;
     protected float initTime = 0.0f;
 
@@ -34,7 +33,6 @@ public abstract class SkyRotationController : MonoBehaviour
     private void Init()
     {
         day = DayNight.Day;
-        currentTime = initTime;
     }
 
     protected abstract IEnumerator StartRotation();

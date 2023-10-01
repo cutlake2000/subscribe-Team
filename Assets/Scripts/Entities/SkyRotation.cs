@@ -6,7 +6,7 @@ public class SkyRotation : SkyRotationController
 {
     protected override IEnumerator StartRotation()
     {
-        currentTime = 0.0f;
+        nowTime = DataManager.Instance.nowTime;
 
         Quaternion currentRotation = transform.rotation;
         Vector3 targetEulerAngles = transform.rotation.eulerAngles;
@@ -14,22 +14,24 @@ public class SkyRotation : SkyRotationController
 
         Quaternion targetRotation = Quaternion.Euler(targetEulerAngles);
 
-        while (currentTime < entireTime)
+        while (nowTime < entireTime)
         {
             transform.rotation = Quaternion.Euler(
                 Vector3.Lerp(
                     currentRotation.eulerAngles,
                     targetRotation.eulerAngles,
-                    currentTime / entireTime
+                    nowTime / entireTime
                 )
             );
 
-            currentTime += Time.deltaTime;
+            nowTime += Time.deltaTime;
             yield return null;
         }
 
         targetEulerAngles.z = Round180(targetEulerAngles.z);
 
         transform.rotation = Quaternion.Euler(targetEulerAngles);
+
+        nowTime = 0.0f;
     }
 }
