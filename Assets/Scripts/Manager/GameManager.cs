@@ -32,10 +32,6 @@ public class GameManager : MonoBehaviour
 
     private void InitValue()
     {
-        DataManager.Instance.NowTime = 0.0f;
-        DataManager.Instance.DayTime = 10.0f;
-        DataManager.Instance.EntireTime = 0.0f;
-
         isGameOver = false;
         dayNight = DayNight.Night;
         rotationController = map.GetComponent<RotationController>();
@@ -44,5 +40,15 @@ public class GameManager : MonoBehaviour
     void InitPlayer()
     {
         player = ScriptableObject.CreateInstance<PlayerSO>();
+    }
+
+    private void Start()
+    {
+        rotationController.CallSkyRotationCoroutine();
+    }
+
+    private void Update()
+    {
+        Debug.Log("now Time : " + DataManager.Instance.NowTime);
     }
 }

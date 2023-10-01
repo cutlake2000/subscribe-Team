@@ -88,7 +88,7 @@ public class BuildingController : MonoBehaviour
     // ������ ����
     public void LevelUpBuilding(bool isLoop)
     {
-        if (clickBuilding.upgradeWood >= DataManager.Instance.player.Wood && isLoop == false)
+        if (clickBuilding.upgradeWood >= GameManager.Instance.player.Wood && isLoop == false)
         {
             if (!isLoop)
                 Debug.Log("��� ����");
@@ -99,16 +99,16 @@ public class BuildingController : MonoBehaviour
         if (isLoop == false)
         {
             Debug.Log("������ ����");
-            DataManager.Instance.player.Wood -= clickBuilding.upgradeWood;
+            GameManager.Instance.player.Wood -= clickBuilding.upgradeWood;
             clickBuilding.LevelUP();
         }
         else
         {
             int upCount = 0;
-            while (clickBuilding.upgradeWood < DataManager.Instance.player.Wood)
+            while (clickBuilding.upgradeWood < GameManager.Instance.player.Wood)
             {
                 upCount++;
-                DataManager.Instance.player.Wood -= clickBuilding.upgradeWood;
+                GameManager.Instance.player.Wood -= clickBuilding.upgradeWood;
                 clickBuilding.LevelUP();
             }
             Debug.Log($"{upCount}��ŭ ������ ����");
@@ -143,8 +143,8 @@ public class BuildingController : MonoBehaviour
             sum += building.MaxUnitValue;
         }
 
-        DataManager.Instance.player.MaxUnitCount = sum;
-        Debug.Log("���� ȿ�� : " + DataManager.Instance.player.MaxUnitCount);
+        GameManager.Instance.player.MaxUnitCount = sum;
+        Debug.Log("���� ȿ�� : " + GameManager.Instance.player.MaxUnitCount);
         // ++ UI ����
     }
 
@@ -163,8 +163,8 @@ public class BuildingController : MonoBehaviour
             sum += building.AddUnitAtk;
         }
 
-        DataManager.Instance.player.AddUnitAtk = sum;
-        Debug.Log("���尣 ȿ�� : " + DataManager.Instance.player.AddUnitAtk);
+        GameManager.Instance.player.AddUnitAtk = sum;
+        Debug.Log("���尣 ȿ�� : " + GameManager.Instance.player.AddUnitAtk);
 
         // ++ UI ����
     }

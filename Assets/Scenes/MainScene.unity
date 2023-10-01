@@ -651,7 +651,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 144367012}
-  - component: {fileID: 144367013}
   m_Layer: 5
   m_Name: DayNightPanel
   m_TagString: Untagged
@@ -680,14 +679,6 @@ RectTransform:
   m_AnchoredPosition: {x: -40, y: -20}
   m_SizeDelta: {x: 410, y: 150}
   m_Pivot: {x: 1, y: 1}
---- !u!222 &144367013
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144367011}
-  m_CullTransparentMesh: 1
 --- !u!1 &149312506
 GameObject:
   m_ObjectHideFlags: 0
