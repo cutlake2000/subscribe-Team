@@ -1,23 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    public static DataManager instance;
-    public PlayerSO player;
+    public static DataManager Instance;
+
     public MonsterData[] monsterDatas;
 
-    public void Awake()
-    {
-        instance = this;
-        MakeNewPlayer();
-    }
-
-    private void Update() { }
-
-    void MakeNewPlayer()
-    {
-        player = ScriptableObject.CreateInstance<PlayerSO>();
-    }
+    public float NowTime { get; set; }
+    public float DayTime { get; set; }
+    public float EntireTime { get; set; }
 }
