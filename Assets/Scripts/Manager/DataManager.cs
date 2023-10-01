@@ -7,6 +7,7 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
 
+    public PlayerSO player;
     public MonsterData[] monsterDatas;
 
     public float NowTime { get; set; }
@@ -18,6 +19,7 @@ public class DataManager : MonoBehaviour
         Instance = this;
 
         InitTime();
+        InitPlayer();
     }
 
     private void InitTime()
@@ -25,5 +27,10 @@ public class DataManager : MonoBehaviour
         NowTime = 0.0f;
         DayTime = 10.0f;
         EntireTime = 0.0f;
+    }
+
+    private void InitPlayer()
+    {
+        player = ScriptableObject.CreateInstance<PlayerSO>();
     }
 }

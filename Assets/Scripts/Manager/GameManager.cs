@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public PlayerSO player;
-
     public bool isGameOver;
 
     public GameObject map;
@@ -27,7 +25,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         InitValue();
-        InitPlayer();
     }
 
     private void InitValue()
@@ -37,18 +34,10 @@ public class GameManager : MonoBehaviour
         rotationController = map.GetComponent<RotationController>();
     }
 
-    void InitPlayer()
-    {
-        player = ScriptableObject.CreateInstance<PlayerSO>();
-    }
-
     private void Start()
     {
         rotationController.CallSkyRotationCoroutine();
     }
 
-    private void Update()
-    {
-        Debug.Log("now Time : " + DataManager.Instance.NowTime);
-    }
+    private void Update() { }
 }
