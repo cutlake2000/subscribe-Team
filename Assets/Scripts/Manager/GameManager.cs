@@ -39,5 +39,8 @@ public class GameManager : MonoBehaviour
         rotationController.CallSkyRotationCoroutine();
     }
 
-    private void Update() { }
+    private void Update()
+    {
+        DataManager.Instance.EntireTime += Time.deltaTime;
+    }
 }
