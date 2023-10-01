@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEditor;
 //using Unity.VisualScripting;
 using UnityEngine;
@@ -20,46 +21,49 @@ public class MercenaryController : MonoBehaviour
     public string TagName = "Monster";
     public MonsterData thisMonster;
     public Monster CloseMonster;
-
+    private bool isCoroutineRunning = false;
+    private bool isAttackObject = false;
     private void Awake()
     {
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start() {
+    private void Start() 
+    {
+        //StartCoroutine(MoveObject());
     }
 
-    //한글 깨지는 지 아닌 지 확인용
     private void Update()
     {
         target = new List<GameObject>(GameObject.FindGameObjectsWithTag(TagName));
         if (target.Count <= 0)
         {
-            StartCoroutine(MoveObject());
+            if(isCoroutineRunning)
+            {
+                return;
+            }
+            else
+            {
+                StartCoroutine(MoveObject());
+            }
         }
         else
         {
-            GameObject CloseEnemy = GetClosest();
-            monster = CloseEnemy.GetComponent<Monster>();
-            monster.monsterData = WhichMonster(monster);
-            float distance = GetDistance(CloseEnemy);
-            if (CloseEnemy.transform.position.x < gameObject.transform.position.x)
+            if (isAttackObject)
             {
-                renderer.flipX = true;
+                return;
             }
-            Moving(CloseEnemy, data.MovingSpeed);
-
-            if (distance < data.AttackRange)
+            else
             {
-                //Hit(monster);
-                monster.TakePhysicalDamage(data.Attack);
+                Invoke("AttackObject", data.AttackSpeed);
             }
         }
     }
 
     IEnumerator MoveObject()
     {
+        isCoroutineRunning = true;
         mercenary = GetComponent<Rigidbody>();
 
         while (true)
@@ -70,8 +74,26 @@ public class MercenaryController : MonoBehaviour
             yield return new WaitForSeconds(1);
             mercenary.velocity = new Vector3(dir1, 0, dir2);
         }
+        isCoroutineRunning=false;
     }
 
+    void AttackObject()
+    {
+        GameObject CloseEnemy = GetClosest();
+        monster = CloseEnemy.GetComponent<Monster>();
+        monster.monsterData = WhichMonster(monster);
+        float distance = GetDistance(CloseEnemy);
+        if (CloseEnemy.transform.position.x < gameObject.transform.position.x)
+        {
+            renderer.flipX = true;
+        }
+        Moving(CloseEnemy, data.MovingSpeed);
+
+        if (distance < data.AttackRange)
+        {
+            monster.TakePhysicalDamage(data.Attack);
+        }
+    }
     GameObject GetClosest()
     {
         enemy = target[0];

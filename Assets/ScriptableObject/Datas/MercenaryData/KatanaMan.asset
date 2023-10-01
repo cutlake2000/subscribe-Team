@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KatanaMan
   m_EditorClassIdentifier: 
   Attack: 5
-  AttackSpeed: 1
+  AttackSpeed: 0.1
   Critical: 0
   AttackRange: 1
   MovingSpeed: 5

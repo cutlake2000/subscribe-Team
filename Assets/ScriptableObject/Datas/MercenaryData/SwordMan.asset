@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SwordMan
   m_EditorClassIdentifier: 
   Attack: 10
-  AttackSpeed: 2
+  AttackSpeed: 0.1
   Critical: 0
   AttackRange: 0.5
   MovingSpeed: 3
