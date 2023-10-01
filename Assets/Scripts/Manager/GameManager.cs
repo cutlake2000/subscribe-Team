@@ -7,6 +7,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("거래 밸런스")]
+    public float buyPenalty = 1.2f; // 구매 패널티
+    public float sellPenalty = 0.8f; // 판매 패널티
+    public int goldToWood = 10;
+    //public int goldToSteel = 15;
+
     private void Awake()
     {
         Instance = this;

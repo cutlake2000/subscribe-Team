@@ -20,5 +20,5 @@ public class BuildingData
     public string desc;
     public int upgradeWood;
 
-    public List<ClickBtnOptionType> optionTypeList;
+    public List<ClickBtnType> optionTypeList;
 }

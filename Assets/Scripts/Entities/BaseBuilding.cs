@@ -12,9 +12,8 @@ public class BaseBuilding : MonoBehaviour
     
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
-
     public BuildingType buildingType;
-    public List<ClickBtnOptionType> OptionType;
+    public List<ClickBtnType> DefaultOptionType;
     public int level;
     public int maxLevel;
     public string buildingName;
@@ -30,7 +29,7 @@ public class BaseBuilding : MonoBehaviour
         buildingName = baseData.name;
         desc = baseData.desc;
         upgradeWood = baseData.upgradeWood;
-        OptionType = baseData.optionTypeList;
+        DefaultOptionType = baseData.optionTypeList;
     }
 
     public virtual void LevelUP()
@@ -50,6 +49,6 @@ public class BaseBuilding : MonoBehaviour
 
     public void OnMouseDown()
     {
-        BuildingController.instance.ActiveClickBuildingUI(this);
+        BuildingController.instance.ActiveClickBuildingUI2(this);
     }
 }

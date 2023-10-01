@@ -2,23 +2,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MarketBuilding : BaseBuilding
+public class MarketBuilding : BaseBuilding, ITradeResource
 {
-    float price = 1.0f; // 기준 시세
+    float price; // 기준 시세
 
     float currentPrice; // 현재 시세
     float minPrice = 0.2f; // 최소 시세
     float maxPrice = 3.0f; // 최대 시세
 
-    float buyPenalty = 1.1f; // 구매 패널티
-    float sellPenalty = 0.9f; // 판매 패널티
 
-    int goldToWood = 10;
+
     // 골드 -> 목재 교환비
 
-
     public float CurrentPrice { get { return currentPrice; } }
-    public List<ClickBtnOptionType> SellResourceOption;
+    public List<ResourceType> SellResourceOption;
+    public List<ResourceType> BuyResourceOption;
+
+    private void Awake()
+    {
+        SellResourceOption = new() { ResourceType.Wood };
+        BuyResourceOption = new() { ResourceType.Wood };
+    }
 
     public override void Initialization()
     {
@@ -46,9 +50,22 @@ public class MarketBuilding : BaseBuilding
         }
     }
 
-    public void BuyResource()
+    public List<ResourceType> GetResourceList(string name)
     {
-
+        switch (name)
+        {
+            case "Sell":
+                return SellResourceOption;
+            case "Buy":
+                return BuyResourceOption;
+            default:
+                Debug.Log("입력 오류");
+                return SellResourceOption;
+        }
     }
+}
 
+interface ITradeResource
+{
+    public List<ResourceType> GetResourceList(string name);
 }

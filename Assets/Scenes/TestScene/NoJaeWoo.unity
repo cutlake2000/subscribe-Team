@@ -251,13 +251,14 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
   buildingType: 0
-  OptionType: 
+  DefaultOptionType: 
   level: 0
   maxLevel: 0
   buildingName: 
   desc: 
   upgradeWood: 0
   SellResourceOption: 
+  BuyResourceOption: 
 --- !u!1 &447540284
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +355,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1703412282}
           m_TargetAssemblyTypeName: ClickBuildingUI, Assembly-CSharp
-          m_MethodName: ClickOptionBtn
+          m_MethodName: ClickBtnIndex
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -766,7 +767,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1703412282}
           m_TargetAssemblyTypeName: ClickBuildingUI, Assembly-CSharp
-          m_MethodName: ClickOptionBtn
+          m_MethodName: ClickBtnIndex
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1096,7 +1097,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1703412282}
           m_TargetAssemblyTypeName: ClickBuildingUI, Assembly-CSharp
-          m_MethodName: ClickOptionBtn
+          m_MethodName: ClickBtnIndex
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1337,7 +1338,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1703412282}
           m_TargetAssemblyTypeName: ClickBuildingUI, Assembly-CSharp
-          m_MethodName: ClickOptionBtn
+          m_MethodName: ClickBtnIndex
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1659,7 +1660,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1703412282}
           m_TargetAssemblyTypeName: ClickBuildingUI, Assembly-CSharp
-          m_MethodName: ClickOptionBtn
+          m_MethodName: ClickBtnIndex
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1763,6 +1764,7 @@ GameObject:
   - component: {fileID: 1703412281}
   - component: {fileID: 1703412283}
   - component: {fileID: 1703412282}
+  - component: {fileID: 1703412284}
   m_Layer: 5
   m_Name: ClickBuildingUI
   m_TagString: Untagged
@@ -1809,18 +1811,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3bcef55b59e224395f9e626901b7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionButtonList:
+  buttonList:
   - {fileID: 916841749}
   - {fileID: 2108961464}
   - {fileID: 1264011988}
   - {fileID: 1538078040}
   - {fileID: 447540287}
   - {fileID: 829486253}
-  texts:
-  - {fileID: 1883793429}
-  - {fileID: 955588825}
-  - {fileID: 559732318}
-  optionBtnSpriteList:
+  defaultBtnSprites:
   - {fileID: 21300000, guid: 05ef4f23f783bab42877b411958b5825, type: 3}
   - {fileID: 21300000, guid: f8d9e4df7eabd1f40824eed8230b276a, type: 3}
   - {fileID: 21300000, guid: e1c930202a8218948982bb0f5992e8a5, type: 3}
@@ -1828,6 +1826,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d082d5924229917419532c0d4f686d9f, type: 3}
   - {fileID: 21300000, guid: d2a68326510319e44a6e42e11004df19, type: 3}
   - {fileID: 21300000, guid: b69dc319a91e6a9428017f496f5fd254, type: 3}
+  ResourceBtnSprites:
+  - {fileID: 21300000, guid: da46ddbf31b8d7a42be3ba7f7f7976b4, type: 3}
+  - {fileID: 21300000, guid: 35b0381107070994d80a7b0cd1d0959c, type: 3}
+  - {fileID: 21300000, guid: a2d519fdbf838ec4e987663521aaf9fd, type: 3}
+  - {fileID: 21300000, guid: d003b073d6c3f084f94de82b3e9c3eaf, type: 3}
+  infoTexts:
+  - {fileID: 1883793429}
+  - {fileID: 955588825}
+  - {fileID: 559732318}
 --- !u!95 &1703412283
 Animator:
   serializedVersion: 5
@@ -1849,6 +1856,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1703412284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703412280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99fecb30fa546449b4be79dc2b26800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIMode: 0
+  SellTypeList: 
+  BuyTypeList: 
+  clickBuilding: {fileID: 0}
 --- !u!1 &1823159308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,6 +1883,7 @@ GameObject:
   - component: {fileID: 1823159310}
   - component: {fileID: 1823159311}
   - component: {fileID: 1823159312}
+  - component: {fileID: 1823159313}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -1900,8 +1924,9 @@ MonoBehaviour:
   - {fileID: 5269447685164759032, guid: 318f5fd85271cff48adbe0a3246ef15f, type: 3}
   - {fileID: 7161335936609668493, guid: 5a7e46c31c56b31488c3d1849fd6c62e, type: 3}
   buildings: []
-  clickBuilding: {fileID: 0}
+  clickBuildingtemp: {fileID: 0}
   clickBuildingUI: {fileID: 1703412282}
+  clickBuildingUIModel: {fileID: 1703412284}
 --- !u!114 &1823159312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1916,6 +1941,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   monsterDatas: []
+--- !u!114 &1823159313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823159308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05eab8777a1eb0849adff2f9332e562c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyPenalty: 1.2
+  sellPenalty: 0.8
+  goldToWood: 10
 --- !u!1 &1883793427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,7 +2365,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1703412282}
           m_TargetAssemblyTypeName: ClickBuildingUI, Assembly-CSharp
-          m_MethodName: ClickOptionBtn
+          m_MethodName: ClickBtnIndex
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

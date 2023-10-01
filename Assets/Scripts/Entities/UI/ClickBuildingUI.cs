@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -5,34 +6,25 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ClickBtnOptionType { Back, MaxLvUp, LvUp, Destroy, Buy, Sell, Wood }
+public enum ClickBtnType { Back, MaxLvUp, LvUp, Destroy, BuyMode, SellMode, Trade }
 
 public class ClickBuildingUI : MonoBehaviour
 {
     enum InfoTextType { Name, CurrentEffect, Upgrade }
 
-    [SerializeField] Image[] optionButtonList;
-    [SerializeField] TMP_Text[] texts;
+    [SerializeField] Image[] buttonList; // 하이라키에 있는 버튼들
+    [SerializeField] List<Sprite> defaultBtnSprites; // 기본 버튼 스프라이트
+    [SerializeField] List<Sprite> ResourceBtnSprites; // 자원 관리용 스프라이트
 
-    [SerializeField] List<Sprite> optionBtnSpriteList;
-    private List<IClickBuildingOption> optionActionList;
-    private List<IClickBuildingOption> currentOptionActions;
-
+    [SerializeField] TMP_Text[] infoTexts; // 하단 텍스트
     private StringBuilder newStatusText;
-    WaitForSecondsRealtime appearBtnTime;
-    WaitForSecondsRealtime animationTime;
 
     public void Awake()
     {
-        optionActionList = new()
-        {  new BackOption(),new MaxLvUpBulding(), new LvUpBulding(), new DestroyBulding(), new BuyItem(), new SellItem()};
-
-        currentOptionActions = new();
         newStatusText = new();
-        appearBtnTime = new WaitForSecondsRealtime(0.05f);
-        animationTime = new WaitForSecondsRealtime(0.2f);
     }
 
+    // 해당 위치에 버튼을 활성화
     public void On(BaseBuilding building)
     {
         if (!gameObject.activeSelf)
@@ -40,8 +32,6 @@ public class ClickBuildingUI : MonoBehaviour
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(building.transform.position);
         transform.position = screenPos;
-        RefreshOptionButton(building.OptionType);
-        SortOptionButton();
     }
 
     public void OFF()
@@ -50,44 +40,63 @@ public class ClickBuildingUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ClickOptionBtn(int index)
+    // 버튼 클릭시 호출
+    public void ClickBtnIndex(int index)
     {
-        currentOptionActions[index].Click();
+        BuildingController.instance.ActionUIOptionSelect(index);
     }
 
-    // 옵션 리스트 불러오기
-    public void RefreshOptionButton(List<ClickBtnOptionType> typeList)
+    // 버튼들을 새로고침
+    // (int)typeList[i]는 selectSprite[i]의 스프라이트를 사용함
+    // selectSprite[i]는 clickUItype에 따라 결정됨
+    public void RefreshOptionButton<T>(List<T> typeList, ClickUIType clickUIType) where T : Enum
     {
-        if (typeList.Count >= 5)
-            Debug.Log("옵션 왤케 마늠?");
+        // 사용할 스프라이트 선택
+        List<Sprite> selectSprite = defaultBtnSprites;
 
-        currentOptionActions.Clear();
-        for (int i = 0; i < optionButtonList.Length; i++)
+        switch (clickUIType)
         {
-            if (i >= typeList.Count)
+            case ClickUIType.Default: selectSprite = defaultBtnSprites; break;
+            case ClickUIType.Buy:
+            case ClickUIType.Sell: selectSprite = ResourceBtnSprites; break;
+        }
+
+        // 활성화 및 스프라이트 할당
+        for (int i = 0; i < buttonList.Length; i++)
+        {
+
+            if (i >= typeList.Count+1)
             {
-                optionButtonList[i].gameObject.SetActive(false);
+                buttonList[i].gameObject.SetActive(false);
                 continue;
             }
+            else if (buttonList[i].gameObject.activeSelf == false)
+            {
+                buttonList[i].gameObject.SetActive(true);
+            }
 
-            if (optionButtonList[i].gameObject.activeSelf == false)
-                optionButtonList[i].gameObject.SetActive(true);
-
-            int type = (int)(typeList[i]);
-            currentOptionActions.Add(optionActionList[type]);
-            optionButtonList[i].sprite = optionBtnSpriteList[type];
+            if (i == typeList.Count)
+            {
+                buttonList[i].sprite = defaultBtnSprites[0];
+                continue;
+            }
+            int spriteNum = (int)(object)typeList[i];
+            buttonList[i].sprite = selectSprite[spriteNum];
         }
+
+        SortOptionButton(typeList.Count+1); // +1 = 되돌아가기 추가
     }
 
+
     // 옵션 버튼 정렬
-    public void SortOptionButton()
+    public void SortOptionButton(int count)
     {
         float angle = 25;
-        float startAngle = 0 + (angle * (currentOptionActions.Count - 1) * 0.5f);
-        for (int i = 0; i < optionActionList.Count; i++)
+        float startAngle = 0 + (angle * (count - 1) * 0.5f);
+        for (int i = 0; i < count; i++)
         {
-            optionButtonList[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, startAngle - angle * i));
-            optionButtonList[i].rectTransform.localPosition = optionButtonList[i].rectTransform.up * 150;
+            buttonList[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, startAngle - angle * i));
+            buttonList[i].rectTransform.localPosition = buttonList[i].rectTransform.up * 150;
         }
     }
 
@@ -97,7 +106,7 @@ public class ClickBuildingUI : MonoBehaviour
 
         newStatusText.Clear();
         newStatusText.Append($"Lv. {target.level} {target.buildingName}");
-        texts[(int)InfoTextType.Name].text = newStatusText.ToString();
+        infoTexts[(int)InfoTextType.Name].text = newStatusText.ToString();
 
         newStatusText.Clear();
         switch (target.buildingType)
@@ -116,107 +125,29 @@ public class ClickBuildingUI : MonoBehaviour
             default:
                 break;
         }
-        texts[(int)InfoTextType.CurrentEffect].text = newStatusText.ToString();
+        infoTexts[(int)InfoTextType.CurrentEffect].text = newStatusText.ToString();
 
         newStatusText.Clear();
         if (target.level < target.maxLevel)
             newStatusText.Append($"<sprite=0>{target.upgradeWood}");
         else
             newStatusText.Append($"최고 레벨");
-        texts[(int)InfoTextType.Upgrade].text = newStatusText.ToString();
+        infoTexts[(int)InfoTextType.Upgrade].text = newStatusText.ToString();
     }
 
     // 아이콘 레이캐스트 스위치
     public void DeactivateRaycastTargrt()
     {
-        foreach (var item in optionButtonList)
+        foreach (var item in buttonList)
         {
             item.raycastTarget = false;
         }
     }
-
     public void ActivateRaycastTargrt()
     {
-        foreach (var item in optionButtonList)
+        foreach (var item in buttonList)
         {
             item.raycastTarget = true;
         }
-    }
-
-    //// 순서대로 등장 애니메이션
-    //IEnumerator AppearAniOptionBtn()
-    //{
-    //    for (int i = 0; i < currentOptionActions.Count; i++)
-    //    {
-    //        optionButtonList[i].rectTransform.localPosition = Vector3.zero;
-    //        Vector3 moveDir = optionButtonList[i].rectTransform.up;
-
-    //        StartCoroutine(MoveAniOptionBtn(optionButtonList[i].rectTransform, moveDir));
-    //        yield return appearBtnTime;
-    //    }
-    //}
-    //// 옵션 이동 애니메이션
-    //IEnumerator MoveAniOptionBtn(RectTransform target, Vector3 moveDir)
-    //{
-    //    Vector3 targetPos = moveDir * 150;
-    //    while (targetPos.magnitude > target.localPosition.magnitude)
-    //    {
-    //        target.localPosition += 50f * moveDir;
-    //        yield return animationTime;
-    //    }
-
-    //}
-}
-
-interface IClickBuildingOption
-{
-    public void Click();
-}
-
-class MaxLvUpBulding : IClickBuildingOption
-{
-    public void Click()
-    {
-        BuildingController.instance.LevelUpBuilding(true);
-    }
-}
-
-class LvUpBulding : IClickBuildingOption
-{
-    public void Click()
-    {
-        BuildingController.instance.LevelUpBuilding();
-    }
-}
-
-class DestroyBulding : IClickBuildingOption
-{
-    public void Click()
-    {
-        BuildingController.instance.DestroyBuilding();
-    }
-}
-
-class BackOption : IClickBuildingOption
-{
-    public void Click()
-    {
-        BuildingController.instance.clickBuildingUI.OFF();
-    }
-}
-
-class BuyItem : IClickBuildingOption
-{
-    public void Click()
-    {
-        BuildingController.instance.BuyResource();
-    }
-}
-
-class SellItem : IClickBuildingOption
-{
-    void IClickBuildingOption.Click()
-    {
-        BuildingController.instance.SellResource();
     }
 }
