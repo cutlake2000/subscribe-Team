@@ -29,10 +29,7 @@ public class MercenaryController : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start() 
-    {
-        //StartCoroutine(MoveObject());
-    }
+    private void Start() { }
 
     private void Update()
     {
@@ -138,26 +135,27 @@ public class MercenaryController : MonoBehaviour
 
     MonsterData WhichMonster(Monster monster)
     {
-        thisMonster = new MonsterData();
-        for(int i =0; i < DataManager.instance.monsterDatas.Length; i++)
+        thisMonster = ScriptableObject.CreateInstance<MonsterData>();
+
+        for (int i = 0; i < DataManager.Instance.monsterDatas.Length; i++)
         {
-            MonsterData monsterdata = DataManager.instance.monsterDatas[i]; 
-            if(monsterdata.MonsterName == monster.monsterData.MonsterName)
+            MonsterData monsterdata = DataManager.Instance.monsterDatas[i];
+            if (monsterdata.MonsterName == monster.monsterData.MonsterName)
             {
-                thisMonster.MonsterHp = DataManager.instance.monsterDatas[i].MonsterHp;
+                thisMonster.MonsterHp = DataManager.Instance.monsterDatas[i].MonsterHp;
                 break;
             }
         }
         //switch (monster.monsterData.MonsterName)
         //{
         //    case "개":
-        //        thisMonster.MonsterHp = DataManager.instance.monsterDatas[0].MonsterHp;
+        //        thisMonster.MonsterHp = DataManager.Instance.monsterDatas[0].MonsterHp;
         //        break;
         //    case "유령":
-        //        thisMonster.MonsterHp = DataManager.instance.monsterDatas[1].MonsterHp;
+        //        thisMonster.MonsterHp = DataManager.Instance.monsterDatas[1].MonsterHp;
         //        break;
         //    case "호랑이":
-        //        thisMonster.MonsterHp = DataManager.instance.monsterDatas[2].MonsterHp;
+        //        thisMonster.MonsterHp = DataManager.Instance.monsterDatas[2].MonsterHp;
         //        break;
         //}
         return thisMonster;
