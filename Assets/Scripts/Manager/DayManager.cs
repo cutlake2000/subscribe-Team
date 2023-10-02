@@ -18,6 +18,9 @@ public class DayManager : MonoBehaviour
     public int DayCount { get; set; }
     public DayNight dayNight { get; set; }
 
+    public bool isSkyRotating;
+    public bool isGroundRotating;
+
     public GameObject map;
 
     private RotationController rotationController;
@@ -36,6 +39,8 @@ public class DayManager : MonoBehaviour
         EntireTime = 0.0f;
         DayCount = 0;
         dayNight = DayNight.Day;
+        isSkyRotating = false;
+        isGroundRotating = false;
 
         rotationController = map.GetComponent<RotationController>();
     }
@@ -47,22 +52,28 @@ public class DayManager : MonoBehaviour
 
     private void Update()
     {
-        RotateMap();
+        CallRotation();
+        CalculateDay();
     }
 
-    private void RotateMap()
+    private void CalculateDay()
     {
-        if (NowTime == 0.0f && rotationController.isGroundRotating == false)
+        DayCount = (int)(EntireTime / (DayTime * 2)) + 1;
+    }
+
+    private void CallRotation()
+    {
+        if (NowTime == 0.0f && isGroundRotating == false)
         {
             rotationController.CallSkyRotationCoroutine();
         }
         else if (NowTime >= DayTime)
         {
-            dayNight = dayNight == DayNight.Day ? DayNight.Night : DayNight.Day;
             rotationController.CallGroundRotationCoroutine();
+            dayNight = dayNight == DayNight.Day ? DayNight.Night : DayNight.Day;
         }
 
-        if (rotationController.isSkyRotating == true)
+        if (isSkyRotating == true)
         {
             EntireTime += Time.deltaTime;
         }
