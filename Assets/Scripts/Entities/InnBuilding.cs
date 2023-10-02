@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine;
 
 internal class InnBuilding : BaseBuilding
 {
-    int maxUnitValue = 3; // 1레벨 수치
+    int maxUnitValue; // 1레벨 수치
     public int MaxUnitValue
     {
         get { return maxUnitValue; }
