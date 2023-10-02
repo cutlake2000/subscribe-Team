@@ -13,6 +13,7 @@ public class BuildingCreator : MonoBehaviour
     public float x, y;
     public Vector3 lastPosition;
     public LayerMask lm;
+    public BuildingType buildType = BuildingType.Inn;
 
     public DragNDrop dnd;
 
@@ -31,9 +32,10 @@ public class BuildingCreator : MonoBehaviour
         //에딧모드 일 때만 건물짓는 그리드가 형성됨. (드래그시 true)
         if (_isEditMode)
         {
+
             Vector3 mousePosition = GetMousePosisiton();
             Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-            selectObj.transform.position = new Vector3(grid.CellToWorld(gridPosition).x, -1.5f + 0.251f, grid.CellToWorld(gridPosition).z);
+            selectObj.transform.position = new Vector3(grid.CellToWorld(gridPosition).x, 1.14f, grid.CellToWorld(gridPosition).z); // 변경점 : Y값 변경함
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -41,7 +43,7 @@ public class BuildingCreator : MonoBehaviour
                 {
                     //설치 가능
                     Debug.Log("설치 완료!");
-                    //건물 오브젝트 해당 위치에 건설. // selectVec   //x,y -> x,z
+                    BuildingController.Instance.SetNewBuildingOnMap(buildType,selectObj.transform.position);
 
 
                     //설치후 타일 막기
