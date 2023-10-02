@@ -20,6 +20,9 @@ public class RotationController : MonoBehaviour
     [SerializeField]
     private GameObject Background;
 
+    public bool isSkyRotating;
+    public bool isGroundRotating;
+
     public void CallSkyRotationCoroutine()
     {
         StartCoroutine(RotationSky());
@@ -32,6 +35,8 @@ public class RotationController : MonoBehaviour
 
     private IEnumerator RotationSky()
     {
+        isSkyRotating = true;
+
         float startTime = DayManager.Instance.NowTime;
         float targetTime = DayManager.Instance.DayTime;
 
@@ -69,12 +74,16 @@ public class RotationController : MonoBehaviour
         Cloud2.transform.rotation = Quaternion.Euler(targetEulerAngles);
         Cloud3.transform.rotation = Quaternion.Euler(targetEulerAngles);
         Background.transform.rotation = Quaternion.Euler(targetEulerAngles);
+
+        isSkyRotating = false;
     }
 
     private IEnumerator RotationGround()
     {
-        float startTime = DayManager.Instance.NowTime;
-        float targetTime = DayManager.Instance.DayTime;
+        isGroundRotating = true;
+
+        float startTime = 0.0f;
+        float targetTime = 5.0f;
 
         Quaternion currentRotation = Ground.transform.rotation;
 
@@ -97,6 +106,8 @@ public class RotationController : MonoBehaviour
         targetEulerAngles.z = Round180(targetEulerAngles.z);
 
         Ground.transform.rotation = Quaternion.Euler(targetEulerAngles);
+
+        isGroundRotating = true;
     }
 
     private float Round180(float eulerAngles)

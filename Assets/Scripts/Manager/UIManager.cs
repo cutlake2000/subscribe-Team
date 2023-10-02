@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.UI;
 
 public class UIManger : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class UIManger : MonoBehaviour
     private GameObject FrontGauge;
 
     private float GaugeWidth;
+    private float GaugeHeight;
     private RectTransform backGaugeRectTransform;
     private RectTransform frontGaugeRectTransform;
 
@@ -37,21 +40,39 @@ public class UIManger : MonoBehaviour
         frontGaugeRectTransform = FrontGauge.GetComponent<RectTransform>();
 
         GaugeWidth = backGaugeRectTransform.rect.width;
+        GaugeHeight = backGaugeRectTransform.rect.height;
     }
 
     private void Update()
     {
+        SetDayCountText();
         SetRemainTimeText();
         SetGauge();
     }
 
+    private void SetDayCountText()
+    {
+        dayCount.text = (DayManager.Instance.DayCount).ToString("N0");
+    }
+
     private void SetGauge()
     {
+        if (DayManager.Instance.dayNight == DayNight.Day)
+        {
+            FrontGauge.GetComponent<UnityEngine.UI.Image>().color = Color.red;
+            BackGauge.GetComponent<UnityEngine.UI.Image>().color = Color.blue;
+        }
+        else
+        {
+            FrontGauge.GetComponent<UnityEngine.UI.Image>().color = Color.blue;
+            BackGauge.GetComponent<UnityEngine.UI.Image>().color = Color.red;
+        }
+
         frontGaugeRectTransform.sizeDelta = new Vector2(
             (DayManager.Instance.DayTime - DayManager.Instance.NowTime)
                 / DayManager.Instance.DayTime
                 * GaugeWidth,
-            16
+            GaugeHeight
         );
     }
 
