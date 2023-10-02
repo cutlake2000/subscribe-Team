@@ -27,6 +27,8 @@ public class UIManger : MonoBehaviour
     private RectTransform backGaugeRectTransform;
     private RectTransform frontGaugeRectTransform;
 
+    public static Action ClosePopUpUI;
+
     private void Awake()
     {
         Instance = this;

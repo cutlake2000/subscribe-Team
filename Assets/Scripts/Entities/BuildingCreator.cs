@@ -32,6 +32,7 @@ public class BuildingCreator : MonoBehaviour
         //에딧모드 일 때만 건물짓는 그리드가 형성됨. (드래그시 true)
         if (_isEditMode)
         {
+
             Vector3 mousePosition = GetMousePosisiton();
             Vector3Int gridPosition = grid.WorldToCell(mousePosition);
             selectObj.transform.position = new Vector3(grid.CellToWorld(gridPosition).x, 1.14f, grid.CellToWorld(gridPosition).z); // 변경점 : Y값 변경함

@@ -12,7 +12,7 @@ public class DragNDrop : MonoBehaviour
     //마지막에 눌린 버튼 오브젝트로서 설치가 안됬을 경우 되돌리는 용도로 사용된다.
     public GameObject lastUIObj;
     public bool _isClick;
-
+    private Sprite clickSprite; // 추가. 텍스처 불러오기 -2
     //lastUIObj : 건물 선택 메뉴 버튼
     //clickObj : 버튼 클릭후 반투명 건물 이미지(마우스 따라다님)
 
@@ -31,22 +31,26 @@ public class DragNDrop : MonoBehaviour
         buildingCreator.selectObj.SetActive(false);
     }
 
+
     public void GetButton(GameObject obj)
     {
         clickObj = obj;
         clickObj.SetActive(true);
+        clickObj.GetComponent<RawImage>().texture = clickSprite.texture; // 추가. 텍스처 불러오기 -3
         _isClick = true;
         buildingCreator._isEditMode = true;
         buildingCreator.selectObj.SetActive(true);
+        UIManger.ClosePopUpUI?.Invoke();
     }
 
     public void TestButton(GameObject obj)
     {
         lastUIObj = obj;
         lastUIObj.SetActive(false);
+        UIManger.ClosePopUpUI?.Invoke();
     }
 
-   
+
 
     public void Update()
     {
@@ -63,4 +67,9 @@ public class DragNDrop : MonoBehaviour
     }
 
     
+    public void GetImage(Image img) // 추가. 텍스처 불러오기 - 1
+    {
+        clickSprite = img.sprite;
+    }
+
 }

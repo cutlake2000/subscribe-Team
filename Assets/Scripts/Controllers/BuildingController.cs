@@ -19,6 +19,7 @@ public class BuildingController : MonoBehaviour
 
     public ClickBuildingUI clickBuildingUI;
     public ClickBuildingUIModel clickBuildingUIModel;
+    [SerializeField] BuildingCreator buildingCreator;
 
     public Action DayChange;
 
@@ -71,6 +72,9 @@ public class BuildingController : MonoBehaviour
     // ClickBuildingUI 스위치
     public void ActiveClickBuildingUI(BaseBuilding clickBuilding)
     {
+        if (buildingCreator._isEditMode == true)
+            return;
+
         if (clickBuildingUI.gameObject.activeSelf == true && clickBuilding != null
             && clickBuildingUIModel.clickBuilding == clickBuilding)
         {
