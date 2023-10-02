@@ -48,8 +48,8 @@ public class UIManger : MonoBehaviour
     private void SetGauge()
     {
         frontGaugeRectTransform.sizeDelta = new Vector2(
-            (DataManager.Instance.DayTime - DataManager.Instance.NowTime)
-                / DataManager.Instance.DayTime
+            (DayManager.Instance.DayTime - DayManager.Instance.NowTime)
+                / DayManager.Instance.DayTime
                 * GaugeWidth,
             16
         );
@@ -57,7 +57,7 @@ public class UIManger : MonoBehaviour
 
     private void SetRemainTimeText()
     {
-        remainTime.text = (DataManager.Instance.DayTime - DataManager.Instance.NowTime).ToString(
+        remainTime.text = (DayManager.Instance.DayTime - DayManager.Instance.NowTime).ToString(
             "N0"
         );
     }

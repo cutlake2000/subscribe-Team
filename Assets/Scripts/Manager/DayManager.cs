@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class DayManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static DayManager Instance;
+    public float NowTime { get; set; }
+    public float DayTime { get; set; }
+    public float EntireTime { get; set; }
+
+    private void Awake()
     {
-        
+        Instance = this;
+
+        InitTime();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void InitTime()
     {
-        
+        NowTime = 0.0f;
+        DayTime = 10.0f;
+        EntireTime = 0.0f;
     }
 }
