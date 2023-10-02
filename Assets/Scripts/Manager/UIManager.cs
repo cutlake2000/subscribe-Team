@@ -52,7 +52,11 @@ public class UIManger : MonoBehaviour
 
     private void SetDayCountText()
     {
-        dayCount.text = (DayManager.Instance.DayCount).ToString("N0");
+        float day = DayManager.Instance.EntireTime / (DayManager.Instance.DayTime * 2);
+
+        Debug.Log("day + " + day);
+
+        dayCount.text = (day + 1).ToString("N0");
     }
 
     private void SetGauge()
