@@ -25,8 +25,8 @@ public class MarketBuilding : BaseBuilding, ITradeResource
         base.Initialization();
         price = 1.0f;
         CheckTodayPrice();
-        BuildingController.instance.DayChange -= CheckTodayPrice;
-        BuildingController.instance.DayChange += CheckTodayPrice;
+        BuildingController.Instance.DayChange -= CheckTodayPrice;
+        BuildingController.Instance.DayChange += CheckTodayPrice;
 
     }
 

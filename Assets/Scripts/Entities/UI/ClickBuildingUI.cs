@@ -43,7 +43,7 @@ public class ClickBuildingUI : MonoBehaviour
     // 버튼 클릭시 호출
     public void ClickBtnIndex(int index)
     {
-        BuildingController.instance.ActionUIOptionSelect(index);
+        BuildingController.Instance.ActionUIOptionSelect(index);
     }
 
     // 버튼들을 새로고침

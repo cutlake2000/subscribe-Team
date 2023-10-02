@@ -91,7 +91,7 @@ public class BuildingController : MonoBehaviour
     public void LevelUpBuilding(bool isLoop = false)
     {
         BaseBuilding target = clickBuildingUIModel.clickBuilding;
-        if (target.upgradeWood >= DataManager.instance.player.Wood && isLoop == false)
+        if (target.upgradeWood >= DataManager.Instance.player.Wood && isLoop == false)
         {
             if (!isLoop)
                 Debug.Log("��� ����");
@@ -108,7 +108,7 @@ public class BuildingController : MonoBehaviour
         else
         {
             int upCount = 0;
-            while (clickBuilding.upgradeWood < DataManager.Instance.player.Wood)
+            while (clickBuildingUIModel.clickBuilding.upgradeWood < DataManager.Instance.player.Wood)
             {
                 upCount++;
                 DataManager.Instance.player.Wood -= target.upgradeWood;
@@ -130,7 +130,7 @@ public class BuildingController : MonoBehaviour
     // 자원 거래
     public void TradeResource(bool isBuy, ResourceType type)
     {
-        PlayerSO player = DataManager.instance.player;
+        PlayerSO player = DataManager.Instance.player;
         int trademode = isBuy ? +1 : -1; // -1 골드 차감, +1 골드 추가
 
         switch (type)

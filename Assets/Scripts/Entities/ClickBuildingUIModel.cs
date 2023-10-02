@@ -141,42 +141,42 @@ class MaxLvUpBulding : IClickBuildingAction
 {
     public void Click()
     {
-        BuildingController.instance.LevelUpBuilding(true);
+        BuildingController.Instance.LevelUpBuilding(true);
     }
 }
 class LvUpBulding : IClickBuildingAction
 {
     public void Click()
     {
-        BuildingController.instance.LevelUpBuilding();
+        BuildingController.Instance.LevelUpBuilding();
     }
 }
 class DestroyBulding : IClickBuildingAction
 {
     public void Click()
     {
-        BuildingController.instance.DestroyBuilding();
+        BuildingController.Instance.DestroyBuilding();
     }
 }
 class BackOption : IClickBuildingAction
 {
     public void Click()
     {
-        BuildingController.instance.GoBack();
+        BuildingController.Instance.GoBack();
     }
 }
 class ChangeBuyMode : IClickBuildingAction
 {
     public void Click()
     {
-        BuildingController.instance.ChangeBuildingUIMode(ClickUIType.Buy, false);
+        BuildingController.Instance.ChangeBuildingUIMode(ClickUIType.Buy, false);
     }
 }
 class ChangeSellMode : IClickBuildingAction
 {
     public void Click()
     {
-        BuildingController.instance.ChangeBuildingUIMode(ClickUIType.Sell, false);
+        BuildingController.Instance.ChangeBuildingUIMode(ClickUIType.Sell, false);
     }
 }
 class TradeResourse : IClickBuildingAction
@@ -185,7 +185,7 @@ class TradeResourse : IClickBuildingAction
     public bool isbuy;
     public void Click()
     {
-        BuildingController.instance.TradeResource(isbuy, type);
+        BuildingController.Instance.TradeResource(isbuy, type);
     }
 }
 #endregion

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2213,6 +2213,7 @@ GameObject:
   - component: {fileID: 1703412281}
   - component: {fileID: 1703412283}
   - component: {fileID: 1703412282}
+  - component: {fileID: 1703412284}
   m_Layer: 5
   m_Name: ClickBuildingUI
   m_TagString: Untagged
@@ -2256,6 +2257,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3bcef55b59e224395f9e626901b7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonList: []
+  defaultBtnSprites: []
+  ResourceBtnSprites: []
+  infoTexts: []
 --- !u!95 &1703412283
 Animator:
   serializedVersion: 5
@@ -2277,6 +2282,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1703412284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703412280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99fecb30fa546449b4be79dc2b26800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIMode: 0
+  SellTypeList: 
+  BuyTypeList: 
+  clickBuilding: {fileID: 0}
 --- !u!1 &1752160372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2498,8 +2519,9 @@ MonoBehaviour:
   - {fileID: 92522642691707451, guid: df4838ac37828f44bbb5f1b088e84e79, type: 3}
   - {fileID: 5269447685164759032, guid: 318f5fd85271cff48adbe0a3246ef15f, type: 3}
   buildings: []
-  clickBuilding: {fileID: 0}
+  clickBuildingtemp: {fileID: 0}
   clickBuildingUI: {fileID: 1703412282}
+  clickBuildingUIModel: {fileID: 0}
 --- !u!114 &1823159312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2513,6 +2535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  monsterDatas: []
 --- !u!1 &1883793427
 GameObject:
   m_ObjectHideFlags: 0
