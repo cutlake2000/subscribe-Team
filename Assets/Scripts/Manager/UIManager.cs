@@ -66,8 +66,10 @@ public class UIManger : MonoBehaviour
 
         Debug.Log("SizeDelta + " + frontGaugeRectTransform.sizeDelta);
 
-        if (remainTime <= 0.0f)
+        if (remainTime <= 0.0f && DayManager.Instance.isSkyRotating == false)
         {
+            Debug.Log("remainTime + " + remainTime);
+
             FrontGauge.GetComponent<UnityEngine.UI.Image>().color =
                 FrontGauge.GetComponent<UnityEngine.UI.Image>().color == Color.red
                     ? Color.blue

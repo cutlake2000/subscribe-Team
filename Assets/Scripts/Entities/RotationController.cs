@@ -69,8 +69,6 @@ public class RotationController : MonoBehaviour
         Cloud3.transform.rotation = Quaternion.Euler(targetEulerAngles);
         Background.transform.rotation = Quaternion.Euler(targetEulerAngles);
 
-        DayManager.Instance.NowTime = 0.0f;
-
         DayManager.Instance.isSkyRotating = false;
     }
 
@@ -79,7 +77,7 @@ public class RotationController : MonoBehaviour
         DayManager.Instance.isGroundRotating = true;
 
         float startTime = 0.0f;
-        float targetTime = 5.0f;
+        float targetTime = 2.0f;
 
         Quaternion currentRotation = Ground.transform.rotation;
 

@@ -35,7 +35,7 @@ public class DayManager : MonoBehaviour
     private void Init()
     {
         NowTime = 0.0f;
-        DayTime = 10.0f;
+        DayTime = 3.0f;
         EntireTime = 0.0f;
         DayCount = 0;
         dayNight = DayNight.Day;
@@ -76,6 +76,10 @@ public class DayManager : MonoBehaviour
         if (isSkyRotating == true)
         {
             EntireTime += Time.deltaTime;
+        }
+        else
+        {
+            NowTime = 0.0f;
         }
     }
 }
