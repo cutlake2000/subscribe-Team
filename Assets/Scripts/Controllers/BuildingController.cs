@@ -54,7 +54,7 @@ public class BuildingController : MonoBehaviour
         {
             if (buildings[i].buildingType != type)
                 continue;
-            if (buildings[i].gameObject.activeSelf == false)
+            if (buildings[i].gameObject.activeSelf == true)
                 continue;
 
             newBuilding = buildings[i];

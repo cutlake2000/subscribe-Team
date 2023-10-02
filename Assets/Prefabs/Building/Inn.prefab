@@ -50,12 +50,17 @@ MonoBehaviour:
   baseData:
     buildingType: 0
     level: 0
+    maxLevel: 0
     name: 
     desc: 
     upgradeWood: 0
+    optionTypeList: 
   spriteRenderer: {fileID: 7995548822106928619}
+  animator: {fileID: 2597078690135700461}
   buildingType: 0
+  DefaultOptionType: 
   level: 0
+  maxLevel: 0
   buildingName: 
   desc: 
   upgradeWood: 0
