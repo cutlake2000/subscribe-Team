@@ -12,36 +12,40 @@ public class MercenaryUI : MonoBehaviour
     public Text AttackRange;
     public Text Name;
 
-    GetMercenaryDatas Mercenary;
+    ClickMercenaryUI Mercenary;
     public MercenaryData[] datas;
 
 
     private void Awake()
     {
-        Mercenary = GetComponent<GetMercenaryDatas>();
     }
-    private void showStatus()
+
+    private void Start()
     {
-        string name = Mercenary.name;
-        if(name == "SwordMan")
+        showStatus(DataManager.Instance.MercenaryID);
+    }
+    private void showStatus(int num)
+    {
+        List<string> name = Mercenary.name;
+        if (name[num] == "SwordMan")
         {
-            Name.text = "이름 : " + name;
+            Name.text = "이름 : " + name[num];
             Attack.text = "공격력 : " + datas[0].Attack;
             AttackSpeed.text = "공격속도 : " + datas[0].AttackSpeed;
             MovingSpeed.text = "이동속도 : " + datas[0].MovingSpeed;
             AttackRange.text = "공격범위 : " + datas[0].AttackRange;
         }
-        else if(name == "KatanaMan")
+        else if(name[num] == "KatanaMan")
         {
-            Name.text = "이름 : " + name;
+            Name.text = "이름 : " + name[num];
             Attack.text = "공격력 : " + datas[1].Attack;
             AttackSpeed.text = "공격속도 : " + datas[1].AttackSpeed;
             MovingSpeed.text = "이동속도 : " + datas[1].MovingSpeed;
             AttackRange.text = "공격범위 : " + datas[1].AttackRange;
         }
-        else if(name == "GunMan")
+        else if(name[num] == "GunMan")
         {
-            Name.text = "이름 : " + name;
+            Name.text = "이름 : " + name[num];
             Attack.text = "공격력 : " + datas[2].Attack;
             AttackSpeed.text = "공격속도 : " + datas[2].AttackSpeed;
             MovingSpeed.text = "이동속도 : " + datas[2].MovingSpeed;

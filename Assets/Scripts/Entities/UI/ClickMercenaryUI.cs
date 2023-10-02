@@ -6,17 +6,22 @@ public class ClickMercenaryUI : MonoBehaviour
 {
     public GameObject StatusWindow;
     public GameObject popupUI;
+    private Vector3 UIPos;
+    public List<string> name;
     private void Awake()
     {
-
+        MercenaryController controller = gameObject.GetComponent<MercenaryController>();
+        name .Add(controller.data.MercenaryName);
+        DataManager.Instance.MercenaryID = controller.data.MercenaryID;
     }
-    public void isClick()
+
+    public void Update()
     {
-        Debug.Log("click");
+        UIPos = Camera.main.WorldToScreenPoint(transform.position);
     }
     public void PopUp()
     {
-        Vector3 UIPos = Camera.main.WorldToScreenPoint(transform.position);
+        //Vector3 UIPos = Camera.main.WorldToScreenPoint(transform.position);
         popupUI.transform.position = UIPos;
         popupUI.SetActive(true);
         Invoke(nameof(PopOff), 3.0f);

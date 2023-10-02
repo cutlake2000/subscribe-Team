@@ -148,18 +148,38 @@ public class MercenaryController : MonoBehaviour
                 break;
             }
         }
-        //switch (monster.monsterData.MonsterName)
-        //{
-        //    case "개":
-        //        thisMonster.MonsterHp = DataManager.Instance.monsterDatas[0].MonsterHp;
-        //        break;
-        //    case "유령":
-        //        thisMonster.MonsterHp = DataManager.Instance.monsterDatas[1].MonsterHp;
-        //        break;
-        //    case "호랑이":
-        //        thisMonster.MonsterHp = DataManager.Instance.monsterDatas[2].MonsterHp;
-        //        break;
-        //}
         return thisMonster;
     }
+
+    void CheckDayandNight()
+    {
+        // 지금 낮인지 밤인지 확인
+
+    }
+
+    //public void DayandNight()
+    //{
+    //    // 각 낮, 밤의 행동을 정의해주는 함수
+    //    // 낮 : 밤 시간대의 용병스포너의 좌표를 받아 그쪽으로 용병 이동 > 낮 시간대의 용병스포너의 좌표로 이동, 동시에 y축을 기준으로 뒤집기
+    //    GameObject DaySpawner = GameObject.FindGameObjectWithTag("DaySpawner");
+    //    GameObject NightSpawner = GameObject.FindGameObjectWithTag("NightSpawner");
+    //    if () // 밤일 경우
+    //    {
+    //        Vector3 destination = DaySpawner.transform.position;
+    //        transform.position = Vector3.Lerp(transform.position, destination, 0.001f );
+    //        if(gameObject.transform.position == destination)
+    //        {
+    //            gameObject.transform.position = NightSpawner.transform.position;
+    //        }
+    //    }
+    //    else if () // 낮일 경우
+    //    {
+    //        Vector3 destination = NightSpawner.transform.position;
+    //        transform.position = Vector3.Lerp(transform.position, destination, 0.001f);
+    //        if (gameObject.transform.position == destination)
+    //        {
+    //            gameObject.transform.position = DaySpawner.transform.position;
+    //        }
+    //    }
+    //}
 }
