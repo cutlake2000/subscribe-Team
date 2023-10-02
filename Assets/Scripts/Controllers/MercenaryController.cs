@@ -27,13 +27,15 @@ public class MercenaryController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
+        target = new List<GameObject>();
     }
 
     private void Start() { }
 
     private void Update()
     {
-        target = new List<GameObject>(GameObject.FindGameObjectsWithTag(TagName));
+        target.Clear();
+        target.AddRange(GameObject.FindGameObjectsWithTag(TagName));
         if (target.Count <= 0)
         {
             if(isCoroutineRunning)
@@ -45,7 +47,7 @@ public class MercenaryController : MonoBehaviour
                 StartCoroutine(MoveObject());
             }
         }
-        else
+        else if(target.Count > 0)
         {
             if (isAttackObject)
             {
