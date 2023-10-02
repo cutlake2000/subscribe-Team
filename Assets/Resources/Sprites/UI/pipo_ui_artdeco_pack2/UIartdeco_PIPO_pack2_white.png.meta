@@ -325,7 +325,7 @@ TextureImporter:
         serializedVersion: 2
         x: 505
         y: 732
-        width: 25
+        width: 28
         height: 29
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -344,8 +344,8 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_white_13
       rect:
         serializedVersion: 2
-        x: 508
-        y: 735
+        x: 556
+        y: 740
         width: 25
         height: 25
       alignment: 0
@@ -368,7 +368,7 @@ TextureImporter:
         x: 229
         y: 617
         width: 86
-        height: 80
+        height: 82
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,8 +386,8 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_white_15
       rect:
         serializedVersion: 2
-        x: 240
-        y: 692
+        x: 394
+        y: 740
         width: 7
         height: 7
       alignment: 0
@@ -407,8 +407,8 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_white_16
       rect:
         serializedVersion: 2
-        x: 297
-        y: 692
+        x: 383
+        y: 730
         width: 7
         height: 7
       alignment: 0
@@ -449,8 +449,8 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_white_18
       rect:
         serializedVersion: 2
-        x: 526
-        y: 686
+        x: 501
+        y: 613
         width: 17
         height: 17
       alignment: 0
@@ -470,10 +470,10 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_white_19
       rect:
         serializedVersion: 2
-        x: 544
+        x: 526
         y: 686
-        width: 79
-        height: 16
+        width: 181
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,10 +491,10 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_white_20
       rect:
         serializedVersion: 2
-        x: 613
-        y: 686
-        width: 76
-        height: 19
+        x: 669
+        y: 598
+        width: 38
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,8 +512,8 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_white_21
       rect:
         serializedVersion: 2
-        x: 690
-        y: 686
+        x: 702
+        y: 711
         width: 17
         height: 17
       alignment: 0
@@ -556,8 +556,8 @@ TextureImporter:
         serializedVersion: 2
         x: 526
         y: 598
-        width: 181
-        height: 87
+        width: 38
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -765,9 +765,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 305
-        y: 120
-        width: 17
-        height: 17
+        y: 94
+        width: 43
+        height: 43
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -785,8 +785,8 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_white_34
       rect:
         serializedVersion: 2
-        x: 323
-        y: 120
+        x: 337
+        y: 160
         width: 25
         height: 16
       alignment: 0
@@ -827,8 +827,8 @@ TextureImporter:
       name: UIartdeco_PIPO_pack2_white_36
       rect:
         serializedVersion: 2
-        x: 306
-        y: 94
+        x: 303
+        y: 164
         width: 20
         height: 25
       alignment: 0

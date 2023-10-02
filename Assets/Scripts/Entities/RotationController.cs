@@ -20,6 +20,9 @@ public class RotationController : MonoBehaviour
     [SerializeField]
     private GameObject Background;
 
+    public bool isSkyRotating;
+    public bool isGroundRotating;
+
     public void CallSkyRotationCoroutine()
     {
         StartCoroutine(RotationSky());
@@ -32,8 +35,7 @@ public class RotationController : MonoBehaviour
 
     private IEnumerator RotationSky()
     {
-        float startTime = DayManager.Instance.NowTime;
-        float targetTime = DayManager.Instance.DayTime;
+        isSkyRotating = true;
 
         Quaternion currentRotation = Cloud1.transform.rotation;
 
@@ -42,9 +44,9 @@ public class RotationController : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.Euler(targetEulerAngles);
 
-        while (startTime < targetTime)
+        while (DayManager.Instance.NowTime < DayManager.Instance.DayTime)
         {
-            float flowTime = startTime / targetTime;
+            float flowTime = DayManager.Instance.NowTime / DayManager.Instance.DayTime;
             Cloud1.transform.rotation = Quaternion.Euler(
                 Vector3.Lerp(currentRotation.eulerAngles, targetRotation.eulerAngles, flowTime)
             );
@@ -58,7 +60,7 @@ public class RotationController : MonoBehaviour
                 Vector3.Lerp(currentRotation.eulerAngles, targetRotation.eulerAngles, flowTime)
             );
 
-            startTime += Time.deltaTime;
+            DayManager.Instance.NowTime += Time.deltaTime;
 
             yield return null;
         }
@@ -69,12 +71,18 @@ public class RotationController : MonoBehaviour
         Cloud2.transform.rotation = Quaternion.Euler(targetEulerAngles);
         Cloud3.transform.rotation = Quaternion.Euler(targetEulerAngles);
         Background.transform.rotation = Quaternion.Euler(targetEulerAngles);
+
+        DayManager.Instance.NowTime = 0.0f;
+
+        isSkyRotating = false;
     }
 
     private IEnumerator RotationGround()
     {
-        float startTime = DayManager.Instance.NowTime;
-        float targetTime = DayManager.Instance.DayTime;
+        isGroundRotating = true;
+
+        float startTime = 0.0f;
+        float targetTime = 5.0f;
 
         Quaternion currentRotation = Ground.transform.rotation;
 
@@ -97,6 +105,8 @@ public class RotationController : MonoBehaviour
         targetEulerAngles.z = Round180(targetEulerAngles.z);
 
         Ground.transform.rotation = Quaternion.Euler(targetEulerAngles);
+
+        isGroundRotating = false;
     }
 
     private float Round180(float eulerAngles)
