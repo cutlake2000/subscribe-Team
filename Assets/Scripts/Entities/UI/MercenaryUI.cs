@@ -22,6 +22,11 @@ public class MercenaryUI : MonoBehaviour
 
     private void Start()
     {
+        //showStatus();
+    }
+
+    private void OnEnable()
+    {
         showStatus();
     }
     private void showStatus()

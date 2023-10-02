@@ -10,15 +10,16 @@ public class ClickMercenaryUI : MonoBehaviour
 
     private void Awake()
     {
+
     }
 
     public void Update()
     {
-        UIPos = Camera.main.WorldToScreenPoint(transform.position);
+        //UIPos = Camera.main.WorldToScreenPoint(transform.position);
     }
-    public void PopUp()
+    public void PopUp(Vector3 Pos)
     {
-        //Vector3 UIPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 UIPos = Camera.main.WorldToScreenPoint(Pos);
         popupUI.transform.position = UIPos;
         popupUI.SetActive(true);
         Invoke(nameof(PopOff), 3.0f);
