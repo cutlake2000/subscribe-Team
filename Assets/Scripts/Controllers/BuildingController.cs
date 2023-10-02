@@ -33,9 +33,9 @@ public class BuildingController : MonoBehaviour
     public void Start()
     {
         // - �׽�Ʈ��
-        SetNewBuildingOnMap(BuildingType.Inn, Vector2.left * 2);
-        SetNewBuildingOnMap(BuildingType.Forge, Vector2.right * 1);
-        SetNewBuildingOnMap(BuildingType.Market, Vector2.right * 4);
+        SetNewBuildingOnMap(BuildingType.Inn, new Vector3(-2,1.13f));
+        SetNewBuildingOnMap(BuildingType.Forge, new Vector3(1, 1.13f));
+        SetNewBuildingOnMap(BuildingType.Market, new Vector3(4, 1.13f));
         //
     }
 
