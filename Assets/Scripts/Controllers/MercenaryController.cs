@@ -151,10 +151,10 @@ public class MercenaryController : MonoBehaviour
         return thisMonster;
     }
 
-    void CheckDayandNight()
+    bool CheckDayandNight()
     {
         // 지금 낮인지 밤인지 확인
-
+        return true;
     }
 
     //public void DayandNight()
@@ -170,6 +170,7 @@ public class MercenaryController : MonoBehaviour
     //        if(gameObject.transform.position == destination)
     //        {
     //            gameObject.transform.position = NightSpawner.transform.position;
+    //            renderer.flipY = true;
     //        }
     //    }
     //    else if () // 낮일 경우
@@ -179,6 +180,7 @@ public class MercenaryController : MonoBehaviour
     //        if (gameObject.transform.position == destination)
     //        {
     //            gameObject.transform.position = DaySpawner.transform.position;
+    //            renderer.flipY = true;
     //        }
     //    }
     //}
@@ -186,6 +188,6 @@ public class MercenaryController : MonoBehaviour
     public void temp()
     {
         GameManager.Instance.MercenaryUI.Mercenary = data;
-        GameManager.Instance.clickMercenaryUI.PopUp();
+        GameManager.Instance.clickMercenaryUI.PopUp(gameObject.transform.position);
     }
 }

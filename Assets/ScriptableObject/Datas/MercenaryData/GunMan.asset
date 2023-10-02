@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff1e5ef68207234989de819be9e0b8a, type: 3}
   m_Name: GunMan
   m_EditorClassIdentifier: 
-  MercenaryID: 3
+  MercenaryCost: 10
   MercenaryName: GunMan
   Attack: 3
   AttackSpeed: 0.1
