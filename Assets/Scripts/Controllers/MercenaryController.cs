@@ -182,4 +182,10 @@ public class MercenaryController : MonoBehaviour
     //        }
     //    }
     //}
+
+    public void temp()
+    {
+        GameManager.Instance.MercenaryUI.Mercenary = data;
+        GameManager.Instance.clickMercenaryUI.PopUp();
+    }
 }

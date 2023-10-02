@@ -452,9 +452,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11405757}
-        m_TargetAssemblyTypeName: ClickMercenaryUI, Assembly-CSharp
-        m_MethodName: PopUp
+      - m_Target: {fileID: 11405755}
+        m_TargetAssemblyTypeName: MercenaryController, Assembly-CSharp
+        m_MethodName: temp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1420,6 +1420,7 @@ MonoBehaviour:
   MovingSpeed: {fileID: 462248481}
   AttackRange: {fileID: 9678578}
   Name: {fileID: 1456490369}
+  Mercenary: {fileID: 0}
   datas:
   - {fileID: 11400000, guid: ef883b0db89c9a246a805178f9582568, type: 2}
   - {fileID: 11400000, guid: 81f626ff6adfc0b46ba1e018e46ecf9b, type: 2}
@@ -1659,9 +1660,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 704882560}
-        m_TargetAssemblyTypeName: ClickMercenaryUI, Assembly-CSharp
-        m_MethodName: PopUp
+      - m_Target: {fileID: 704882557}
+        m_TargetAssemblyTypeName: MercenaryController, Assembly-CSharp
+        m_MethodName: temp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2059,6 +2060,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1237435676}
   - component: {fileID: 1237435675}
+  - component: {fileID: 1237435677}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -2098,6 +2100,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1237435677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237435674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05eab8777a1eb0849adff2f9332e562c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameOver: 0
+  MercenaryUI: {fileID: 678875220}
+  clickMercenaryUI: {fileID: 926400285}
+  mercenaryController: {fileID: 0}
+  buyPenalty: 1.2
+  sellPenalty: 0.8
+  currentPrice: 1
 --- !u!1 &1315294009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2978,9 +2999,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1705730720}
-        m_TargetAssemblyTypeName: ClickMercenaryUI, Assembly-CSharp
-        m_MethodName: PopUp
+      - m_Target: {fileID: 1705730718}
+        m_TargetAssemblyTypeName: MercenaryController, Assembly-CSharp
+        m_MethodName: temp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
