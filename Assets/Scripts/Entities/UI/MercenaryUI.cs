@@ -12,13 +12,22 @@ public class MercenaryUI : MonoBehaviour
     public Text AttackRange;
     public Text Name;
 
-    GetMercenaryDatas Mercenary;
+    public MercenaryData Mercenary;
     public MercenaryData[] datas;
 
 
     private void Awake()
     {
-        Mercenary = GetComponent<GetMercenaryDatas>();
+    }
+
+    private void Start()
+    {
+        //showStatus();
+    }
+
+    private void OnEnable()
+    {
+        showStatus();
     }
     private void showStatus()
     {

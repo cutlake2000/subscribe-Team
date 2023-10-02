@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public bool isGameOver;
-
+    public MercenaryUI MercenaryUI;
+    public ClickMercenaryUI clickMercenaryUI;
+    public MercenaryController mercenaryController;
     [Header("거래 밸런스")]
     public float buyPenalty = 1.2f; // 구매 패널티
     public float sellPenalty = 0.8f; // 판매 패널티

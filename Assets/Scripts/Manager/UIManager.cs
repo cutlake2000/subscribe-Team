@@ -52,32 +52,31 @@ public class UIManger : MonoBehaviour
 
     private void SetDayCountText()
     {
-        float day = DayManager.Instance.EntireTime / (DayManager.Instance.DayTime * 2);
-
-        Debug.Log("day + " + day);
-
-        dayCount.text = (day + 1).ToString("N0");
+        dayCount.text = DayManager.Instance.DayCount.ToString("N0");
     }
 
     private void SetGauge()
     {
-        if (DayManager.Instance.dayNight == DayNight.Day)
-        {
-            FrontGauge.GetComponent<UnityEngine.UI.Image>().color = Color.red;
-            BackGauge.GetComponent<UnityEngine.UI.Image>().color = Color.blue;
-        }
-        else
-        {
-            FrontGauge.GetComponent<UnityEngine.UI.Image>().color = Color.blue;
-            BackGauge.GetComponent<UnityEngine.UI.Image>().color = Color.red;
-        }
+        float remainTime = DayManager.Instance.DayTime - DayManager.Instance.NowTime;
 
         frontGaugeRectTransform.sizeDelta = new Vector2(
-            (DayManager.Instance.DayTime - DayManager.Instance.NowTime)
-                / DayManager.Instance.DayTime
-                * GaugeWidth,
+            remainTime / DayManager.Instance.DayTime * GaugeWidth,
             GaugeHeight
         );
+
+        Debug.Log("SizeDelta + " + frontGaugeRectTransform.sizeDelta);
+
+        if (remainTime <= 0.0f)
+        {
+            FrontGauge.GetComponent<UnityEngine.UI.Image>().color =
+                FrontGauge.GetComponent<UnityEngine.UI.Image>().color == Color.red
+                    ? Color.blue
+                    : Color.red;
+            BackGauge.GetComponent<UnityEngine.UI.Image>().color =
+                BackGauge.GetComponent<UnityEngine.UI.Image>().color == Color.red
+                    ? Color.blue
+                    : Color.red;
+        }
     }
 
     private void SetRemainTimeText()
