@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
@@ -13,18 +12,21 @@ public class ClickBuildingUI : MonoBehaviour
     enum InfoTextType { Name, CurrentEffect, Upgrade }
 
     [SerializeField] Image[] buttonList; // 하이라키에 있는 버튼들
+    private Dictionary<ClickUIType, List<Sprite>> ImageList;
     [SerializeField] List<Sprite> defaultBtnSprites; // 기본 버튼 스프라이트
     [SerializeField] List<Sprite> ResourceBtnSprites; // 자원 관리용 스프라이트
 
     [SerializeField] TMP_Text[] infoTexts; // 하단 텍스트
     private StringBuilder newStatusText;
 
-    public void Awake()
+    private void Awake()
     {
         newStatusText = new();
+        ImageList = new() { { ClickUIType.Default, defaultBtnSprites }, { ClickUIType.Buy, ResourceBtnSprites }, { ClickUIType.Sell, ResourceBtnSprites } };
+
     }
 
-    public void LateUpdate()
+    private void LateUpdate()
     {
         if (Input.GetMouseButtonDown(1))
             OFF();
@@ -57,25 +59,18 @@ public class ClickBuildingUI : MonoBehaviour
     }
 
     // 버튼들을 새로고침
-    // (int)typeList[i]는 selectSprite[i]의 스프라이트를 사용함
-    // selectSprite[i]는 clickUItype에 따라 결정됨
+    // typeList[i]는 selectSprite[i]의 스프라이트를 사용함
+    // selectSprite는 clickUItype에 따라 결정됨
     public void RefreshOptionButton<T>(List<T> typeList, ClickUIType clickUIType) where T : Enum
     {
         // 사용할 스프라이트 선택
-        List<Sprite> selectSprite = defaultBtnSprites;
-
-        switch (clickUIType)
-        {
-            case ClickUIType.Default: selectSprite = defaultBtnSprites; break;
-            case ClickUIType.Buy:
-            case ClickUIType.Sell: selectSprite = ResourceBtnSprites; break;
-        }
+        List<Sprite> selectSprite = ImageList[clickUIType];
 
         // 활성화 및 스프라이트 할당
         for (int i = 0; i < buttonList.Length; i++)
         {
 
-            if (i >= typeList.Count+1)
+            if (i >= typeList.Count + 1)
             {
                 buttonList[i].gameObject.SetActive(false);
                 continue;
@@ -94,7 +89,7 @@ public class ClickBuildingUI : MonoBehaviour
             buttonList[i].sprite = selectSprite[spriteNum];
         }
 
-        SortOptionButton(typeList.Count+1); // +1 = 되돌아가기 추가
+        SortOptionButton(typeList.Count + 1); // +1 = 되돌아가기 추가
     }
 
 
@@ -107,6 +102,7 @@ public class ClickBuildingUI : MonoBehaviour
         {
             buttonList[i].transform.rotation = Quaternion.Euler(new Vector3(0, 0, startAngle - angle * i));
             buttonList[i].rectTransform.localPosition = buttonList[i].rectTransform.up * 150;
+            // TODO : local vector.zero 에서 buttonList[i].rectTransform.up * 150으로 가는 애니메이션
         }
     }
 
@@ -137,7 +133,7 @@ public class ClickBuildingUI : MonoBehaviour
                 break;
         }
         infoTexts[(int)InfoTextType.CurrentEffect].text = newStatusText.ToString();
-        // 업그레이드 재료
+        // 레벨업 재료
         newStatusText.Clear();
         if (target.level < target.maxLevel)
             newStatusText.Append($"<sprite=0>{target.upgradeWood}");

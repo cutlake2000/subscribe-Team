@@ -40597,9 +40597,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1165601258}
   - {fileID: 2117066556}
   - {fileID: 492999507}
-  - {fileID: 1165601258}
   m_Father: {fileID: 472522739}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40752,7 +40752,6 @@ MonoBehaviour:
   - {fileID: 92522642691707451, guid: df4838ac37828f44bbb5f1b088e84e79, type: 3}
   - {fileID: 5269447685164759032, guid: 318f5fd85271cff48adbe0a3246ef15f, type: 3}
   - {fileID: 7161335936609668493, guid: 5a7e46c31c56b31488c3d1849fd6c62e, type: 3}
-  buildings: []
   clickBuildingUI: {fileID: 958337724}
   clickBuildingUIModel: {fileID: 958337725}
   buildingCreator: {fileID: 576526341}

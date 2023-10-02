@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using static UnityEngine.GraphicsBuffer;
 
 public enum BuildingType
 {
@@ -15,7 +13,8 @@ public class BuildingController : MonoBehaviour
 
     [SerializeField] BuildingSO buildingSO;
     [SerializeField] GameObject[] buildingPrefabs;
-    public List<BaseBuilding> buildings;
+    private List<BaseBuilding> buildingList;
+    private Dictionary<BuildingType, List<BaseBuilding>> typeList;
 
     public ClickBuildingUI clickBuildingUI;
     public ClickBuildingUIModel clickBuildingUIModel;
@@ -26,7 +25,8 @@ public class BuildingController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        buildings = new List<BaseBuilding>();
+        buildingList = new List<BaseBuilding>();
+        typeList = new() { { BuildingType.Inn, new() }, { BuildingType.Forge, new() }, { BuildingType.Market, new() } };
     }
 
     public void Start()
@@ -48,15 +48,15 @@ public class BuildingController : MonoBehaviour
     // 새로운 빌딩 게임 오브젝트 반환받기
     private BaseBuilding DeliverNewBuilding(BuildingType type)
     {
+        List<BaseBuilding> list = typeList[BuildingType.Inn];
         BaseBuilding newBuilding;
-        for (int i = 0; i < buildings.Count; i++)
+
+        for (int i = 0; i < buildingList.Count; i++)
         {
-            if (buildings[i].buildingType != type)
-                continue;
-            if (buildings[i].gameObject.activeSelf == true)
+            if (list[i].gameObject.activeSelf == true)
                 continue;
 
-            newBuilding = buildings[i];
+            newBuilding = buildingList[i];
             ResetBuildingData(newBuilding);
             return newBuilding;
         }
@@ -65,7 +65,8 @@ public class BuildingController : MonoBehaviour
         newBuilding.name = type.ToString();
         newBuilding.baseData = buildingSO.buildingDatas[(int)type];
         newBuilding.Initialization();
-        buildings.Add(newBuilding);
+        buildingList.Add(newBuilding);
+        list.Add(newBuilding);
         return newBuilding;
     }
 
@@ -91,7 +92,7 @@ public class BuildingController : MonoBehaviour
     public void LevelUpBuilding(bool isLoop = false)
     {
         BaseBuilding target = clickBuildingUIModel.clickBuilding;
-        if (target.upgradeWood >= DataManager.Instance.player.Wood && isLoop == false)
+        if (target.upgradeWood > DataManager.Instance.player.Wood && isLoop == false)
         {
             if (!isLoop)
                 Debug.Log("TODO : UI 출력 - 재료 부족");
@@ -99,7 +100,7 @@ public class BuildingController : MonoBehaviour
             return;
         }
 
-        if (isLoop == false)
+        if (!isLoop)
         {
             Debug.Log("TODO : UI 출력 - 1회 성공");
             DataManager.Instance.player.Wood -= target.upgradeWood;
@@ -173,14 +174,14 @@ public class BuildingController : MonoBehaviour
     public void RefreshInnEffect()
     {
         int sum = 0;
-        for (int i = 0; i < buildings.Count; i++)
+        for (int i = 0; i < buildingList.Count; i++)
         {
-            if (buildings[i].buildingType != BuildingType.Inn)
+            if (buildingList[i].buildingType != BuildingType.Inn)
                 continue;
-            if (buildings[i].gameObject.activeSelf == false)
+            if (buildingList[i].gameObject.activeSelf == false)
                 continue;
 
-            InnBuilding building = (InnBuilding)buildings[i];
+            InnBuilding building = (InnBuilding)buildingList[i];
             sum += building.MaxUnitValue;
         }
 
@@ -192,21 +193,19 @@ public class BuildingController : MonoBehaviour
     public void RefreshForgeEffect()
     {
         int sum = 0;
-        for (int i = 0; i < buildings.Count; i++)
+        for (int i = 0; i < buildingList.Count; i++)
         {
-            if (buildings[i].buildingType != BuildingType.Forge)
+            if (buildingList[i].buildingType != BuildingType.Forge)
                 continue;
-            if (buildings[i].gameObject.activeSelf == false)
+            if (buildingList[i].gameObject.activeSelf == false)
                 continue;
 
-            ForgeBuilding building = (ForgeBuilding)buildings[i];
+            ForgeBuilding building = (ForgeBuilding)buildingList[i];
             sum += building.AddUnitAtk;
         }
 
         DataManager.Instance.player.AddUnitAtk = sum;
-        Debug.Log("���尣 ȿ�� : " + DataManager.Instance.player.AddUnitAtk);
-
-        // HUD에 갱신
+        Debug.Log("TODO : HUD 갱신 추가 공격력 : " + DataManager.Instance.player.AddUnitAtk);
     }
 
     // 테스트용
@@ -230,17 +229,16 @@ public class BuildingController : MonoBehaviour
     {
         switch (type)
         {
-            case ClickUIType.Default:
-                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ClickBtnType>(type, isGoback), type);
-                break;
             case ClickUIType.Buy:
                 clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback), type);
                 break;
             case ClickUIType.Sell:
                 clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback), type);
                 break;
+            case ClickUIType.Default:
             default:
-                break;
+                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ClickBtnType>(type, isGoback), type);
+            break;
         }
     }
 
