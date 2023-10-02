@@ -5,11 +5,11 @@ using UnityEngine;
 public class GetMercenaryDatas : MonoBehaviour
 {
 
-    //public string name;
+    public string name;
 
-    //private void Awake()
-    //{
-    //    MercenaryController controller = gameObject.GetComponent<MercenaryController>();
-    //    name = controller.data.MercenaryName;
-    //}
+    private void Awake()
+    {
+        MercenaryController controller = gameObject.GetComponent<MercenaryController>();
+        name = controller.data.MercenaryName;
+    }
 }

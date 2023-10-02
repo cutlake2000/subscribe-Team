@@ -7,12 +7,9 @@ public class ClickMercenaryUI : MonoBehaviour
     public GameObject StatusWindow;
     public GameObject popupUI;
     private Vector3 UIPos;
-    public List<string> name;
+
     private void Awake()
     {
-        MercenaryController controller = gameObject.GetComponent<MercenaryController>();
-        name .Add(controller.data.MercenaryName);
-        DataManager.Instance.MercenaryID = controller.data.MercenaryID;
     }
 
     public void Update()

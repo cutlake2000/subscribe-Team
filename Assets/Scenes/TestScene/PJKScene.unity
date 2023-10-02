@@ -219,11 +219,11 @@ GameObject:
   - component: {fileID: 11405756}
   - component: {fileID: 11405757}
   - component: {fileID: 11405758}
-  - component: {fileID: 11405759}
   - component: {fileID: 11405761}
   - component: {fileID: 11405760}
   - component: {fileID: 11405763}
   - component: {fileID: 11405762}
+  - component: {fileID: 11405764}
   m_Layer: 0
   m_Name: GunMan
   m_TagString: Untagged
@@ -464,19 +464,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &11405759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11405750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c13420f258cc94da183714a321efac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: 
 --- !u!114 &11405760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +542,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &11405764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11405750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c13420f258cc94da183714a321efac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
 --- !u!1 &214648010
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +645,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 214648017}
         m_TargetAssemblyTypeName: ClickMercenaryUI, Assembly-CSharp
-        m_MethodName: PopUp
+        m_MethodName: OpenStatusUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1334,7 +1334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &677112666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1419,7 +1419,7 @@ MonoBehaviour:
   AttackSpeed: {fileID: 1360774104}
   MovingSpeed: {fileID: 462248481}
   AttackRange: {fileID: 9678578}
-  Name: {fileID: 0}
+  Name: {fileID: 1456490369}
   datas:
   - {fileID: 11400000, guid: ef883b0db89c9a246a805178f9582568, type: 2}
   - {fileID: 11400000, guid: 81f626ff6adfc0b46ba1e018e46ecf9b, type: 2}
@@ -1438,13 +1438,13 @@ GameObject:
   - component: {fileID: 704882553}
   - component: {fileID: 704882558}
   - component: {fileID: 704882557}
-  - component: {fileID: 704882561}
   - component: {fileID: 704882560}
   - component: {fileID: 704882559}
   - component: {fileID: 704882563}
   - component: {fileID: 704882562}
   - component: {fileID: 704882565}
   - component: {fileID: 704882564}
+  - component: {fileID: 704882566}
   m_Layer: 0
   m_Name: SwordMan
   m_TagString: Untagged
@@ -1685,19 +1685,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StatusWindow: {fileID: 678875218}
   popupUI: {fileID: 677112665}
---- !u!114 &704882561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704882551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c13420f258cc94da183714a321efac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: 
 --- !u!114 &704882562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1776,6 +1763,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704882551}
   m_CullTransparentMesh: 1
+--- !u!114 &704882566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704882551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c13420f258cc94da183714a321efac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
 --- !u!1 &926400278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,6 +1790,7 @@ GameObject:
   - component: {fileID: 926400281}
   - component: {fileID: 926400280}
   - component: {fileID: 926400284}
+  - component: {fileID: 926400285}
   m_Layer: 5
   m_Name: CloseButton
   m_TagString: Untagged
@@ -1930,7 +1931,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 926400285}
         m_TargetAssemblyTypeName: ClickMercenaryUI, Assembly-CSharp
         m_MethodName: CloseStatusUI
         m_Mode: 1
@@ -1942,6 +1943,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &926400285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926400278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526fa216700c72c439c8ebbf1b2326e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StatusWindow: {fileID: 678875218}
+  popupUI: {fileID: 677112665}
 --- !u!1 &1144601520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,11 +2745,11 @@ GameObject:
   - component: {fileID: 1705730719}
   - component: {fileID: 1705730720}
   - component: {fileID: 1705730721}
-  - component: {fileID: 1705730722}
   - component: {fileID: 1705730724}
   - component: {fileID: 1705730723}
   - component: {fileID: 1705730726}
   - component: {fileID: 1705730725}
+  - component: {fileID: 1705730727}
   m_Layer: 0
   m_Name: KatanaMan
   m_TagString: Untagged
@@ -2975,19 +2990,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1705730722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705730713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c13420f258cc94da183714a321efac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: 
 --- !u!114 &1705730723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3066,6 +3068,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1705730727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705730713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c13420f258cc94da183714a321efac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
 --- !u!1 &2100966794
 GameObject:
   m_ObjectHideFlags: 0

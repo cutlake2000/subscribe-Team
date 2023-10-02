@@ -6,7 +6,6 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
-    public int MercenaryID;
     public PlayerSO player;
     public MonsterData[] monsterDatas;
 
