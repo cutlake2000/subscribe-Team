@@ -1,28 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using static UnityEngine.GraphicsBuffer;
 
 public enum BuildingType
 {
-    Inn,
-    Forge
+    Inn, Forge, Market
 }
 
 public class BuildingController : MonoBehaviour
 {
     public static BuildingController Instance;
 
-    [SerializeField]
-    BuildingSO buildingSO;
+    [SerializeField] BuildingSO buildingSO;
 
-    [SerializeField]
-    GameObject[] buildingPrefabs;
+    [SerializeField] GameObject[] buildingPrefabs;
     public List<BaseBuilding> buildings;
 
-    public BaseBuilding clickBuilding;
+    public BaseBuilding clickBuildingtemp;
     public ClickBuildingUI clickBuildingUI;
+    public ClickBuildingUIModel clickBuildingUIModel;
+
+    public Action DayChange;
 
     private void Awake()
     {
@@ -33,8 +33,9 @@ public class BuildingController : MonoBehaviour
     public void Start()
     {
         // - �׽�Ʈ��
-        SetNewBuildingOnMap(BuildingType.Inn, Vector2.left);
-        SetNewBuildingOnMap(BuildingType.Forge, Vector2.right);
+        SetNewBuildingOnMap(BuildingType.Inn, Vector2.left * 2);
+        SetNewBuildingOnMap(BuildingType.Forge, Vector2.right * 1);
+        SetNewBuildingOnMap(BuildingType.Market, Vector2.right * 4);
         //
     }
 
@@ -75,20 +76,22 @@ public class BuildingController : MonoBehaviour
         if (
             clickBuildingUI.gameObject.activeSelf == true // �ӽ�
             && clickBuilding != null
-            && this.clickBuilding == clickBuilding
+            && this.clickBuildingtemp == clickBuilding
         )
         {
             clickBuildingUI.OFF();
             return;
         }
-        this.clickBuilding = clickBuilding;
+        this.clickBuildingtemp = clickBuilding;
         clickBuildingUI.On(clickBuilding);
+        clickBuildingUI.Refresh(clickBuilding);
     }
 
     // ������ ����
-    public void LevelUpBuilding(bool isLoop)
+    public void LevelUpBuilding(bool isLoop = false)
     {
-        if (clickBuilding.upgradeWood >= DataManager.Instance.player.Wood && isLoop == false)
+        BaseBuilding target = clickBuildingUIModel.clickBuilding;
+        if (target.upgradeWood >= DataManager.Instance.player.Wood && isLoop == false)
         {
             if (!isLoop)
                 Debug.Log("��� ����");
@@ -99,36 +102,74 @@ public class BuildingController : MonoBehaviour
         if (isLoop == false)
         {
             Debug.Log("������ ����");
-            DataManager.Instance.player.Wood -= clickBuilding.upgradeWood;
-            clickBuilding.LevelUP();
+            DataManager.Instance.player.Wood -= target.upgradeWood;
+            target.LevelUP();
         }
         else
         {
             int upCount = 0;
-            while (clickBuilding.upgradeWood < DataManager.Instance.player.Wood)
+            while (clickBuildingUIModel.clickBuilding.upgradeWood < DataManager.Instance.player.Wood)
             {
                 upCount++;
-                DataManager.Instance.player.Wood -= clickBuilding.upgradeWood;
-                clickBuilding.LevelUP();
+                DataManager.Instance.player.Wood -= target.upgradeWood;
+                target.LevelUP();
             }
             Debug.Log($"{upCount}��ŭ ������ ����");
         }
+        clickBuildingUI.Refresh(target);
     }
 
     // Ŭ�� ���� �ı�
     public void DestroyBuilding()
     {
-        clickBuilding.gameObject.SetActive(false); // ���� �߰�
+        BaseBuilding target = clickBuildingUIModel.clickBuilding;
+        target.gameObject.SetActive(false);
+        clickBuildingUI.OFF();
     }
+
+    // 자원 거래
+    public void TradeResource(bool isBuy, ResourceType type)
+    {
+        PlayerSO player = DataManager.Instance.player;
+        int trademode = isBuy ? +1 : -1; // -1 골드 차감, +1 골드 추가
+
+        switch (type)
+        {
+            case ResourceType.Wood:
+                if (player.Gold < GameManager.Instance.GoldToWood && isBuy == true)
+                {
+                    Debug.Log("골드 부족");//TODO 골드 부족 처리
+                    return;
+                }
+                if (player.Wood <= 0 && isBuy == false)
+                {
+                    Debug.Log("재료 부족"); //TODO 재료 부족 처리
+                    return;
+                }
+                player.Wood += +trademode * 1;
+                player.Gold += -trademode * GameManager.Instance.GoldToWood;
+                Debug.Log("목재" + (player.Wood + "골드" + player.Gold));
+                break;
+            case ResourceType.Steel:
+
+                break;
+            default:
+                Debug.Log(type + "거래 타입 오류");
+                break;
+        }
+
+    }
+
 
     // '��Ȱ��ȭ'�� ���� ������ �ʱ�ȭ
     private void ResetBuildingData(BaseBuilding newBuilding)
     {
         newBuilding.Initialization();
+        newBuilding.ActiveAnimation(true);
         newBuilding.gameObject.SetActive(true);
     }
 
-    // ���� ȿ�� ����
+    // 여관 효과 갱신
     public void RefreshInnEffect()
     {
         int sum = 0;
@@ -168,4 +209,67 @@ public class BuildingController : MonoBehaviour
 
         // ++ UI ����
     }
+
+    // 테스트용
+    public void TestDayChangeAction()
+    {
+        DayChange?.Invoke();
+    }
+
+    #region 클릭 UI 리팩토링
+    // 클릭시 ClickUI 활성,비활성
+    public void ActiveClickBuildingUI2(BaseBuilding clickBuilding)
+    {
+        if (clickBuildingUI.gameObject.activeSelf == true && clickBuilding != null
+            && clickBuildingUIModel.clickBuilding == clickBuilding)
+        {
+            clickBuildingUI.OFF();
+            return;
+        }
+        clickBuildingUI.On(clickBuilding);
+        clickBuildingUI.Refresh(clickBuilding);
+        List<ClickBtnType> list = clickBuildingUIModel.Initialization(clickBuilding);
+        clickBuildingUI.RefreshOptionButton(list,ClickUIType.Default);
+    }
+
+    // 모델로 전달
+    public void ActionUIOptionSelect(int index)
+    {
+        clickBuildingUIModel.StartBtnAction(index);
+    }
+
+    // ClickUI모델 변경
+    // type : 해당 값으로 변경, isGoback : 되돌아가기인지?
+    // ChangeMode에서 모드 변경 후 리턴 값으로 버튼을 새로고침
+    public void ChangeBuildingUIMode(ClickUIType type, bool isGoback)
+    {
+        switch (type)
+        {
+            case ClickUIType.Default:
+                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ClickBtnType>(type, isGoback), type);
+                break;
+            case ClickUIType.Buy:
+                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback), type);
+                break;
+            case ClickUIType.Sell:
+                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback), type);
+                break;
+            default:
+                break;
+        }
+    }
+
+    // 뒤로 가기
+    public void GoBack()
+    {
+        if (clickBuildingUIModel.beforeUIType.Count == 0)
+        {
+            clickBuildingUI.OFF();
+            return;
+        }
+        ClickUIType type = clickBuildingUIModel.beforeUIType.Pop();
+        ChangeBuildingUIMode(type, true);
+    }
+
+    #endregion
 }
