@@ -1,0 +1,416 @@
+fileFormatVersion: 2
+guid: 00c4a83f6337f4f53af53a4e422e8fb4
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Character Idle Rig 48x48_Frame_0
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.2758621}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 30
+      y: 4
+      width: 18
+      height: 29
+    spriteID: 6e86f84de8374482c82365337ba06a2d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 30, y: 4}
+  - name: Character Idle Rig 48x48_Frame_1
+    originalName: 
+    pivot: {x: 0.5263158, y: -0.2962963}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 56
+      y: 4
+      width: 19
+      height: 27
+    spriteID: ffbbfa46e31d04c7f81bb8c178b6ca06
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 56, y: 4}
+  - name: Character Idle Rig 48x48_Frame_2
+    originalName: 
+    pivot: {x: 0.5263158, y: -0.30769232}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 56
+      y: 74
+      width: 19
+      height: 26
+    spriteID: 396167d787864498a8a8a4799dc4ef4b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 56, y: 74}
+  - name: Character Idle Rig 48x48_Frame_3
+    originalName: 
+    pivot: {x: 0.5263158, y: -0.30769232}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 83
+      y: 4
+      width: 19
+      height: 26
+    spriteID: 795ec0a367d3e42009341ab8c95ec966
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 83, y: 4}
+  - name: Character Idle Rig 48x48_Frame_4
+    originalName: 
+    pivot: {x: 0.5263158, y: -0.30769232}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 83
+      y: 38
+      width: 19
+      height: 26
+    spriteID: 6ae3ee2177efe461a93cbb68cb9842ee
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 83, y: 38}
+  - name: Character Idle Rig 48x48_Frame_5
+    originalName: 
+    pivot: {x: 0.5263158, y: -0.2962963}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 56
+      y: 39
+      width: 19
+      height: 27
+    spriteID: c2a06caa178934eef98e68014f583051
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 56, y: 39}
+  - name: Character Idle Rig 48x48_Frame_6
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.2758621}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 30
+      y: 41
+      width: 18
+      height: 29
+    spriteID: 975d1f318a0734d5aabf14c99a03e029
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 30, y: 41}
+  - name: Character Idle Rig 48x48_Frame_7
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.26666668}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 18
+      height: 30
+    spriteID: 7886c2a033a4f47f798733dcf9b09a9e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Character Idle Rig 48x48_Frame_8
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.26666668}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 42
+      width: 18
+      height: 30
+    spriteID: d7b2325ee67cc4f0391bd4c79b421c9f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 42}
+  - name: Character Idle Rig 48x48_Frame_9
+    originalName: 
+    pivot: {x: 0.5555556, y: -0.26666668}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 80
+      width: 18
+      height: 30
+    spriteID: b688af08f66b14f7aac0f570e39ad6cf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 80}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 1429087705
+    name: Character Idle Rig 48x48
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Character Idle Rig 48x48_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 14
+        y: 8
+        width: 18
+        height: 29
+      spriteId: 6e86f84de8374482c82365337ba06a2d
+    - name: Character Idle Rig 48x48_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 14
+        y: 8
+        width: 19
+        height: 27
+      spriteId: ffbbfa46e31d04c7f81bb8c178b6ca06
+    - name: Character Idle Rig 48x48_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 14
+        y: 8
+        width: 19
+        height: 26
+      spriteId: 396167d787864498a8a8a4799dc4ef4b
+    - name: Character Idle Rig 48x48_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 14
+        y: 8
+        width: 19
+        height: 26
+      spriteId: 795ec0a367d3e42009341ab8c95ec966
+    - name: Character Idle Rig 48x48_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 14
+        y: 8
+        width: 19
+        height: 26
+      spriteId: 6ae3ee2177efe461a93cbb68cb9842ee
+    - name: Character Idle Rig 48x48_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 14
+        y: 8
+        width: 19
+        height: 27
+      spriteId: c2a06caa178934eef98e68014f583051
+    - name: Character Idle Rig 48x48_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 14
+        y: 8
+        width: 18
+        height: 29
+      spriteId: 975d1f318a0734d5aabf14c99a03e029
+    - name: Character Idle Rig 48x48_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 14
+        y: 8
+        width: 18
+        height: 30
+      spriteId: 7886c2a033a4f47f798733dcf9b09a9e
+    - name: Character Idle Rig 48x48_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 14
+        y: 8
+        width: 18
+        height: 30
+      spriteId: d7b2325ee67cc4f0391bd4c79b421c9f
+    - name: Character Idle Rig 48x48_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 14
+        y: 8
+        width: 18
+        height: 30
+      spriteId: b688af08f66b14f7aac0f570e39ad6cf
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 48, y: 48}

@@ -1,15 +1,28 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-   public MonsterData monsterData;
+    public MonsterData monsterData;
+    float MonsterHp;
 
-
-    public void FixedUpdate()
+    private void Start()
     {
-        transform.Translate(Vector3.forward * monsterData.MonsterSpeed * Time.deltaTime);
+        MonsterHp = monsterData.MonsterHp;
     }
 
+    public void TakePhysicalDamage(int damageAmount)
+    {
+        MonsterHp -= damageAmount;
+        if (MonsterHp <= 0)
+            Die();
+    }
+
+    void Die()
+    {
+        //ToDo �ڿ� ŉ�� ���
+
+        Destroy(gameObject);
+    }
 }

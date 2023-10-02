@@ -1,0 +1,523 @@
+fileFormatVersion: 2
+guid: 26b4d52bd67a84f349aef7b9bfe562e2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 658
+        width: 224
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20955892b4e83402aa11cabcabf06e3e
+      internalID: -1083578127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_1
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 673
+        width: 312
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c231af64f9854beb82296638e27b166
+      internalID: -659675296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_2
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 680
+        width: 245
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 755753b353fbc4b35a141034101e4ba1
+      internalID: 736414726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_3
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 712
+        width: 178
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bd6e710df5504894ae2643bb3a2f6c9
+      internalID: -130257117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_4
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 750
+        width: 178
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2ab788300b504b9c9727de3a15b8edf
+      internalID: -377906870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_5
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 432
+        width: 205
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d3902cd87b1b4cd6a4e70f2f6f7bf89
+      internalID: 1650196344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_6
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 582
+        width: 56
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efe0618d0f9aa470cb6387e78e680f03
+      internalID: -1900675118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_7
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 593
+        width: 12
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f2d432a90384d8194b513b61c6bbb6
+      internalID: -1488467278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_8
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 617
+        width: 38
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c78134b420b54d048457a12475661d3
+      internalID: -2108476173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_9
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 583
+        width: 12
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8aac48ce73a24aa381b8b1299c598aa
+      internalID: -1219503306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_10
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 612
+        width: 172
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 284f272357ae34499b4f5849192f82a9
+      internalID: -886587453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_11
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 403
+        width: 285
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1f0d3bd9928543b2b927cc40d8b4d04
+      internalID: -12191875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_12
+      rect:
+        serializedVersion: 2
+        x: 1073
+        y: 583
+        width: 38
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c71e94759115424693237de76458ac2
+      internalID: 1989054372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_13
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 460
+        width: 226
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09752cd08be2343498acffa289fa15bf
+      internalID: 302173781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_14
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 446
+        width: 91
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ac300eb7423444248c05ea9b6253965
+      internalID: -1433140989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_15
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 423
+        width: 206
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25754099905d04d0c8e3e868c9e8c0af
+      internalID: 701606739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 157
+        width: 301
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01486ba101c6b48bcb6b131dedad1b4d
+      internalID: -282662510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_red_17
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 91
+        width: 357
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e0dcbdadfb334924bd96295323d9b6c
+      internalID: -1485530981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 125c46a570d5c4d32ab275e7f5241fb0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      artdecoUI_PIPO_red_0: -1083578127
+      artdecoUI_PIPO_red_1: -659675296
+      artdecoUI_PIPO_red_10: -886587453
+      artdecoUI_PIPO_red_11: -12191875
+      artdecoUI_PIPO_red_12: 1989054372
+      artdecoUI_PIPO_red_13: 302173781
+      artdecoUI_PIPO_red_14: -1433140989
+      artdecoUI_PIPO_red_15: 701606739
+      artdecoUI_PIPO_red_16: -282662510
+      artdecoUI_PIPO_red_17: -1485530981
+      artdecoUI_PIPO_red_2: 736414726
+      artdecoUI_PIPO_red_3: -130257117
+      artdecoUI_PIPO_red_4: -377906870
+      artdecoUI_PIPO_red_5: 1650196344
+      artdecoUI_PIPO_red_6: -1900675118
+      artdecoUI_PIPO_red_7: -1488467278
+      artdecoUI_PIPO_red_8: -2108476173
+      artdecoUI_PIPO_red_9: -1219503306
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

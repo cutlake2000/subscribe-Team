@@ -13,7 +13,8 @@ public class BuildingData
     public BuildingType buildingType;
     public int level;
     public string name;
-    [Multiline(2)] public string desc;
+
+    [Multiline(2)]
+    public string desc;
     public int upgradeWood;
 }
-

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class DayNightController : MonoBehaviour
 {
-    public float InitTime;
-    public float DayTime = 10.0f;
-    public float NightTime = 10.0f;
+    // Start is called before the first frame update
+    void Start() { }
 
     // Update is called once per frame
     void Update() { }
