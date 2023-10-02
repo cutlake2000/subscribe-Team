@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GetMercenaryDatas : MonoBehaviour
 {
-
     public string name;
 
     private void Awake()
