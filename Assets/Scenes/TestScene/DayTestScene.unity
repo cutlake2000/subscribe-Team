@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -878,6 +878,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31eb76c3db1f48a1a6d4fa0fbeb827f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  remainTime: {fileID: 0}
+  dayCount: {fileID: 0}
+  BackGauge: {fileID: 0}
+  FrontGauge: {fileID: 0}
 --- !u!4 &38556897
 Transform:
   m_ObjectHideFlags: 0
@@ -10827,8 +10831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   monsterDatas: []
-  currentTime: 0
-  nowTime: 0
 --- !u!1 &325085603
 GameObject:
   m_ObjectHideFlags: 0
@@ -21429,6 +21431,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31eb76c3db1f48a1a6d4fa0fbeb827f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  remainTime: {fileID: 0}
+  dayCount: {fileID: 0}
+  BackGauge: {fileID: 0}
+  FrontGauge: {fileID: 0}
 --- !u!1 &1327571375
 GameObject:
   m_ObjectHideFlags: 0
@@ -30220,6 +30226,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05eab8777a1eb0849adff2f9332e562c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
+  MercenaryUI: {fileID: 0}
+  clickMercenaryUI: {fileID: 0}
+  mercenaryController: {fileID: 0}
+  buyPenalty: 1.2
+  sellPenalty: 0.8
+  currentPrice: 1
 --- !u!1 &1932953509
 GameObject:
   m_ObjectHideFlags: 0
