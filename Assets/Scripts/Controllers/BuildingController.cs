@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using System;
 using static UnityEngine.GraphicsBuffer;
@@ -12,7 +11,7 @@ public enum BuildingType
 
 public class BuildingController : MonoBehaviour
 {
-    public static BuildingController instance;
+    public static BuildingController Instance;
 
     [SerializeField] BuildingSO buildingSO;
 
@@ -27,7 +26,7 @@ public class BuildingController : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         buildings = new List<BaseBuilding>();
     }
 
@@ -103,16 +102,16 @@ public class BuildingController : MonoBehaviour
         if (isLoop == false)
         {
             Debug.Log("������ ����");
-            DataManager.instance.player.Wood -= target.upgradeWood;
+            DataManager.Instance.player.Wood -= target.upgradeWood;
             target.LevelUP();
         }
         else
         {
             int upCount = 0;
-            while (target.upgradeWood < DataManager.instance.player.Wood)
+            while (clickBuilding.upgradeWood < DataManager.Instance.player.Wood)
             {
                 upCount++;
-                DataManager.instance.player.Wood -= target.upgradeWood;
+                DataManager.Instance.player.Wood -= target.upgradeWood;
                 target.LevelUP();
             }
             Debug.Log($"{upCount}��ŭ ������ ����");
@@ -185,8 +184,8 @@ public class BuildingController : MonoBehaviour
             sum += building.MaxUnitValue;
         }
 
-        DataManager.instance.player.MaxUnitCount = sum;
-        Debug.Log("���� ȿ�� : " + DataManager.instance.player.MaxUnitCount);
+        DataManager.Instance.player.MaxUnitCount = sum;
+        Debug.Log("���� ȿ�� : " + DataManager.Instance.player.MaxUnitCount);
         // ++ UI ����
     }
 
@@ -205,8 +204,8 @@ public class BuildingController : MonoBehaviour
             sum += building.AddUnitAtk;
         }
 
-        DataManager.instance.player.AddUnitAtk = sum;
-        Debug.Log("���尣 ȿ�� : " + DataManager.instance.player.AddUnitAtk);
+        DataManager.Instance.player.AddUnitAtk = sum;
+        Debug.Log("���尣 ȿ�� : " + DataManager.Instance.player.AddUnitAtk);
 
         // ++ UI ����
     }
