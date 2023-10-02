@@ -103,11 +103,11 @@ public class ClickBuildingUI : MonoBehaviour
     // 인포UI 정보 갱신
     public void Refresh(BaseBuilding target)
     {
-
+        // 이름
         newStatusText.Clear();
         newStatusText.Append($"Lv{target.level}. {target.buildingName}");
         infoTexts[(int)InfoTextType.Name].text = newStatusText.ToString();
-
+        // 상세 정보
         newStatusText.Clear();
         switch (target.buildingType)
         {
@@ -126,7 +126,7 @@ public class ClickBuildingUI : MonoBehaviour
                 break;
         }
         infoTexts[(int)InfoTextType.CurrentEffect].text = newStatusText.ToString();
-
+        // 업그레이드 재료
         newStatusText.Clear();
         if (target.level < target.maxLevel)
             newStatusText.Append($"<sprite=0>{target.upgradeWood}");

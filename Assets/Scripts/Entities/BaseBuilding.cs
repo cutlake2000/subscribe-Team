@@ -49,6 +49,6 @@ public class BaseBuilding : MonoBehaviour
 
     public void OnMouseDown()
     {
-        BuildingController.Instance.ActiveClickBuildingUI2(this);
+        BuildingController.Instance.ActiveClickBuildingUI(this);
     }
 }

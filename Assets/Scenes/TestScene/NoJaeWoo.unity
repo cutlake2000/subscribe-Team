@@ -7704,7 +7704,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 958337723}
-  - {fileID: 1165601258}
   - {fileID: 1793392012}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -8232,6 +8231,7 @@ MonoBehaviour:
   lm:
     serializedVersion: 2
     m_Bits: 128
+  buildType: 0
   dnd: {fileID: 0}
   _isEditMode: 0
   selectVec: {x: 0, y: 0}
@@ -8243,7 +8243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576526340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10696,7 +10696,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.95, y: 1, z: 0.95}
+  m_Size: {x: 0.95, y: 0.1, z: 0.95}
   m_Center: {x: 0.03, y: 0, z: 0.03}
 --- !u!23 &973990050
 MeshRenderer:
@@ -10717,8 +10717,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11904,12 +11903,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 242948648}
-  m_Father: {fileID: 472522739}
+  m_Father: {fileID: 1793392012}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 809, y: 387}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165601259
@@ -40533,6 +40532,7 @@ RectTransform:
   m_Children:
   - {fileID: 2117066556}
   - {fileID: 492999507}
+  - {fileID: 1165601258}
   m_Father: {fileID: 472522739}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40673,7 +40673,6 @@ MonoBehaviour:
   - {fileID: 5269447685164759032, guid: 318f5fd85271cff48adbe0a3246ef15f, type: 3}
   - {fileID: 7161335936609668493, guid: 5a7e46c31c56b31488c3d1849fd6c62e, type: 3}
   buildings: []
-  clickBuildingtemp: {fileID: 0}
   clickBuildingUI: {fileID: 958337724}
   clickBuildingUIModel: {fileID: 958337725}
 --- !u!114 &1823159312
