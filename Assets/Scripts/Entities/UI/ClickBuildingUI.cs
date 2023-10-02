@@ -105,22 +105,22 @@ public class ClickBuildingUI : MonoBehaviour
     {
 
         newStatusText.Clear();
-        newStatusText.Append($"Lv. {target.level} {target.buildingName}");
+        newStatusText.Append($"Lv{target.level}. {target.buildingName}");
         infoTexts[(int)InfoTextType.Name].text = newStatusText.ToString();
 
         newStatusText.Clear();
         switch (target.buildingType)
         {
             case BuildingType.Inn:
-                newStatusText.Append($"인구 수 증가 : {((InnBuilding)target).MaxUnitValue}");
+                newStatusText.Append($"인구 수 <sprite=1>: {((InnBuilding)target).MaxUnitValue}");
                 break;
             case BuildingType.Forge:
-                newStatusText.Append($"공격력 증가 : {((ForgeBuilding)target).AddUnitAtk}");
+                newStatusText.Append($"공격력 <sprite=1>: {((ForgeBuilding)target).AddUnitAtk}");
                 break;
             case BuildingType.Market:
                 MarketBuilding market = (MarketBuilding)target;
                 int price = (int)(market.CurrentPrice * 100);
-                newStatusText.Append($"현재 시세 :{price}%");
+                newStatusText.Append($"현재 시세 : {price}%");
                 break;
             default:
                 break;
