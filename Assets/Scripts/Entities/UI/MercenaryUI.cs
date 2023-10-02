@@ -18,7 +18,12 @@ public class MercenaryUI : MonoBehaviour
 
     private void Awake()
     {
-        Mercenary = GetComponent<GetMercenaryDatas>();
+
+    }
+
+    private void Start()
+    {
+        showStatus();
     }
     private void showStatus()
     {

@@ -10,7 +10,6 @@ public enum ResourceType
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
-
     public PlayerSO player;
     public MonsterData[] monsterDatas;
 
