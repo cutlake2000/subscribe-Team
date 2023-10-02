@@ -92,31 +92,36 @@ public class BuildingController : MonoBehaviour
     public void LevelUpBuilding(bool isLoop = false)
     {
         BaseBuilding target = clickBuildingUIModel.clickBuilding;
-        if (target.upgradeWood > DataManager.Instance.player.Wood && isLoop == false)
+        if (target.level >= target.maxLevel)
         {
-            if (!isLoop)
-                Debug.Log("TODO : UI 출력 - 재료 부족");
-
+            Debug.Log("TODO : UI 출력 - 최대 레벨");
+            return;
+        }
+        else if (target.upgradeWood > DataManager.Instance.player.Wood)
+        {
+            Debug.Log("TODO : UI 출력 - 재료 부족");
             return;
         }
 
-        if (!isLoop)
+        DataManager.Instance.player.Wood -= target.upgradeWood;
+        target.LevelUP();
+        int upCount = 1;
+
+        if (isLoop)
         {
-            Debug.Log("TODO : UI 출력 - 1회 성공");
-            DataManager.Instance.player.Wood -= target.upgradeWood;
-            target.LevelUP();
-        }
-        else
-        {
-            int upCount = 0;
-            while (clickBuildingUIModel.clickBuilding.upgradeWood < DataManager.Instance.player.Wood)
+            while (target.upgradeWood <= DataManager.Instance.player.Wood && target.level < target.maxLevel)
             {
-                upCount++;
                 DataManager.Instance.player.Wood -= target.upgradeWood;
                 target.LevelUP();
+                upCount++;
             }
-            Debug.Log($"TODO : UI 출력 - {upCount}회 성공");
         }
+
+        if (isLoop)
+            Debug.Log($"TODO : UI 출력 - 승급 {upCount}번 완료");
+        else
+            Debug.Log($"TODO : UI 출력 - 승급 완료");
+
         clickBuildingUI.Refresh(target);
     }
 
@@ -238,7 +243,7 @@ public class BuildingController : MonoBehaviour
             case ClickUIType.Default:
             default:
                 clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ClickBtnType>(type, isGoback), type);
-            break;
+                break;
         }
     }
 
