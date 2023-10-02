@@ -10,10 +10,6 @@ public class MarketBuilding : BaseBuilding, ITradeResource
     float minPrice = 0.2f; // 최소 시세
     float maxPrice = 3.0f; // 최대 시세
 
-
-
-    // 골드 -> 목재 교환비
-
     public float CurrentPrice { get { return currentPrice; } }
     public List<ResourceType> SellResourceOption;
     public List<ResourceType> BuyResourceOption;
@@ -48,6 +44,8 @@ public class MarketBuilding : BaseBuilding, ITradeResource
             Gaussian = 1 - Gaussian;
             currentPrice = (maxPrice - price) * Gaussian + price;
         }
+
+        GameManager.Instance.currentPrice = currentPrice;
     }
 
     public List<ResourceType> GetResourceList(string name)

@@ -137,7 +137,7 @@ public class BuildingController : MonoBehaviour
         switch (type)
         {
             case ResourceType.Wood:
-                if (player.Gold < GameManager.Instance.goldToWood && isBuy == true)
+                if (player.Gold < GameManager.Instance.GoldToWood && isBuy == true)
                 {
                     Debug.Log("골드 부족");//TODO 골드 부족 처리
                     return;
@@ -148,17 +148,17 @@ public class BuildingController : MonoBehaviour
                     return;
                 }
                 player.Wood += +trademode * 1;
-                player.Gold += -trademode * 10;
+                player.Gold += -trademode * GameManager.Instance.GoldToWood;
                 Debug.Log("목재" + (player.Wood + "골드" + player.Gold));
                 break;
             case ResourceType.Steel:
 
                 break;
             default:
+                Debug.Log(type + "거래 타입 오류");
                 break;
         }
 
-        Debug.Log(type);
     }
 
 
@@ -258,7 +258,6 @@ public class BuildingController : MonoBehaviour
             default:
                 break;
         }
-
     }
 
     // 뒤로 가기
