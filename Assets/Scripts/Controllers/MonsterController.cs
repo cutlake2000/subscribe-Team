@@ -26,7 +26,7 @@ public class MonsterController : MonoBehaviour
 
     [Header("level")]
     public int MonsterCount = 10;
-    DayManager dayManager;
+  
 
     private void Awake()
     {
@@ -42,7 +42,14 @@ public class MonsterController : MonoBehaviour
     {
        
         int currentChildCount = Spawnner.transform.childCount;
-        StartCoroutine(SpawnMonsters(dayManager.DayCount, currentChildCount));
+
+        if(DayManager.Instance.dayNight == DayNight.Night&&DayManager.Instance.isGroundRotating == false)
+        {
+            StartCoroutine(SpawnMonsters(DayManager.Instance.DayCount - 1, currentChildCount));
+        }
+        
+
+       
         ChangeCountText(currentChildCount);
         changeLevel(currentChildCount);
     }
@@ -62,7 +69,7 @@ public class MonsterController : MonoBehaviour
 
     IEnumerator SpawnMonsters(int Level, int currentChildCount)
     {
-        if (dayManager.dayNight == DayNight.Night&& currentChildCount <= 0)
+        if (DayManager.Instance.dayNight == DayNight.Night&& currentChildCount <= 0)
         {
             for (int i = 0; i < MonsterCount; i++)
             {
