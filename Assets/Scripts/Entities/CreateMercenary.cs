@@ -13,6 +13,5 @@ public class CreateMercenary : MonoBehaviour
         Instantiate(mercenary_prefab);
         Vector3 pos = new Vector3(0,0,0);
         mercenary_prefab.transform.position = pos;
-        Debug.Log(player.Gold);
     }
 }
