@@ -26,6 +26,8 @@ public class MonsterController : MonoBehaviour
 
     [Header("level")]
     public int MonsterCount = 10;
+    private bool IsClear = true;
+
 
     private void Awake()
     {
@@ -38,10 +40,8 @@ public class MonsterController : MonoBehaviour
     {
         int currentChildCount = Spawnner.transform.childCount;
 
-        if (
-            DayManager.Instance.dayNight == DayNight.Night
-            && DayManager.Instance.isGroundRotating == false
-        )
+
+        if ( DayManager.Instance.dayNight == DayNight.Night&& DayManager.Instance.isGroundRotating == false&& IsClear == true)
         {
             StartCoroutine(SpawnMonsters(DayManager.Instance.DayCount - 1, currentChildCount));
         }
@@ -50,9 +50,21 @@ public class MonsterController : MonoBehaviour
         {
             DestroyAllChildrenObjects();
         }
+        
+        MonsterspawnTrriger();
 
         ChangeCountText(currentChildCount);
-        changeLevel(currentChildCount);
+      
+    }
+
+
+
+    void MonsterspawnTrriger()
+    {
+        if (DayManager.Instance.dayNight == DayNight.Day)
+        {
+            IsClear = true;
+        }    
     }
 
     void DestroyAllChildrenObjects()
@@ -76,7 +88,7 @@ public class MonsterController : MonoBehaviour
 
     IEnumerator SpawnMonsters(int Level, int currentChildCount)
     {
-        if (currentChildCount <= 0)
+        if ( currentChildCount <= 0 )
         {
             for (int i = 0; i < MonsterCount; i++)
             {
@@ -91,18 +103,15 @@ public class MonsterController : MonoBehaviour
                     break;
                 }
             }
+         
         }
+        IsClear = false;
     }
 
     private void SetPosition(int Level)
     {
         Vector3 newPosition = Spawnner.transform.position;
         monsters[Level].transform.position = newPosition;
-    }
-
-    private void changeLevel(int currentChildCount)
-    {
-        if (currentChildCount <= 0) { }
     }
 
     private void ChangeCountText(int currentChildCount)
