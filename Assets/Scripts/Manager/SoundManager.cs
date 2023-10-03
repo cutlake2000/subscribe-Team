@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
@@ -13,7 +12,12 @@ public class SoundManager : MonoBehaviour
     public AudioSource BgmAudioSource;
 
     public AudioClip[] BgmAudioClips;
-    enum BgmScene { StartScene, MainScene }
+
+    enum BgmScene
+    {
+        StartScene,
+        MainScene
+    }
 
     void Awake()
     {
@@ -28,7 +32,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
- 
     public static SoundManager Instance
     {
         get
@@ -40,6 +43,7 @@ public class SoundManager : MonoBehaviour
             return instance;
         }
     }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -49,7 +53,6 @@ public class SoundManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -75,6 +78,4 @@ public class SoundManager : MonoBehaviour
             BgmAudioSource.Play();
         }
     }
-
-
 }

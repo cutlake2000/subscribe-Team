@@ -2,16 +2,20 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ClickUIType { Default, Buy, Sell }
+public enum ClickUIType
+{
+    Default,
+    Buy,
+    Sell
+}
 
 public class ClickBuildingUIModel : MonoBehaviour
 {
-
     public ClickUIType UIMode;
 
     public Stack<ClickUIType> beforeUIType; // 되돌아가기 기능
     public List<ResourceType> SellTypeList;
-    public List<ResourceType> BuyTypeList; 
+    public List<ResourceType> BuyTypeList;
     public Dictionary<ClickBtnType, IClickBuildingAction> allActionList;
     public Dictionary<ClickUIType, List<IClickBuildingAction>> actionList;
     public Dictionary<ClickUIType, List<ClickBtnType>> buttonList;
@@ -23,10 +27,17 @@ public class ClickBuildingUIModel : MonoBehaviour
         int count = Enum.GetValues(typeof(ClickBtnType)).Length;
         allActionList = new();
 
-        List<IClickBuildingAction> temp = new()
-        {
-            new BackOption(), new MaxLvUpBulding(), new LvUpBulding(), new DestroyBulding(), new ChangeBuyMode(), new ChangeSellMode(), new TradeResourse()
-        };
+        List<IClickBuildingAction> temp =
+            new()
+            {
+                new BackOption(),
+                new MaxLvUpBulding(),
+                new LvUpBulding(),
+                new DestroyBulding(),
+                new ChangeBuyMode(),
+                new ChangeSellMode(),
+                new TradeResourse()
+            };
 
         for (int i = 0; i < count; i++)
         {
@@ -34,8 +45,18 @@ public class ClickBuildingUIModel : MonoBehaviour
         }
 
         beforeUIType = new();
-        actionList = new() { { ClickUIType.Default, new() }, { ClickUIType.Buy, new() }, { ClickUIType.Sell, new() } };
-        buttonList = new() { { ClickUIType.Default, new() }, { ClickUIType.Buy, new() }, { ClickUIType.Sell, new() } };
+        actionList = new()
+        {
+            { ClickUIType.Default, new() },
+            { ClickUIType.Buy, new() },
+            { ClickUIType.Sell, new() }
+        };
+        buttonList = new()
+        {
+            { ClickUIType.Default, new() },
+            { ClickUIType.Buy, new() },
+            { ClickUIType.Sell, new() }
+        };
     }
 
     // 초기화 & ClickBuilding 데이터 불러오기
@@ -99,13 +120,16 @@ public class ClickBuildingUIModel : MonoBehaviour
                 }
                 actionList[ClickUIType.Sell][index].Click();
                 break;
-            default: Debug.Log("ClickUIType 오류"); break;
+            default:
+                Debug.Log("ClickUIType 오류");
+                break;
         }
     }
 
     // 모드를 변경하고 clickbuilding의 리스트를 리턴한다.
     // 되돌아가기가 아니면 이전 `beforeUItype`에 기록
-    public List<T> ChangeMode<T>(ClickUIType type,bool isGoback = false) where T : Enum
+    public List<T> ChangeMode<T>(ClickUIType type, bool isGoback = false)
+        where T : Enum
     {
         if (!isGoback)
             beforeUIType.Push(UIMode);
@@ -144,6 +168,7 @@ class MaxLvUpBulding : IClickBuildingAction
         BuildingController.Instance.LevelUpBuilding(true);
     }
 }
+
 class LvUpBulding : IClickBuildingAction
 {
     public void Click()
@@ -151,6 +176,7 @@ class LvUpBulding : IClickBuildingAction
         BuildingController.Instance.LevelUpBuilding();
     }
 }
+
 class DestroyBulding : IClickBuildingAction
 {
     public void Click()
@@ -158,6 +184,7 @@ class DestroyBulding : IClickBuildingAction
         BuildingController.Instance.DestroyBuilding();
     }
 }
+
 class BackOption : IClickBuildingAction
 {
     public void Click()
@@ -165,6 +192,7 @@ class BackOption : IClickBuildingAction
         BuildingController.Instance.GoBack();
     }
 }
+
 class ChangeBuyMode : IClickBuildingAction
 {
     public void Click()
@@ -172,6 +200,7 @@ class ChangeBuyMode : IClickBuildingAction
         BuildingController.Instance.ChangeBuildingUIMode(ClickUIType.Buy, false);
     }
 }
+
 class ChangeSellMode : IClickBuildingAction
 {
     public void Click()
@@ -179,10 +208,12 @@ class ChangeSellMode : IClickBuildingAction
         BuildingController.Instance.ChangeBuildingUIMode(ClickUIType.Sell, false);
     }
 }
+
 class TradeResourse : IClickBuildingAction
 {
     public ResourceType type;
     public bool isbuy;
+
     public void Click()
     {
         BuildingController.Instance.TradeResource(isbuy, type);

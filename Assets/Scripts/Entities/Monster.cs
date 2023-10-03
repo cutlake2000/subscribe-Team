@@ -21,8 +21,6 @@ public class Monster : MonoBehaviour
 
     void Die()
     {
-        
-
         Destroy(gameObject);
     }
 }
