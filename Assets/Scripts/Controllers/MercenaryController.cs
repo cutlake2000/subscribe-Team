@@ -116,6 +116,7 @@ public class MercenaryController : MonoBehaviour
         if (distance < data.AttackRange)
         {
             monster.TakePhysicalDamage(data.Attack);
+            Attacking();
         }
     }
 
