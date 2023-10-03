@@ -87,28 +87,7 @@ public class MercenaryController : MonoBehaviour
                 }
             }
         }
-<<<<<<< Updated upstream
     }
-
-    private void FixedUpdate()
-    {
-        // 밤일 경우 = 변수가 true, 낮일 경우 변수 = false
-        if (DayManager.Instance.NowTime == DayManager.Instance.DayTime)
-        {
-            if (DayManager.Instance.dayNight == DayNight.Day)
-            {
-                daynight = false;
-            }
-            else if (DayManager.Instance.dayNight == DayNight.Night)
-            {
-                daynight = true;
-            }
-            DayandNight(daynight); // 낮>밤으로 바뀔때
-        }
-    }
-
-=======
-        
 
         //else
         //{
@@ -125,9 +104,7 @@ public class MercenaryController : MonoBehaviour
         //        DayandNight(daynight); // 낮>밤으로 바뀔때
         //    }
         //}
-    }
-
->>>>>>> Stashed changes
+    
     IEnumerator MoveObject()
     {
         isCoroutineRunning = true;
@@ -142,7 +119,6 @@ public class MercenaryController : MonoBehaviour
             mercenary.velocity = new Vector3(dir1, 0, dir2);
         }
     }
-
     void AttackObject()
     {
         GameObject CloseEnemy = GetClosest();
@@ -237,36 +213,6 @@ public class MercenaryController : MonoBehaviour
         {
             switch (collision.gameObject.tag)
             {
-<<<<<<< Updated upstream
-                gameObject.transform.position = new Vector3(
-                    DaySpawner.transform.position.x + 1,
-                    DaySpawner.transform.position.y,
-                    DaySpawner.transform.position.z + 1
-                );
-                gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
-
-                break;
-            }
-            case "DaySpawner":
-            {
-                gameObject.transform.position = new Vector3(
-                    NightSpawner.transform.position.x + 1,
-                    NightSpawner.transform.position.y,
-                    NightSpawner.transform.position.z + 1
-                );
-                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-=======
-                case "NightSpawner":
-                    {
-                        gameObject.transform.position = new Vector3(
-                            DaySpawner.transform.position.x + 1,
-                            DaySpawner.transform.position.y,
-                            DaySpawner.transform.position.z + 1
-                        );
-                        //gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
-
-                        break;
-                    }
                 case "DaySpawner":
                     {
                         gameObject.transform.position = new Vector3(
@@ -274,17 +220,23 @@ public class MercenaryController : MonoBehaviour
                             NightSpawner.transform.position.y,
                             NightSpawner.transform.position.z + 1
                         );
-                        //gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
->>>>>>> Stashed changes
-
+                        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
                         break;
+                    }
+                    case "NightSpawner":
+                        {
+                            gameObject.transform.position = new Vector3(
+                                DaySpawner.transform.position.x + 1,
+                                DaySpawner.transform.position.y,
+                                DaySpawner.transform.position.z + 1
+                            );
+                            //gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
+
+                            break;
+                        }
                     }
             }
         }
-    }
-
-<<<<<<< Updated upstream
-=======
     //public void CheckDay(DayNight dayNight)
     //{
     //    switch (dayNight)
@@ -297,7 +249,6 @@ public class MercenaryController : MonoBehaviour
     //            break;
     //    }
     //}
->>>>>>> Stashed changes
     public void temp()
     {
         GameManager.Instance.MercenaryUI.Mercenary = data;

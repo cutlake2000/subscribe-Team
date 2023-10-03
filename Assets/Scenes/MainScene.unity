@@ -46659,7 +46659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c34d29ad8ae9934cbf4249b53c25052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mercenary_prefab: {fileID: 7977896800584968626, guid: 6735c8ec70dba7446b4051422a3904b3, type: 3}
+  mercenary_prefab: {fileID: 5967671404955925360, guid: 6735c8ec70dba7446b4051422a3904b3, type: 3}
   mercenary_data: {fileID: 11400000, guid: ef883b0db89c9a246a805178f9582568, type: 2}
 --- !u!1 &3731371541471234398
 GameObject:
@@ -46828,7 +46828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c34d29ad8ae9934cbf4249b53c25052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mercenary_prefab: {fileID: 7236236979899025253, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
+  mercenary_prefab: {fileID: 1622636051857215209, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
   mercenary_data: {fileID: 11400000, guid: 54d492bc8ed5a3b418c317029c136cad, type: 2}
 --- !u!114 &3915763726563421157
 MonoBehaviour:
@@ -47111,7 +47111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c34d29ad8ae9934cbf4249b53c25052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mercenary_prefab: {fileID: 3060787456208188509, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
+  mercenary_prefab: {fileID: 7382189635830967430, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
   mercenary_data: {fileID: 11400000, guid: 81f626ff6adfc0b46ba1e018e46ecf9b, type: 2}
 --- !u!224 &4605280463774423899
 RectTransform:
