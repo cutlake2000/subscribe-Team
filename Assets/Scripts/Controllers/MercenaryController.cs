@@ -87,11 +87,11 @@ public class MercenaryController : MonoBehaviour
         {
             if (DayManager.Instance.dayNight == DayNight.Day)
             {
-                daynight = true;
+                daynight = false;
             }
             else if (DayManager.Instance.dayNight == DayNight.Night)
             {
-                daynight = false;
+                daynight = true;
             }
             DayandNight(daynight); // 낮>밤으로 바뀔때
         }
