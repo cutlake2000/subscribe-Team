@@ -6,6 +6,7 @@ using UnityEngine;
 public class BuildUI : MonoBehaviour
 {
     [SerializeField] GameObject BuildingListUI;
+    [SerializeField] Animator animator;
 
 
     public void SwitchButton()
@@ -19,6 +20,7 @@ public class BuildUI : MonoBehaviour
     public void On()
     {
         BuildingListUI.gameObject.SetActive(true);
+        animator.SetTrigger("AppearList");
     }
 
     public void Off()
