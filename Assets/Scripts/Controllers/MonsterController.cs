@@ -48,7 +48,7 @@ public class MonsterController : MonoBehaviour
             StartCoroutine(SpawnMonsters(DayManager.Instance.DayCount - 1, currentChildCount));
         }
 
-        if(DayManager.Instance.isSkyRotating ==false && currentChildCount>0)
+        if(DayManager.Instance.isSkyRotating ==false && currentChildCount>0 )
         {
             DestroyAllChildrenObjects();
         }
@@ -61,7 +61,8 @@ public class MonsterController : MonoBehaviour
 
 
     void DestroyAllChildrenObjects()
-    {      
+    {
+        GameManager.Instance.isGameOver = true;
         foreach (Transform child in Spawnner.transform)
         {
             Destroy(child.gameObject);
