@@ -137,4 +137,9 @@ public class BuildingCreator : MonoBehaviour
             }
         }
     }
+
+    public void AllowTileData(Vector2 pos)
+    {
+        TileData[pos] = true ;
+    }
 }
