@@ -115,6 +115,9 @@ public class MercenaryController : MonoBehaviour
     void AttackObject()
     {
         GameObject CloseEnemy = GetClosest();
+        if (CloseEnemy == null)
+            return;
+
         monster = CloseEnemy.GetComponent<Monster>();
         monster.monsterData = WhichMonster(monster);
         float distance = GetDistance(CloseEnemy);
@@ -132,6 +135,9 @@ public class MercenaryController : MonoBehaviour
 
     GameObject GetClosest()
     {
+        if (target.Count ==0 || target[0] == null)
+            return null;
+
         enemy = target[0];
         float ShortDistance = Vector3.Distance(
             gameObject.transform.position,
@@ -139,6 +145,9 @@ public class MercenaryController : MonoBehaviour
         );
         foreach (GameObject found in target)
         {
+            if (found == null)
+                return null;
+
             float distance = GetDistance(found);
             if (distance < ShortDistance)
             {

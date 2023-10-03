@@ -19,7 +19,6 @@ public class MonsterMove : MonoBehaviour
     {
         if (other.gameObject.tag == "Trigger")
         {
-            Debug.Log("�浹");
             ChangeDirection();
         }
     }
