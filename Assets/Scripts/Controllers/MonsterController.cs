@@ -26,11 +26,9 @@ public class MonsterController : MonoBehaviour
 
     [Header("level")]
     public int MonsterCount = 10;
-<<<<<<< Updated upstream
-  
-=======
+
     private bool IsClear = true;
->>>>>>> Stashed changes
+
 
     private void Awake()
     {
@@ -47,11 +45,7 @@ public class MonsterController : MonoBehaviour
        
         int currentChildCount = Spawnner.transform.childCount;
 
-<<<<<<< Updated upstream
-        if(DayManager.Instance.dayNight == DayNight.Night&&DayManager.Instance.isGroundRotating == false)
-=======
         if ( DayManager.Instance.dayNight == DayNight.Night&& DayManager.Instance.isGroundRotating == false&& IsClear == true)
->>>>>>> Stashed changes
         {
             StartCoroutine(SpawnMonsters(DayManager.Instance.DayCount - 1, currentChildCount));
         }
@@ -61,19 +55,13 @@ public class MonsterController : MonoBehaviour
             DestroyAllChildrenObjects();
         }
         
-
-<<<<<<< Updated upstream
-       
-=======
         MonsterspawnTrriger();
->>>>>>> Stashed changes
+
         ChangeCountText(currentChildCount);
       
     }
 
 
-<<<<<<< Updated upstream
-=======
     void MonsterspawnTrriger()
     {
         if (DayManager.Instance.dayNight == DayNight.Day)
@@ -82,8 +70,6 @@ public class MonsterController : MonoBehaviour
         }    
     }
 
-
->>>>>>> Stashed changes
     void DestroyAllChildrenObjects()
     {
         GameManager.Instance.isGameOver = true;
@@ -131,16 +117,8 @@ public class MonsterController : MonoBehaviour
         monsters[Level].transform.position = newPosition;
     }
 
-<<<<<<< Updated upstream
-    private void changeLevel(int currentChildCount) 
-    {
-        if (currentChildCount <= 0) { }
-    }
 
-    private void ChangeCountText(int currentChildCount) 
-=======
     private void ChangeCountText(int currentChildCount)
->>>>>>> Stashed changes
     {
         if (currentChildCount != previousChildCount)
         {
