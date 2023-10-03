@@ -12882,7 +12882,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 72112735532494702, guid: 586a4f57bcddbc04bb09c0dc498bbd76, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: MonsterCount
       objectReference: {fileID: 0}
     - target: {fileID: 8972147180766343956, guid: 586a4f57bcddbc04bb09c0dc498bbd76, type: 3}
       propertyPath: m_Pivot.x
