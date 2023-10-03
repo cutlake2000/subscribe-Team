@@ -28,7 +28,7 @@ public class ClickBuildingUI : MonoBehaviour
 
     private void Start()
     {
-        UIManger.DayUsedUIOff += Off;
+        UIManger.Instance.DayUsedUIOff += Off;
     }
 
     private void LateUpdate()
@@ -46,15 +46,15 @@ public class ClickBuildingUI : MonoBehaviour
         Vector3 screenPos = Camera.main.WorldToScreenPoint(building.transform.position);
         transform.position = screenPos;
 
-        UIManger.ClosePopUpUI -= Off;
-        UIManger.ClosePopUpUI += Off;
+        UIManger.Instance.ClosePopUpUI -= Off;
+        UIManger.Instance.ClosePopUpUI += Off;
     }
 
     public void Off()
     {
         DeactivateRaycastTargrt();
         gameObject.SetActive(false);
-        UIManger.ClosePopUpUI -= Off;
+        UIManger.Instance.ClosePopUpUI -= Off;
     }
 
     // 버튼 클릭시 호출

@@ -147,6 +147,9 @@ public class BuildingController : MonoBehaviour
         BaseBuilding target = clickBuildingUIModel.clickBuilding;
         target.gameObject.SetActive(false);
         CheckBuildingCount(target.buildingType);
+        Vector2 allowPos = new Vector2(target.transform.position.x, target.transform.position.z);
+        buildingCreator.AllowTileData(allowPos);
+        Debug.Log(target.transform.position);
         clickBuildingUI.Off();
     }
 

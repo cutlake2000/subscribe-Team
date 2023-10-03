@@ -3678,6 +3678,8 @@ MonoBehaviour:
   GameOverPanel: {fileID: 172577785}
   DayCountTextMeshPro: {fileID: 619612768}
   buildUI: {fileID: 799007850}
+  goldText: {fileID: 1788898375}
+  woodText: {fileID: 965749228}
 --- !u!1 &457302449 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8596806051662389708, guid: 24cca332283b04de780c9415ed9f5a39, type: 3}

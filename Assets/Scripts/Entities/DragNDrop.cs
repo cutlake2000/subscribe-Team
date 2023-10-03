@@ -40,7 +40,7 @@ public class DragNDrop : MonoBehaviour
         _isClick = true;
         buildingCreator._isEditMode = true;
         buildingCreator.selectObj.SetActive(true);
-        UIManger.ClosePopUpUI?.Invoke();
+        UIManger.Instance.ClosePopUpUI?.Invoke();
     }
 
     public void TestButton(GameObject obj)
@@ -63,7 +63,7 @@ public class DragNDrop : MonoBehaviour
                 break;
         }
 
-        UIManger.ClosePopUpUI?.Invoke();
+        UIManger.Instance.ClosePopUpUI?.Invoke();
     }
 
     public void Update()

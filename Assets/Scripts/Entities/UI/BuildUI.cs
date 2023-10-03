@@ -11,7 +11,7 @@ public class BuildUI : MonoBehaviour
 
     private void Awake()
     {
-        UIManger.DayUsedUIOn += Off;
+        UIManger.Instance.DayUsedUIOn += Off;
     }
 
     public void SwitchButton()

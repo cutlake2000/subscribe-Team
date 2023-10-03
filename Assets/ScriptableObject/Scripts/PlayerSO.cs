@@ -30,12 +30,12 @@ public class PlayerSO : ScriptableObject
     public int Gold
     {
         get { return gold; }
-        set { gold = value; }
+        set { gold = value; UIManger.Instance.HUDRefresh(); }
     }
     public int Wood
     {
         get { return wood; }
-        set { wood = value; }
+        set { wood = value; UIManger.Instance.HUDRefresh(); }
     }
     public int AddUnitAtk
     {
