@@ -15,6 +15,9 @@ public class BuildingController : MonoBehaviour
     public static BuildingController Instance;
 
     [SerializeField]
+    private GameObject InstantiateLocation;
+
+    [SerializeField]
     private GameObject[] buildingPrefabs;
 
     public BuildingSO buildingSO;
@@ -74,6 +77,7 @@ public class BuildingController : MonoBehaviour
         }
 
         newBuilding = Instantiate(buildingPrefabs[(int)type]).GetComponent<BaseBuilding>();
+        newBuilding.transform.parent = InstantiateLocation.transform;
         newBuilding.name = type.ToString();
         newBuilding.baseData = buildingSO.buildingDatas[(int)type];
         newBuilding.Initialization();
