@@ -181,12 +181,6 @@ public class MercenaryController : MonoBehaviour
         return thisMonster;
     }
 
-    bool CheckDayandNight()
-    {
-        // 지금 낮인지 밤인지 확인
-        return true;
-    }
-
 
     public bool daynight;
     public void DayandNight(bool daynight)
