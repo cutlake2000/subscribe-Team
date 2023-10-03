@@ -38,15 +38,24 @@ public class UIManger : MonoBehaviour
 
     
 
-    public static Action ClosePopUpUI;
-    public static Action DayUsedUIOn;
-    public static Action DayUsedUIOff;
+    public Action ClosePopUpUI;
+    public Action DayUsedUIOn;
+    public Action DayUsedUIOff;
+    public Action HUDRefresh;
+    [SerializeField] TMP_Text goldText;
+    [SerializeField] TMP_Text woodText;
 
     private void Awake()
     {
         Instance = this;
 
         Init();
+        HUDRefresh += GoldWoodRefresh;
+    }
+
+    private void Start()
+    {
+        HUDRefresh();
     }
 
     private void Init()
@@ -124,6 +133,11 @@ public class UIManger : MonoBehaviour
                 buildUI.Off();
                 break;
         }
+    }
 
+    public void GoldWoodRefresh()
+    {
+        goldText.text =  DataManager.Instance.player.Gold.ToString();
+        woodText.text =  DataManager.Instance.player.Wood.ToString();
     }
 }
