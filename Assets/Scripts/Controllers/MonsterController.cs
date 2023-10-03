@@ -26,7 +26,6 @@ public class MonsterController : MonoBehaviour
 
     [Header("level")]
     public int MonsterCount = 10;
-
     private bool IsClear = true;
 
 
