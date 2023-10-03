@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
-public class StartScenUI : MonoBehaviour
+public class StartSceneUI : MonoBehaviour
 {
     public Button GameStart;
     public Button Option;
@@ -30,13 +29,9 @@ public class StartScenUI : MonoBehaviour
             GameOptionl.SetActive(false);
         });
 
-
         Exit.onClick.AddListener(() =>
         {
             Application.Quit();
         });
-
     }
-
-
 }

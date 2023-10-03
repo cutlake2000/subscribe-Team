@@ -19,11 +19,11 @@ public class DayManager : MonoBehaviour
     public DayNight dayNight;
     public DayNight DayNight
     {
-        set 
-        { 
+        set
+        {
             dayNight = value;
             UIManger.Instance.DayUI(dayNight);
-        } 
+        }
     }
 
     public bool isSkyRotating;
@@ -62,8 +62,15 @@ public class DayManager : MonoBehaviour
 
     private void Update()
     {
-        CallRotation();
-        CalculateDay();
+        if (GameManager.Instance.isGameOver == false)
+        {
+            CallRotation();
+            CalculateDay();
+        }
+        else
+        {
+            rotationController.StopAllCoroutines();
+        }
     }
 
     private void CalculateDay()

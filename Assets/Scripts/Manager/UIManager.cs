@@ -36,14 +36,16 @@ public class UIManger : MonoBehaviour
     private RectTransform backGaugeRectTransform;
     private RectTransform frontGaugeRectTransform;
 
-    
-
     public Action ClosePopUpUI;
     public Action DayUsedUIOn;
     public Action DayUsedUIOff;
     public Action HUDRefresh;
-    [SerializeField] TMP_Text goldText;
-    [SerializeField] TMP_Text woodText;
+
+    [SerializeField]
+    TMP_Text goldText;
+
+    [SerializeField]
+    TMP_Text woodText;
 
     private void Awake()
     {
@@ -137,7 +139,7 @@ public class UIManger : MonoBehaviour
 
     public void GoldWoodRefresh()
     {
-        goldText.text =  DataManager.Instance.player.Gold.ToString();
-        woodText.text =  DataManager.Instance.player.Wood.ToString();
+        goldText.text = DataManager.Instance.player.Gold.ToString();
+        woodText.text = DataManager.Instance.player.Wood.ToString();
     }
 }
