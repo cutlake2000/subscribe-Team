@@ -37,7 +37,7 @@ public class DayManager : MonoBehaviour
     {
         isDayNightChanged = false;
         NowTime = 0.0f;
-        DayTime = 3.0f;
+        DayTime = 20.0f;
         EntireTime = 0.0f;
         DayCount = 0;
         dayNight = DayNight.Day;
