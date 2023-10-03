@@ -16,10 +16,11 @@ public class DayManager : MonoBehaviour
     public float DayTime { get; set; }
     public float EntireTime { get; set; }
     public int DayCount { get; set; }
-    public DayNight dayNight { get; set; }
+    public DayNight dayNight;
 
     public bool isSkyRotating;
     public bool isGroundRotating;
+    public bool isDayNightChanged;
 
     public GameObject map;
 
@@ -34,6 +35,7 @@ public class DayManager : MonoBehaviour
 
     private void Init()
     {
+        isDayNightChanged = false;
         NowTime = 0.0f;
         DayTime = 3.0f;
         EntireTime = 0.0f;
@@ -65,12 +67,18 @@ public class DayManager : MonoBehaviour
     {
         if (NowTime == 0.0f && isGroundRotating == false)
         {
+            isDayNightChanged = false;
             rotationController.CallSkyRotationCoroutine();
         }
         else if (NowTime >= DayTime)
         {
             rotationController.CallGroundRotationCoroutine();
-            dayNight = dayNight == DayNight.Day ? DayNight.Night : DayNight.Day;
+
+            if (isDayNightChanged == false)
+            {
+                isDayNightChanged = true;
+                dayNight = dayNight == DayNight.Day ? DayNight.Night : DayNight.Day;
+            }
         }
 
         if (isSkyRotating == true)
