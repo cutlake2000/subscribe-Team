@@ -17,6 +17,16 @@ public class DayManager : MonoBehaviour
     public float EntireTime { get; set; }
     public int DayCount { get; set; }
     public DayNight dayNight;
+    public DayNight DayNight
+    {
+        set 
+        { 
+            dayNight = value;
+            UIManger.Instance.DayUI(dayNight);
+
+            // 날짜 변경 된거 확일할 함수 추가
+        } 
+    }
 
     public bool isSkyRotating;
     public bool isGroundRotating;
@@ -77,7 +87,7 @@ public class DayManager : MonoBehaviour
             if (isDayNightChanged == false)
             {
                 isDayNightChanged = true;
-                dayNight = dayNight == DayNight.Day ? DayNight.Night : DayNight.Day;
+                DayNight = dayNight == DayNight.Day ? DayNight.Night : DayNight.Day;
             }
         }
 

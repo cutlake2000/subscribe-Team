@@ -42,15 +42,6 @@ public class BuildingController : MonoBehaviour
         };
     }
 
-    public void Start()
-    {
-        // 임시 테스트
-        SetNewBuildingOnMap(BuildingType.Inn, new Vector3(-2, 1.13f));
-        SetNewBuildingOnMap(BuildingType.Forge, new Vector3(1, 1.13f));
-        SetNewBuildingOnMap(BuildingType.Market, new Vector3(4, 1.13f));
-        // 임시 테스트
-    }
-
     // 좌표값에 건물 생성
     public void SetNewBuildingOnMap(BuildingType type, Vector3 pos)
     {

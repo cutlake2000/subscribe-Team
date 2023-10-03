@@ -28,10 +28,15 @@ public class UIManger : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI DayCountTextMeshPro;
 
+    [SerializeField]
+    private BuildUI buildUI;
+
     private float GaugeWidth;
     private float GaugeHeight;
     private RectTransform backGaugeRectTransform;
     private RectTransform frontGaugeRectTransform;
+
+    
 
     public static Action ClosePopUpUI;
     public static Action DayUsedUIOn;
@@ -112,10 +117,11 @@ public class UIManger : MonoBehaviour
         switch (time)
         {
             case DayNight.Day:
-                BuildingController.Instance.clickBuildingUI.Off();
-                BuildingController.Instance.clickBuildingUI.Off();
+                buildUI.On();
                 break;
             case DayNight.Night:
+                BuildingController.Instance.clickBuildingUI.Off();
+                buildUI.Off();
                 break;
         }
 
