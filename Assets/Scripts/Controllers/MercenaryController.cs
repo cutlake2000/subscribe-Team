@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -40,33 +41,61 @@ public class MercenaryController : MonoBehaviour
 
     private void Update()
     {
-        //target.Clear();
-        //target.AddRange(GameObject.FindGameObjectsWithTag(TagName));
-        //if (target.Count <= 0)
-        //{
-        //    if (isCoroutineRunning)
-        //    {
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        StartCoroutine(MoveObject());
-        //    }
-        //}
-        //else if (target.Count > 0)
-        //{
-        //    if (isAttackObject)
-        //    {
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        Invoke("AttackObject", data.AttackSpeed);
-        //    }
-        //}
-        DayandNight();
+        if (DayManager.Instance.dayNight == DayNight.Day)
+        {
+            if (isCoroutineRunning)
+            {
+                return;
+            }
+            else
+            {
+                StartCoroutine(MoveObject());
+            }
+        }
+        else if (DayManager.Instance.dayNight == DayNight.Night)
+        {
+            target.Clear();
+            target.AddRange(GameObject.FindGameObjectsWithTag(TagName));
+            if (target.Count <= 0)
+            {
+                if (isCoroutineRunning)
+                {
+                    return;
+                }
+                else
+                {
+                    StartCoroutine(MoveObject());
+                }
+            }
+            else if (target.Count > 0)
+            {
+                if (isAttackObject)
+                {
+                    return;
+                }
+                else
+                {
+                    Invoke("AttackObject", data.AttackSpeed);
+                }
+            }
+        }
     }
 
+    private void FixedUpdate()
+    {
+        // 밤일 경우 = 변수가 true, 낮일 경우 변수 = false
+        if (DayManager.Instance.NowTime == DayManager.Instance.DayTime) 
+        {
+            if(DayManager.Instance.dayNight == DayNight.Day)
+            {
+                daynight = true;
+            }else if(DayManager.Instance.dayNight == DayNight.Night)
+            {
+                daynight = false;
+            }
+            DayandNight(daynight); // 낮>밤으로 바뀔때
+        }
+    }
     IEnumerator MoveObject()
     {
         isCoroutineRunning = true;
@@ -136,12 +165,6 @@ public class MercenaryController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, destination, 0.001f * speed);
     }
 
-    //void Hit(Monster target)
-    //{
-    //    Attacking();
-    //    target.monsterData.MonsterHp -= data.Attack;
-    //}
-
     MonsterData WhichMonster(Monster monster)
     {
         thisMonster = ScriptableObject.CreateInstance<MonsterData>();
@@ -166,19 +189,19 @@ public class MercenaryController : MonoBehaviour
 
 
     public bool daynight;
-    public void DayandNight()
+    public void DayandNight(bool daynight)
     {
         // 각 낮, 밤의 행동을 정의해주는 함수
         // 낮 : 밤 시간대의 용병스포너의 좌표를 받아 그쪽으로 용병 이동 > 낮 시간대의 용병스포너의 좌표로 이동, 동시에 y축을 기준으로 뒤집기
         if (daynight == true) // 밤일 경우
         {
             Vector3 destination = DaySpawner.transform.position;
-            transform.position = Vector3.Lerp(transform.position, destination, 0.003f);
+            transform.position = Vector3.Lerp(transform.position, destination, 0.01f);
         }
         else if (daynight == false) // 낮일 경우
         {
             Vector3 destination = NightSpawner.transform.position;
-            transform.position = Vector3.Lerp(transform.position, destination, 0.003f);
+            transform.position = Vector3.Lerp(transform.position, destination, 0.01f);
         }
     }
 
