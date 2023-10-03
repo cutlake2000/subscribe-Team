@@ -3280,6 +3280,18 @@ PrefabInstance:
       value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 5429096840730521295, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5429096840730521295, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5429096840730521295, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5429096840730521295, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3326,6 +3338,10 @@ PrefabInstance:
     - target: {fileID: 5429096840730521295, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5429096840730521295, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782541544691171667, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
       propertyPath: m_Name
@@ -3397,6 +3413,18 @@ PrefabInstance:
       value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 2200762560857393335, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200762560857393335, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200762560857393335, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200762560857393335, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3443,6 +3471,10 @@ PrefabInstance:
     - target: {fileID: 2200762560857393335, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200762560857393335, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3060787456208188509, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
       propertyPath: m_Name
@@ -3502,6 +3534,18 @@ PrefabInstance:
       value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 753123036788469368, guid: 6735c8ec70dba7446b4051422a3904b3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 753123036788469368, guid: 6735c8ec70dba7446b4051422a3904b3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 753123036788469368, guid: 6735c8ec70dba7446b4051422a3904b3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 753123036788469368, guid: 6735c8ec70dba7446b4051422a3904b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3548,6 +3592,10 @@ PrefabInstance:
     - target: {fileID: 753123036788469368, guid: 6735c8ec70dba7446b4051422a3904b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753123036788469368, guid: 6735c8ec70dba7446b4051422a3904b3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4721744231482490718, guid: 6735c8ec70dba7446b4051422a3904b3, type: 3}
       propertyPath: popupUI
