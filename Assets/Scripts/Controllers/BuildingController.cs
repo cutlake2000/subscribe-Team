@@ -100,7 +100,7 @@ public class BuildingController : MonoBehaviour
             && clickBuildingUIModel.clickBuilding == clickBuilding
         )
         {
-            clickBuildingUI.OFF();
+            clickBuildingUI.Off();
             return;
         }
         clickBuildingUI.On(clickBuilding);
@@ -156,7 +156,7 @@ public class BuildingController : MonoBehaviour
         BaseBuilding target = clickBuildingUIModel.clickBuilding;
         target.gameObject.SetActive(false);
         CheckBuildingCount(target.buildingType);
-        clickBuildingUI.OFF();
+        clickBuildingUI.Off();
     }
 
     // 자원 거래
@@ -316,7 +316,7 @@ public class BuildingController : MonoBehaviour
     {
         if (clickBuildingUIModel.beforeUIType.Count == 0)
         {
-            clickBuildingUI.OFF();
+            clickBuildingUI.Off();
             return;
         }
         ClickUIType type = clickBuildingUIModel.beforeUIType.Pop();

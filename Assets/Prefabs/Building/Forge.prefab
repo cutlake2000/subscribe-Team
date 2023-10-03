@@ -138,6 +138,8 @@ MonoBehaviour:
     maxLevel: 0
     name: 
     desc: 
+    maxBuildLimit: 0
+    buildWood: 0
     upgradeWood: 0
     optionTypeList: 
   spriteRenderer: {fileID: 4370521669439080243}
@@ -148,6 +150,8 @@ MonoBehaviour:
   maxLevel: 0
   buildingName: 
   desc: 
+  maxBuildLimit: 0
+  buildWood: 0
   upgradeWood: 0
 --- !u!65 &172288730850425682
 BoxCollider:
@@ -164,7 +168,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
