@@ -21,7 +21,7 @@ public class CreateMercenary : MonoBehaviour
         Vector3 pos = new Vector3(
             Spawner.gameObject.transform.position.x,
             Spawner.gameObject.transform.position.y,
-            Spawner.gameObject.transform.position.z
+            Spawner.gameObject.transform.position.z-2
         );
         mercenary_prefab.transform.position = pos;
     }
