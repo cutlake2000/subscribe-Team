@@ -26,10 +26,15 @@ public class ClickBuildingUI : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        UIManger.DayUsedUIOff += Off;
+    }
+
     private void LateUpdate()
     {
         if (Input.GetMouseButtonDown(1))
-            OFF();
+            Off();
     }
 
     // 해당 위치에 버튼을 활성화
@@ -41,15 +46,15 @@ public class ClickBuildingUI : MonoBehaviour
         Vector3 screenPos = Camera.main.WorldToScreenPoint(building.transform.position);
         transform.position = screenPos;
 
-        UIManger.ClosePopUpUI -= OFF;
-        UIManger.ClosePopUpUI += OFF;
+        UIManger.ClosePopUpUI -= Off;
+        UIManger.ClosePopUpUI += Off;
     }
 
-    public void OFF()
+    public void Off()
     {
         DeactivateRaycastTargrt();
         gameObject.SetActive(false);
-        UIManger.ClosePopUpUI -= OFF;
+        UIManger.ClosePopUpUI -= Off;
     }
 
     // 버튼 클릭시 호출
@@ -157,4 +162,6 @@ public class ClickBuildingUI : MonoBehaviour
             item.raycastTarget = true;
         }
     }
+
+
 }

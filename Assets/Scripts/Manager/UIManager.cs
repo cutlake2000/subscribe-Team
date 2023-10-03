@@ -34,6 +34,8 @@ public class UIManger : MonoBehaviour
     private RectTransform frontGaugeRectTransform;
 
     public static Action ClosePopUpUI;
+    public static Action DayUsedUIOn;
+    public static Action DayUsedUIOff;
 
     private void Awake()
     {
@@ -103,5 +105,19 @@ public class UIManger : MonoBehaviour
         remainTime.text = (DayManager.Instance.DayTime - DayManager.Instance.NowTime).ToString(
             "N0"
         );
+    }
+
+    public void DayUI(DayNight time)
+    {
+        switch (time)
+        {
+            case DayNight.Day:
+                BuildingController.Instance.clickBuildingUI.Off();
+                BuildingController.Instance.clickBuildingUI.Off();
+                break;
+            case DayNight.Night:
+                break;
+        }
+
     }
 }
