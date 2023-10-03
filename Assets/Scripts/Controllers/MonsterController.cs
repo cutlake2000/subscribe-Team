@@ -47,6 +47,11 @@ public class MonsterController : MonoBehaviour
         {
             StartCoroutine(SpawnMonsters(DayManager.Instance.DayCount - 1, currentChildCount));
         }
+
+        if(DayManager.Instance.isSkyRotating ==false && currentChildCount>0 )
+        {
+            DestroyAllChildrenObjects();
+        }
         
 
        
@@ -55,7 +60,14 @@ public class MonsterController : MonoBehaviour
     }
 
 
-
+    void DestroyAllChildrenObjects()
+    {
+        GameManager.Instance.isGameOver = true;
+        foreach (Transform child in Spawnner.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 
     private Monster SpwanMonster(int Level)
     {
@@ -69,13 +81,20 @@ public class MonsterController : MonoBehaviour
 
     IEnumerator SpawnMonsters(int Level, int currentChildCount)
     {
-        if (DayManager.Instance.dayNight == DayNight.Night&& currentChildCount <= 0)
+        if (currentChildCount <= 0)
         {
             for (int i = 0; i < MonsterCount; i++)
             {
-                SetPosition(Level);
-                SpwanMonster(Level);
-                yield return new WaitForSeconds(1.0f);
+                if (DayManager.Instance.dayNight == DayNight.Night)
+                {
+                    SetPosition(Level);
+                    SpwanMonster(Level);
+                    yield return new WaitForSeconds(1.0f);
+                }
+                else
+                {
+                    break;
+                }              
             }
         }
     }

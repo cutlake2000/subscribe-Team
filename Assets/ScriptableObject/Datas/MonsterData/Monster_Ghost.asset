@@ -15,5 +15,5 @@ MonoBehaviour:
   MonsterName: "\uADC0\uC2E0"
   MonsterHp: 15
   MonsterDF: 2
-  MonsterSpeed: 1
-  dropPrefab: {fileID: 566556780858078677, guid: d97b7554aecdde14d97b454bce2c376f, type: 3}
+  MonsterSpeed: 3
+  dropPrefab: {fileID: 0}
