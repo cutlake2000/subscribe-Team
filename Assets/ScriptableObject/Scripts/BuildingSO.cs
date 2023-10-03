@@ -16,7 +16,8 @@ public class BuildingData
     public int maxLevel;
     public string name;
 
-    [Multiline(2)] public string desc;
+    [Multiline(2)]
+    public string desc;
 
     public int maxBuildLimit;
     public int buildWood;

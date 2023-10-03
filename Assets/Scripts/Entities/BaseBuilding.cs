@@ -49,8 +49,8 @@ public class BaseBuilding : MonoBehaviour
         animator.enabled = isActive;
     }
 
-    public void OnMouseDown()
-    {
-        BuildingController.Instance.ActiveClickBuildingUI(this);
-    }
+    //public void OnMouseDown()
+    //{
+    //    BuildingController.Instance.ActiveClickBuildingUI(this);
+    //}
 }

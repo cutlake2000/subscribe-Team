@@ -6,8 +6,6 @@ using System.Runtime.CompilerServices;
 
 using UnityEditor;
 
-using UnityEditor;
-
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -28,6 +26,7 @@ public class MercenaryController : MonoBehaviour
     private bool isAttackObject = false;
     public GameObject NightSpawner;
     public GameObject DaySpawner;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -84,18 +83,20 @@ public class MercenaryController : MonoBehaviour
     private void FixedUpdate()
     {
         // 밤일 경우 = 변수가 true, 낮일 경우 변수 = false
-        if (DayManager.Instance.NowTime == DayManager.Instance.DayTime) 
+        if (DayManager.Instance.NowTime == DayManager.Instance.DayTime)
         {
-            if(DayManager.Instance.dayNight == DayNight.Day)
+            if (DayManager.Instance.dayNight == DayNight.Day)
             {
                 daynight = true;
-            }else if(DayManager.Instance.dayNight == DayNight.Night)
+            }
+            else if (DayManager.Instance.dayNight == DayNight.Night)
             {
                 daynight = false;
             }
             DayandNight(daynight); // 낮>밤으로 바뀔때
         }
     }
+
     IEnumerator MoveObject()
     {
         isCoroutineRunning = true;
@@ -109,7 +110,6 @@ public class MercenaryController : MonoBehaviour
             yield return new WaitForSeconds(1);
             mercenary.velocity = new Vector3(dir1, 0, dir2);
         }
-        isCoroutineRunning=false;
     }
 
     void AttackObject()
@@ -129,6 +129,7 @@ public class MercenaryController : MonoBehaviour
             monster.TakePhysicalDamage(data.Attack);
         }
     }
+
     GameObject GetClosest()
     {
         enemy = target[0];
@@ -181,14 +182,8 @@ public class MercenaryController : MonoBehaviour
         return thisMonster;
     }
 
-    bool CheckDayandNight()
-    {
-        // 지금 낮인지 밤인지 확인
-        return true;
-    }
-
-
     public bool daynight;
+
     public void DayandNight(bool daynight)
     {
         // 각 낮, 밤의 행동을 정의해주는 함수
@@ -210,21 +205,30 @@ public class MercenaryController : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "NightSpawner":
-                {
-                    gameObject.transform.position = new Vector3(DaySpawner.transform.position.x+1, DaySpawner.transform.position.y, DaySpawner.transform.position.z+1);
-                    gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
+            {
+                gameObject.transform.position = new Vector3(
+                    DaySpawner.transform.position.x + 1,
+                    DaySpawner.transform.position.y,
+                    DaySpawner.transform.position.z + 1
+                );
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
 
-                    break;
-                }
+                break;
+            }
             case "DaySpawner":
-                {
-                    gameObject.transform.position = new Vector3(NightSpawner.transform.position.x + 1, NightSpawner.transform.position.y, NightSpawner.transform.position.z + 1);
-                    gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            {
+                gameObject.transform.position = new Vector3(
+                    NightSpawner.transform.position.x + 1,
+                    NightSpawner.transform.position.y,
+                    NightSpawner.transform.position.z + 1
+                );
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-                    break;
-                }
+                break;
+            }
         }
     }
+
     public void temp()
     {
         GameManager.Instance.MercenaryUI.Mercenary = data;

@@ -10,9 +10,11 @@ public class PlayerSO : ScriptableObject
     int gold = 1000;
     int wood = 10;
 
-    private Dictionary<BuildingType, int> currentBuildingCount = new Dictionary<BuildingType, int>() 
-    { 
-        { BuildingType.Inn, 0 }, { BuildingType.Forge, 0 }, { BuildingType.Market, 0 } 
+    private Dictionary<BuildingType, int> currentBuildingCount = new Dictionary<BuildingType, int>()
+    {
+        { BuildingType.Inn, 0 },
+        { BuildingType.Forge, 0 },
+        { BuildingType.Market, 0 }
     };
 
     public int MaxUnitCount
@@ -45,9 +47,9 @@ public class PlayerSO : ScriptableObject
     {
         currentBuildingCount[type] = count;
     }
+
     public int GetCurrentBuildingCount(BuildingType type)
     {
         return currentBuildingCount[type];
     }
-
 }

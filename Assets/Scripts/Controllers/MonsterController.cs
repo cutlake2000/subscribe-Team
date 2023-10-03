@@ -35,22 +35,19 @@ public class MonsterController : MonoBehaviour
         int currentChildCount = Spawnner.transform.childCount;
     }
 
-    void Start()
-    {
-        
-    }
+    void Start() { }
 
     void Update()
     {
-       
         int currentChildCount = Spawnner.transform.childCount;
+
 
         if ( DayManager.Instance.dayNight == DayNight.Night&& DayManager.Instance.isGroundRotating == false&& IsClear == true)
         {
             StartCoroutine(SpawnMonsters(DayManager.Instance.DayCount - 1, currentChildCount));
         }
 
-        if(DayManager.Instance.isSkyRotating ==false && currentChildCount>0 )
+        if (DayManager.Instance.isSkyRotating == false && currentChildCount > 0)
         {
             DestroyAllChildrenObjects();
         }
@@ -60,6 +57,7 @@ public class MonsterController : MonoBehaviour
         ChangeCountText(currentChildCount);
       
     }
+
 
 
     void MonsterspawnTrriger()
@@ -104,7 +102,7 @@ public class MonsterController : MonoBehaviour
                 else
                 {
                     break;
-                }              
+                }
             }
          
         }
@@ -116,7 +114,6 @@ public class MonsterController : MonoBehaviour
         Vector3 newPosition = Spawnner.transform.position;
         monsters[Level].transform.position = newPosition;
     }
-
 
     private void ChangeCountText(int currentChildCount)
     {

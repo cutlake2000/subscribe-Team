@@ -22,12 +22,20 @@ public class UIManger : MonoBehaviour
     [SerializeField]
     private GameObject FrontGauge;
 
+    [SerializeField]
+    private GameObject GameOverPanel;
+
+    [SerializeField]
+    private TextMeshProUGUI DayCountTextMeshPro;
+
     private float GaugeWidth;
     private float GaugeHeight;
     private RectTransform backGaugeRectTransform;
     private RectTransform frontGaugeRectTransform;
 
     public static Action ClosePopUpUI;
+    public static Action DayUsedUIOn;
+    public static Action DayUsedUIOff;
 
     private void Awake()
     {
@@ -47,9 +55,22 @@ public class UIManger : MonoBehaviour
 
     private void Update()
     {
-        SetDayCountText();
-        SetRemainTimeText();
-        SetGauge();
+        if (GameManager.Instance.isGameOver == false)
+        {
+            SetDayCountText();
+            SetRemainTimeText();
+            SetGauge();
+        }
+        else
+        {
+            SetGameOverPanel();
+        }
+    }
+
+    private void SetGameOverPanel()
+    {
+        GameOverPanel.SetActive(true);
+        DayCountTextMeshPro.text = (DayManager.Instance.EntireTime).ToString("N1") + "초";
     }
 
     private void SetDayCountText()
@@ -84,5 +105,19 @@ public class UIManger : MonoBehaviour
         remainTime.text = (DayManager.Instance.DayTime - DayManager.Instance.NowTime).ToString(
             "N0"
         );
+    }
+
+    public void DayUI(DayNight time)
+    {
+        switch (time)
+        {
+            case DayNight.Day:
+                BuildingController.Instance.clickBuildingUI.Off();
+                BuildingController.Instance.clickBuildingUI.Off();
+                break;
+            case DayNight.Night:
+                break;
+        }
+
     }
 }

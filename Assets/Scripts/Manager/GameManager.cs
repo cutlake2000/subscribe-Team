@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     public MercenaryUI MercenaryUI;
     public ClickMercenaryUI clickMercenaryUI;
     public MercenaryController mercenaryController;
+
     [Header("거래 밸런스")]
     public float buyPenalty = 1.2f; // 구매 패널티
     public float sellPenalty = 0.8f; // 판매 패널티
