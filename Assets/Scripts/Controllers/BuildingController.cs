@@ -5,13 +5,17 @@ using static UnityEngine.GraphicsBuffer;
 
 public enum BuildingType
 {
-    Inn, Forge, Market
+    Inn,
+    Forge,
+    Market
 }
 
 public class BuildingController : MonoBehaviour
 {
     public static BuildingController Instance;
-    [SerializeField] private GameObject[] buildingPrefabs;
+
+    [SerializeField]
+    private GameObject[] buildingPrefabs;
 
     public BuildingSO buildingSO;
     private List<BaseBuilding> buildingList;
@@ -27,7 +31,12 @@ public class BuildingController : MonoBehaviour
     {
         Instance = this;
         buildingList = new List<BaseBuilding>();
-        buildingTypeList = new() { { BuildingType.Inn, new() }, { BuildingType.Forge, new() }, { BuildingType.Market, new() } };
+        buildingTypeList = new()
+        {
+            { BuildingType.Inn, new() },
+            { BuildingType.Forge, new() },
+            { BuildingType.Market, new() }
+        };
     }
 
     public void Start()
@@ -51,7 +60,6 @@ public class BuildingController : MonoBehaviour
     {
         List<BaseBuilding> list = buildingTypeList[type];
         BaseBuilding newBuilding;
-
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -82,8 +90,11 @@ public class BuildingController : MonoBehaviour
         if (buildingCreator._isEditMode == true)
             return;
 
-        if (clickBuildingUI.gameObject.activeSelf == true && clickBuilding != null
-            && clickBuildingUIModel.clickBuilding == clickBuilding)
+        if (
+            clickBuildingUI.gameObject.activeSelf == true
+            && clickBuilding != null
+            && clickBuildingUIModel.clickBuilding == clickBuilding
+        )
         {
             clickBuildingUI.OFF();
             return;
@@ -115,7 +126,10 @@ public class BuildingController : MonoBehaviour
 
         if (isLoop)
         {
-            while (target.upgradeWood <= DataManager.Instance.player.Wood && target.level < target.maxLevel)
+            while (
+                target.upgradeWood <= DataManager.Instance.player.Wood
+                && target.level < target.maxLevel
+            )
             {
                 DataManager.Instance.player.Wood -= target.upgradeWood;
                 target.LevelUP();
@@ -171,9 +185,7 @@ public class BuildingController : MonoBehaviour
                 Debug.Log(type + "거래 타입 오류");
                 break;
         }
-
     }
-
 
     // 건물의 데이터 초기화
     private void ResetBuildingData(BaseBuilding newBuilding)
@@ -274,14 +286,23 @@ public class BuildingController : MonoBehaviour
         switch (type)
         {
             case ClickUIType.Buy:
-                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback), type);
+                clickBuildingUI.RefreshOptionButton(
+                    clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback),
+                    type
+                );
                 break;
             case ClickUIType.Sell:
-                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback), type);
+                clickBuildingUI.RefreshOptionButton(
+                    clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback),
+                    type
+                );
                 break;
             case ClickUIType.Default:
             default:
-                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ClickBtnType>(type, isGoback), type);
+                clickBuildingUI.RefreshOptionButton(
+                    clickBuildingUIModel.ChangeMode<ClickBtnType>(type, isGoback),
+                    type
+                );
                 break;
         }
     }

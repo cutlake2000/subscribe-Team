@@ -4,9 +4,12 @@ using UnityEngine;
 public class BaseBuilding : MonoBehaviour
 {
     public BuildingData baseData;
-    
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Animator animator;
+
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    Animator animator;
     public BuildingType buildingType;
     public List<ClickBtnType> DefaultOptionType;
     public int level;
@@ -41,8 +44,6 @@ public class BaseBuilding : MonoBehaviour
         upgradeWood *= 2;
     }
 
-    
-
     public void ActiveAnimation(bool isActive)
     {
         animator.enabled = isActive;
@@ -52,5 +53,4 @@ public class BaseBuilding : MonoBehaviour
     {
         BuildingController.Instance.ActiveClickBuildingUI(this);
     }
-
 }

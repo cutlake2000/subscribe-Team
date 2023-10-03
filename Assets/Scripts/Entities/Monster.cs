@@ -29,6 +29,7 @@ public class Monster : MonoBehaviour
 
     void Die()
     {
+
         float randomValue = Random.value;    
         if (randomValue <= 0.5f)
         {  
@@ -36,6 +37,7 @@ public class Monster : MonoBehaviour
             DataManager.Instance.player.Wood++;
             Debug.Log("자원+");
         }      
+
         Destroy(gameObject);
     }
 }
