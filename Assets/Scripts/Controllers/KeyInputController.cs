@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 
 public class KeyInputController : MonoBehaviour
 {
-    [SerializeField] private LayerMask BuildingLayer;
+    [SerializeField]
+    private LayerMask BuildingLayer;
     private Vector2 mousePos;
+
     public void GetMousePos(InputAction.CallbackContext context)
     {
         mousePos = context.ReadValue<Vector2>();
@@ -21,8 +23,10 @@ public class KeyInputController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out RaycastHit target))
         {
-
-            if (BuildingLayer.value != (BuildingLayer.value | 1 << target.transform.gameObject.layer))
+            if (
+                BuildingLayer.value
+                != (BuildingLayer.value | 1 << target.transform.gameObject.layer)
+            )
                 return;
 
             BaseBuilding building = target.transform.GetComponent<BaseBuilding>();

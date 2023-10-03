@@ -12,12 +12,17 @@ public class CreateMercenary : MonoBehaviour
     {
         Spawner = GameObject.FindGameObjectWithTag("DaySpawner");
     }
+
     public void Spawn()
     {
         PlayerSO player = DataManager.Instance.player;
         player.Gold -= mercenary_data.MercenaryCost;
         Instantiate(mercenary_prefab);
-        Vector3 pos = new Vector3(Spawner.gameObject.transform.position.x, Spawner.gameObject.transform.position.y, Spawner.gameObject.transform.position.z);
+        Vector3 pos = new Vector3(
+            Spawner.gameObject.transform.position.x,
+            Spawner.gameObject.transform.position.y,
+            Spawner.gameObject.transform.position.z
+        );
         mercenary_prefab.transform.position = pos;
     }
 }

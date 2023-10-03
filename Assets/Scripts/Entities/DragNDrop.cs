@@ -13,6 +13,7 @@ public class DragNDrop : MonoBehaviour
     public GameObject lastUIObj;
     public bool _isClick;
     private Sprite clickSprite; // 추가. 텍스처 불러오기 -2
+
     //lastUIObj : 건물 선택 메뉴 버튼
     //clickObj : 버튼 클릭후 반투명 건물 이미지(마우스 따라다님)
 
@@ -30,7 +31,6 @@ public class DragNDrop : MonoBehaviour
         buildingCreator._isEditMode = false;
         buildingCreator.selectObj.SetActive(false);
     }
-
 
     public void GetButton(GameObject obj)
     {
@@ -66,26 +66,21 @@ public class DragNDrop : MonoBehaviour
         UIManger.ClosePopUpUI?.Invoke();
     }
 
-
-
     public void Update()
     {
-        if(_isClick)
-        clickObj.transform.position = GetMousePosisiton();
+        if (_isClick)
+            clickObj.transform.position = GetMousePosisiton();
     }
 
-   
     public Vector3 GetMousePosisiton()
     {
         Vector3 mousePos = Input.mousePosition;
-     
+
         return mousePos;
     }
 
-    
     public void GetImage(Image img) // 추가. 텍스처 불러오기 - 1
     {
         clickSprite = img.sprite;
     }
-
 }
