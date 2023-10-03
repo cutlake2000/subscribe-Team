@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
-
+using Unity.VisualScripting;
 using UnityEditor;
 
 using UnityEngine;
@@ -36,26 +36,19 @@ public class MercenaryController : MonoBehaviour
         NightSpawner = GameObject.FindGameObjectWithTag("NightSpawner");
     }
 
-    private void Start() { }
+    private void Start() 
+    {
+
+    }
 
     private void Update()
     {
-        if (DayManager.Instance.dayNight == DayNight.Day)
+        if(DayManager.Instance.isGroundRotating == true)
         {
-            if (isCoroutineRunning)
-            {
-                return;
-            }
-            else
-            {
-                StartCoroutine(MoveObject());
-            }
-        }
-        else if (DayManager.Instance.dayNight == DayNight.Night)
+            DayandNight();
+        }else if (DayManager.Instance.isGroundRotating == false)
         {
-            target.Clear();
-            target.AddRange(GameObject.FindGameObjectsWithTag(TagName));
-            if (target.Count <= 0)
+            if (DayManager.Instance.dayNight == DayNight.Day)
             {
                 if (isCoroutineRunning)
                 {
@@ -66,18 +59,35 @@ public class MercenaryController : MonoBehaviour
                     StartCoroutine(MoveObject());
                 }
             }
-            else if (target.Count > 0)
+            else if (DayManager.Instance.dayNight == DayNight.Night)
             {
-                if (isAttackObject)
+                target.Clear();
+                target.AddRange(GameObject.FindGameObjectsWithTag(TagName));
+                if (target.Count <= 0)
                 {
-                    return;
+                    if (isCoroutineRunning)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        StartCoroutine(MoveObject());
+                    }
                 }
-                else
+                else if (target.Count > 0)
                 {
-                    Invoke("AttackObject", data.AttackSpeed);
+                    if (isAttackObject)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Invoke("AttackObject", data.AttackSpeed);
+                    }
                 }
             }
         }
+<<<<<<< Updated upstream
     }
 
     private void FixedUpdate()
@@ -97,6 +107,27 @@ public class MercenaryController : MonoBehaviour
         }
     }
 
+=======
+        
+
+        //else
+        //{
+        //    if (DayManager.Instance.NowTime == DayManager.Instance.DayTime)
+        //    {
+        //        if (DayManager.Instance.dayNight == DayNight.Day)
+        //        {
+        //            daynight = false;
+        //        }
+        //        else if (DayManager.Instance.dayNight == DayNight.Night)
+        //        {
+        //            daynight = true;
+        //        }
+        //        DayandNight(daynight); // 낮>밤으로 바뀔때
+        //    }
+        //}
+    }
+
+>>>>>>> Stashed changes
     IEnumerator MoveObject()
     {
         isCoroutineRunning = true;
@@ -184,28 +215,29 @@ public class MercenaryController : MonoBehaviour
 
     public bool daynight;
 
-    public void DayandNight(bool daynight)
+    public void DayandNight()
     {
         // 각 낮, 밤의 행동을 정의해주는 함수
         // 낮 : 밤 시간대의 용병스포너의 좌표를 받아 그쪽으로 용병 이동 > 낮 시간대의 용병스포너의 좌표로 이동, 동시에 y축을 기준으로 뒤집기
-        if (daynight == true) // 밤일 경우
+        if (DayManager.Instance.dayNight == DayNight.Day) // 밤일 경우
         {
             Vector3 destination = DaySpawner.transform.position;
-            transform.position = Vector3.Lerp(transform.position, destination, 0.01f);
+            transform.position = Vector3.Lerp(transform.position, destination, 0.1f);
         }
-        else if (daynight == false) // 낮일 경우
+        else if (DayManager.Instance.dayNight == DayNight.Night) // 낮일 경우
         {
             Vector3 destination = NightSpawner.transform.position;
-            transform.position = Vector3.Lerp(transform.position, destination, 0.01f);
+            transform.position = Vector3.Lerp(transform.position, destination, 0.1f);
         }
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        switch (collision.gameObject.tag)
+        if (DayManager.Instance.isGroundRotating)
         {
-            case "NightSpawner":
+            switch (collision.gameObject.tag)
             {
+<<<<<<< Updated upstream
                 gameObject.transform.position = new Vector3(
                     DaySpawner.transform.position.x + 1,
                     DaySpawner.transform.position.y,
@@ -223,12 +255,49 @@ public class MercenaryController : MonoBehaviour
                     NightSpawner.transform.position.z + 1
                 );
                 gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+=======
+                case "NightSpawner":
+                    {
+                        gameObject.transform.position = new Vector3(
+                            DaySpawner.transform.position.x + 1,
+                            DaySpawner.transform.position.y,
+                            DaySpawner.transform.position.z + 1
+                        );
+                        //gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
 
-                break;
+                        break;
+                    }
+                case "DaySpawner":
+                    {
+                        gameObject.transform.position = new Vector3(
+                            NightSpawner.transform.position.x + 1,
+                            NightSpawner.transform.position.y,
+                            NightSpawner.transform.position.z + 1
+                        );
+                        //gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+>>>>>>> Stashed changes
+
+                        break;
+                    }
             }
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    //public void CheckDay(DayNight dayNight)
+    //{
+    //    switch (dayNight)
+    //    {
+    //        case DayNight.Day:
+    //            gameObject.SetActive(false);
+    //            break;
+    //        case DayNight.Night:
+    //            gameObject.SetActive(false);
+    //            break;
+    //    }
+    //}
+>>>>>>> Stashed changes
     public void temp()
     {
         GameManager.Instance.MercenaryUI.Mercenary = data;
