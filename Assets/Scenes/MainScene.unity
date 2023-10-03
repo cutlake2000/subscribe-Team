@@ -3677,6 +3677,7 @@ MonoBehaviour:
   FrontGauge: {fileID: 1695597871}
   GameOverPanel: {fileID: 172577785}
   DayCountTextMeshPro: {fileID: 619612768}
+  buildUI: {fileID: 799007850}
 --- !u!1 &480055833
 GameObject:
   m_ObjectHideFlags: 0
