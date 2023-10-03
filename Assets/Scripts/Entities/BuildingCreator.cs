@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-
 public class BuildingCreator : MonoBehaviour
 {
-
     public Transform plane;
     public Grid grid;
     public GameObject selectObj;
-    public float x, y;
+    public float x,
+        y;
     public Vector3 lastPosition;
     public LayerMask lm;
+    public BuildingType buildType;
+
+    public DragNDrop dnd;
 
     public bool _isEditMode = false;
+
+    public Dictionary<Vector2, bool> TileData = new Dictionary<Vector2, bool>();
+    public Vector2 selectVec;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,27 +29,78 @@ public class BuildingCreator : MonoBehaviour
 
     private void Update()
     {
-        //¿¡µ÷¸ðµå ÀÏ ¶§¸¸ °Ç¹°Áþ´Â ±×¸®µå°¡ Çü¼ºµÊ. (µå·¡±×½Ã true)
+        //ì—ë”§ëª¨ë“œ ì¼ ë•Œë§Œ ê±´ë¬¼ì§“ëŠ” ê·¸ë¦¬ë“œê°€ í˜•ì„±ë¨. (ë“œëž˜ê·¸ì‹œ true)
         if (_isEditMode)
         {
             Vector3 mousePosition = GetMousePosisiton();
             Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-            selectObj.transform.position = new Vector3(grid.CellToWorld(gridPosition).x, -1.5f + 0.251f, grid.CellToWorld(gridPosition).z);
+            selectObj.transform.position = new Vector3(
+                grid.CellToWorld(gridPosition).x,
+                1.14f,
+                grid.CellToWorld(gridPosition).z
+            ); // ë³€ê²½ì  : Yê°’ ë³€ê²½í•¨
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (TileChecker())
+                {
+                    //ì„¤ì¹˜ ê°€ëŠ¥
+                    Debug.Log("ì„¤ì¹˜ ì™„ë£Œ!");
+                    // ê±´ë¬¼ í•œë„ ì²´í¬,
+                    BuildingData buildingData = BuildingController
+                        .Instance
+                        .buildingSO
+                        .buildingDatas[(int)buildType];
+
+                    if (buildingData.buildWood > DataManager.Instance.player.Wood)
+                    {
+                        Debug.Log("ê±´ì„¤ ëª©ìž¬ ë¶€ì¡±");
+                        dnd.ReturnUI();
+                        return;
+                    }
+                    else if (
+                        buildingData.maxBuildLimit
+                        <= DataManager.Instance.player.GetCurrentBuildingCount(buildType)
+                    )
+                    {
+                        Debug.Log("ìµœëŒ€ í•œë„ ì´ˆê³¼");
+                        dnd.ReturnUI();
+                        return;
+                    }
+
+                    DataManager.Instance.player.Wood -= buildingData.buildWood;
+                    BuildingController.Instance.SetNewBuildingOnMap(
+                        buildType,
+                        selectObj.transform.position
+                    );
+
+                    //ì„¤ì¹˜í›„ íƒ€ì¼ ë§‰ê¸°
+                    TileData[selectVec] = false;
+                }
+                else
+                {
+                    //ì„¤ì¹˜ ì‹¤íŒ¨
+                    Debug.Log("ì„¤ì¹˜ ì‹¤íŒ¨!");
+                    dnd.ReturnUI();
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                //ì„¤ì¹˜ ì·¨ì†Œ
+                Debug.Log("ì„¤ì¹˜ ì·¨ì†Œ!");
+                dnd.ReturnUI();
+            }
         }
-      
-
-    }
-    //µå·¡±×¾Ø µå·ÓÇÒ ¿ÀºêÁ§Æ®¿¡ ³Ö¾î¼­ ÀÚ½ÅÀ» ¿òÁ÷ÀÌ´Â ¹æ½ÄÀ» Ã¤ÅÃ
- /*   public void OnDragBegin(BaseEventData data)
-    {
-        Debug.Log(data);
     }
 
-    public void OnDrag(BaseEventData data)
+    public bool TileChecker()
     {
-        Debug.Log(data);
-        
-    }*/
+        Vector2 v = new Vector2(selectObj.transform.position.x, selectObj.transform.position.z);
+        selectVec = v;
+        return TileData[v];
+    }
+
     public Vector3 GetMousePosisiton()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -51,7 +108,9 @@ public class BuildingCreator : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, lm))
-        { lastPosition = hit.point; }
+        {
+            lastPosition = hit.point;
+        }
         return lastPosition;
     }
 
@@ -59,5 +118,14 @@ public class BuildingCreator : MonoBehaviour
     {
         x = plane.localScale.x;
         y = plane.localScale.y;
+
+        for (int i = -7; i < 8; i++)
+        {
+            for (int j = -7; j < 8; j++)
+            {
+                Vector2 v = new Vector2(i, j);
+                TileData.Add(v, true);
+            }
+        }
     }
 }

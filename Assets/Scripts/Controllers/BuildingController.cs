@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -6,124 +5,157 @@ using static UnityEngine.GraphicsBuffer;
 
 public enum BuildingType
 {
-    Inn, Forge, Market
+    Inn,
+    Forge,
+    Market
 }
 
 public class BuildingController : MonoBehaviour
 {
     public static BuildingController Instance;
 
-    [SerializeField] BuildingSO buildingSO;
+    [SerializeField]
+    private GameObject InstantiateLocation;
 
-    [SerializeField] GameObject[] buildingPrefabs;
-    public List<BaseBuilding> buildings;
+    [SerializeField]
+    private GameObject[] buildingPrefabs;
 
-    public BaseBuilding clickBuildingtemp;
+    public BuildingSO buildingSO;
+    private List<BaseBuilding> buildingList;
+    private Dictionary<BuildingType, List<BaseBuilding>> buildingTypeList;
+
     public ClickBuildingUI clickBuildingUI;
     public ClickBuildingUIModel clickBuildingUIModel;
+    public BuildingCreator buildingCreator;
 
     public Action DayChange;
 
     private void Awake()
     {
         Instance = this;
-        buildings = new List<BaseBuilding>();
+        buildingList = new List<BaseBuilding>();
+        buildingTypeList = new()
+        {
+            { BuildingType.Inn, new() },
+            { BuildingType.Forge, new() },
+            { BuildingType.Market, new() }
+        };
     }
 
     public void Start()
     {
-        // - �׽�Ʈ��
-        SetNewBuildingOnMap(BuildingType.Inn, Vector2.left * 2);
-        SetNewBuildingOnMap(BuildingType.Forge, Vector2.right * 1);
-        SetNewBuildingOnMap(BuildingType.Market, Vector2.right * 4);
-        //
+        // 임시 테스트
+        SetNewBuildingOnMap(BuildingType.Inn, new Vector3(-2, 1.13f));
+        SetNewBuildingOnMap(BuildingType.Forge, new Vector3(1, 1.13f));
+        SetNewBuildingOnMap(BuildingType.Market, new Vector3(4, 1.13f));
+        // 임시 테스트
     }
 
-    // ���� �߰��� �ش� ��ġ�� �̵�
+    // 좌표값에 건물 생성
     public void SetNewBuildingOnMap(BuildingType type, Vector3 pos)
     {
         BaseBuilding newBuilding = DeliverNewBuilding(type);
         newBuilding.transform.position = pos;
     }
 
-    // ������ ���� �߰�
+    // 새로운 빌딩 게임 오브젝트 반환받기
     private BaseBuilding DeliverNewBuilding(BuildingType type)
     {
+        List<BaseBuilding> list = buildingTypeList[type];
         BaseBuilding newBuilding;
-        for (int i = 0; i < buildings.Count; i++)
+
+        for (int i = 0; i < list.Count; i++)
         {
-            if (buildings[i].buildingType != type)
-                continue;
-            if (buildings[i].gameObject.activeSelf == false)
+            if (list[i].gameObject.activeSelf == true)
                 continue;
 
-            newBuilding = buildings[i];
+            newBuilding = list[i];
             ResetBuildingData(newBuilding);
+            CheckBuildingCount(type);
+            RefreshEffect(type);
             return newBuilding;
         }
 
         newBuilding = Instantiate(buildingPrefabs[(int)type]).GetComponent<BaseBuilding>();
+        newBuilding.transform.parent = InstantiateLocation.transform;
         newBuilding.name = type.ToString();
         newBuilding.baseData = buildingSO.buildingDatas[(int)type];
         newBuilding.Initialization();
-        buildings.Add(newBuilding);
+        buildingList.Add(newBuilding);
+        list.Add(newBuilding);
+        CheckBuildingCount(type);
+        RefreshEffect(type);
         return newBuilding;
     }
 
-    // Ŭ������ UI �¿���
+    // ClickBuildingUI 스위치
     public void ActiveClickBuildingUI(BaseBuilding clickBuilding)
     {
+        if (buildingCreator._isEditMode == true)
+            return;
+
         if (
-            clickBuildingUI.gameObject.activeSelf == true // �ӽ�
+            clickBuildingUI.gameObject.activeSelf == true
             && clickBuilding != null
-            && this.clickBuildingtemp == clickBuilding
+            && clickBuildingUIModel.clickBuilding == clickBuilding
         )
         {
             clickBuildingUI.OFF();
             return;
         }
-        this.clickBuildingtemp = clickBuilding;
         clickBuildingUI.On(clickBuilding);
         clickBuildingUI.Refresh(clickBuilding);
+        List<ClickBtnType> list = clickBuildingUIModel.Initialization(clickBuilding);
+        clickBuildingUI.RefreshOptionButton(list, ClickUIType.Default);
     }
 
-    // ������ ����
+    // 빌딩 레벨업 isLoop : 자원 & 레벨 한계까지 레벨업
     public void LevelUpBuilding(bool isLoop = false)
     {
         BaseBuilding target = clickBuildingUIModel.clickBuilding;
-        if (target.upgradeWood >= DataManager.Instance.player.Wood && isLoop == false)
+        if (target.level >= target.maxLevel)
         {
-            if (!isLoop)
-                Debug.Log("��� ����");
-
+            Debug.Log("TODO : UI 출력 - 최대 레벨");
+            return;
+        }
+        else if (target.upgradeWood > DataManager.Instance.player.Wood)
+        {
+            Debug.Log("TODO : UI 출력 - 재료 부족");
             return;
         }
 
-        if (isLoop == false)
+        DataManager.Instance.player.Wood -= target.upgradeWood;
+        target.LevelUP();
+        int upCount = 1;
+
+        if (isLoop)
         {
-            Debug.Log("������ ����");
-            DataManager.Instance.player.Wood -= target.upgradeWood;
-            target.LevelUP();
-        }
-        else
-        {
-            int upCount = 0;
-            while (clickBuildingUIModel.clickBuilding.upgradeWood < DataManager.Instance.player.Wood)
+            while (
+                target.upgradeWood <= DataManager.Instance.player.Wood
+                && target.level < target.maxLevel
+            )
             {
-                upCount++;
                 DataManager.Instance.player.Wood -= target.upgradeWood;
                 target.LevelUP();
+                upCount++;
             }
-            Debug.Log($"{upCount}��ŭ ������ ����");
         }
+
+        if (isLoop)
+            Debug.Log($"TODO : UI 출력 - 승급 {upCount}번 완료");
+        else
+            Debug.Log($"TODO : UI 출력 - 승급 완료");
+
+        RefreshEffect(target.buildingType);
         clickBuildingUI.Refresh(target);
     }
 
-    // Ŭ�� ���� �ı�
+    // 건물 파괴
     public void DestroyBuilding()
     {
         BaseBuilding target = clickBuildingUIModel.clickBuilding;
         target.gameObject.SetActive(false);
+        CheckBuildingCount(target.buildingType);
         clickBuildingUI.OFF();
     }
 
@@ -138,17 +170,17 @@ public class BuildingController : MonoBehaviour
             case ResourceType.Wood:
                 if (player.Gold < GameManager.Instance.GoldToWood && isBuy == true)
                 {
-                    Debug.Log("골드 부족");//TODO 골드 부족 처리
+                    Debug.Log($"TODO : UI 출력 - 골드 부족");
                     return;
                 }
                 if (player.Wood <= 0 && isBuy == false)
                 {
-                    Debug.Log("재료 부족"); //TODO 재료 부족 처리
+                    Debug.Log($"TODO : UI 출력 - 재화 부족");
                     return;
                 }
                 player.Wood += +trademode * 1;
                 player.Gold += -trademode * GameManager.Instance.GoldToWood;
-                Debug.Log("목재" + (player.Wood + "골드" + player.Gold));
+                Debug.Log($"TODO : UI 출력 -" + "목재" + (player.Wood + "골드" + player.Gold));
                 break;
             case ResourceType.Steel:
 
@@ -157,11 +189,9 @@ public class BuildingController : MonoBehaviour
                 Debug.Log(type + "거래 타입 오류");
                 break;
         }
-
     }
 
-
-    // '��Ȱ��ȭ'�� ���� ������ �ʱ�ȭ
+    // 건물의 데이터 초기화
     private void ResetBuildingData(BaseBuilding newBuilding)
     {
         newBuilding.Initialization();
@@ -169,45 +199,73 @@ public class BuildingController : MonoBehaviour
         newBuilding.gameObject.SetActive(true);
     }
 
-    // 여관 효과 갱신
-    public void RefreshInnEffect()
+    // 활성화 건물 체크
+    private void CheckBuildingCount(BuildingType type)
     {
-        int sum = 0;
-        for (int i = 0; i < buildings.Count; i++)
+        List<BaseBuilding> list = buildingTypeList[type];
+        int count = 0;
+        for (int i = 0; i < list.Count; i++)
         {
-            if (buildings[i].buildingType != BuildingType.Inn)
-                continue;
-            if (buildings[i].gameObject.activeSelf == false)
+            if (!list[i].gameObject.activeSelf)
                 continue;
 
-            InnBuilding building = (InnBuilding)buildings[i];
+            count++;
+        }
+
+        DataManager.Instance.player.SetCurrentBuildingCount(type, count);
+    }
+
+    public void RefreshEffect(BuildingType type)
+    {
+        switch (type)
+        {
+            case BuildingType.Inn:
+                RefreshInnEffect();
+                break;
+            case BuildingType.Forge:
+                RefreshForgeEffect();
+                break;
+        }
+    }
+
+    // 여관 효과 갱신
+    private void RefreshInnEffect()
+    {
+        int sum = 0;
+        for (int i = 0; i < buildingList.Count; i++)
+        {
+            if (buildingList[i].buildingType != BuildingType.Inn)
+                continue;
+            if (buildingList[i].gameObject.activeSelf == false)
+                continue;
+
+            InnBuilding building = (InnBuilding)buildingList[i];
             sum += building.MaxUnitValue;
         }
 
         DataManager.Instance.player.MaxUnitCount = sum;
-        Debug.Log("���� ȿ�� : " + DataManager.Instance.player.MaxUnitCount);
-        // ++ UI ����
+        // HUD에 갱신
+
+        Debug.Log(DataManager.Instance.player.MaxUnitCount);
     }
 
-    // ���尣 ȿ�� ����
-    public void RefreshForgeEffect()
+    // 대장간 효과 갱신
+    private void RefreshForgeEffect()
     {
         int sum = 0;
-        for (int i = 0; i < buildings.Count; i++)
+        for (int i = 0; i < buildingList.Count; i++)
         {
-            if (buildings[i].buildingType != BuildingType.Forge)
+            if (buildingList[i].buildingType != BuildingType.Forge)
                 continue;
-            if (buildings[i].gameObject.activeSelf == false)
+            if (buildingList[i].gameObject.activeSelf == false)
                 continue;
 
-            ForgeBuilding building = (ForgeBuilding)buildings[i];
+            ForgeBuilding building = (ForgeBuilding)buildingList[i];
             sum += building.AddUnitAtk;
         }
 
         DataManager.Instance.player.AddUnitAtk = sum;
-        Debug.Log("���尣 ȿ�� : " + DataManager.Instance.player.AddUnitAtk);
-
-        // ++ UI ����
+        Debug.Log("TODO : HUD 갱신 추가 공격력 : " + DataManager.Instance.player.AddUnitAtk);
     }
 
     // 테스트용
@@ -216,45 +274,39 @@ public class BuildingController : MonoBehaviour
         DayChange?.Invoke();
     }
 
-    #region 클릭 UI 리팩토링
-    // 클릭시 ClickUI 활성,비활성
-    public void ActiveClickBuildingUI2(BaseBuilding clickBuilding)
-    {
-        if (clickBuildingUI.gameObject.activeSelf == true && clickBuilding != null
-            && clickBuildingUIModel.clickBuilding == clickBuilding)
-        {
-            clickBuildingUI.OFF();
-            return;
-        }
-        clickBuildingUI.On(clickBuilding);
-        clickBuildingUI.Refresh(clickBuilding);
-        List<ClickBtnType> list = clickBuildingUIModel.Initialization(clickBuilding);
-        clickBuildingUI.RefreshOptionButton(list,ClickUIType.Default);
-    }
+    #region ClickBuildingUIModel과 상호작용 함수
 
-    // 모델로 전달
+    // 모델로 버튼 번호 전달
     public void ActionUIOptionSelect(int index)
     {
         clickBuildingUIModel.StartBtnAction(index);
     }
 
     // ClickUI모델 변경
-    // type : 해당 값으로 변경, isGoback : 되돌아가기인지?
+    // type : 해당 값으로 변경, isGoback : 되돌아가기?
     // ChangeMode에서 모드 변경 후 리턴 값으로 버튼을 새로고침
     public void ChangeBuildingUIMode(ClickUIType type, bool isGoback)
     {
         switch (type)
         {
-            case ClickUIType.Default:
-                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ClickBtnType>(type, isGoback), type);
-                break;
             case ClickUIType.Buy:
-                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback), type);
+                clickBuildingUI.RefreshOptionButton(
+                    clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback),
+                    type
+                );
                 break;
             case ClickUIType.Sell:
-                clickBuildingUI.RefreshOptionButton(clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback), type);
+                clickBuildingUI.RefreshOptionButton(
+                    clickBuildingUIModel.ChangeMode<ResourceType>(type, isGoback),
+                    type
+                );
                 break;
+            case ClickUIType.Default:
             default:
+                clickBuildingUI.RefreshOptionButton(
+                    clickBuildingUIModel.ChangeMode<ClickBtnType>(type, isGoback),
+                    type
+                );
                 break;
         }
     }

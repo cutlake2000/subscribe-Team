@@ -10,7 +10,10 @@ public class MarketBuilding : BaseBuilding, ITradeResource
     float minPrice = 0.2f; // 최소 시세
     float maxPrice = 3.0f; // 최대 시세
 
-    public float CurrentPrice { get { return currentPrice; } }
+    public float CurrentPrice
+    {
+        get { return currentPrice; }
+    }
     public List<ResourceType> SellResourceOption;
     public List<ResourceType> BuyResourceOption;
 
@@ -27,7 +30,6 @@ public class MarketBuilding : BaseBuilding, ITradeResource
         CheckTodayPrice();
         BuildingController.Instance.DayChange -= CheckTodayPrice;
         BuildingController.Instance.DayChange += CheckTodayPrice;
-
     }
 
     public void CheckTodayPrice()

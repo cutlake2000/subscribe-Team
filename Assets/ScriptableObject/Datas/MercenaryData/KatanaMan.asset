@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff1e5ef68207234989de819be9e0b8a, type: 3}
   m_Name: KatanaMan
   m_EditorClassIdentifier: 
+  MercenaryCost: 5
+  MercenaryName: KatanaMan
   Attack: 5
-  AttackSpeed: 1
+  AttackSpeed: 0.1
   Critical: 0
   AttackRange: 1
   MovingSpeed: 5

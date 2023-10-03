@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
+
 using UnityEditor;
-//using Unity.VisualScripting;
+
+using UnityEditor;
+
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -20,45 +24,81 @@ public class MercenaryController : MonoBehaviour
     public string TagName = "Monster";
     public MonsterData thisMonster;
     public Monster CloseMonster;
-
+    private bool isCoroutineRunning = false;
+    private bool isAttackObject = false;
+    public GameObject NightSpawner;
+    public GameObject DaySpawner;
     private void Awake()
     {
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
+        target = new List<GameObject>();
+        DaySpawner = GameObject.FindGameObjectWithTag("DaySpawner");
+        NightSpawner = GameObject.FindGameObjectWithTag("NightSpawner");
     }
 
     private void Start() { }
 
-    //한글 깨지는 지 아닌 지 확인용
     private void Update()
     {
-        target = new List<GameObject>(GameObject.FindGameObjectsWithTag(TagName));
-        if (target.Count <= 0)
+        if (DayManager.Instance.dayNight == DayNight.Day)
         {
-            StartCoroutine(MoveObject());
-        }
-        else
-        {
-            GameObject CloseEnemy = GetClosest();
-            monster = CloseEnemy.GetComponent<Monster>();
-            monster.monsterData = WhichMonster(monster);
-            float distance = GetDistance(CloseEnemy);
-            if (CloseEnemy.transform.position.x < gameObject.transform.position.x)
+            if (isCoroutineRunning)
             {
-                renderer.flipX = true;
+                return;
             }
-            Moving(CloseEnemy, data.MovingSpeed);
-
-            if (distance < data.AttackRange)
+            else
             {
-                //Hit(monster);
-                monster.TakePhysicalDamage(data.Attack);
+                StartCoroutine(MoveObject());
+            }
+        }
+        else if (DayManager.Instance.dayNight == DayNight.Night)
+        {
+            target.Clear();
+            target.AddRange(GameObject.FindGameObjectsWithTag(TagName));
+            if (target.Count <= 0)
+            {
+                if (isCoroutineRunning)
+                {
+                    return;
+                }
+                else
+                {
+                    StartCoroutine(MoveObject());
+                }
+            }
+            else if (target.Count > 0)
+            {
+                if (isAttackObject)
+                {
+                    return;
+                }
+                else
+                {
+                    Invoke("AttackObject", data.AttackSpeed);
+                }
             }
         }
     }
 
+    private void FixedUpdate()
+    {
+        // 밤일 경우 = 변수가 true, 낮일 경우 변수 = false
+        if (DayManager.Instance.NowTime == DayManager.Instance.DayTime) 
+        {
+            if(DayManager.Instance.dayNight == DayNight.Day)
+            {
+                daynight = true;
+            }else if(DayManager.Instance.dayNight == DayNight.Night)
+            {
+                daynight = false;
+            }
+            DayandNight(daynight); // 낮>밤으로 바뀔때
+        }
+    }
     IEnumerator MoveObject()
     {
+        isCoroutineRunning = true;
         mercenary = GetComponent<Rigidbody>();
 
         while (true)
@@ -69,8 +109,26 @@ public class MercenaryController : MonoBehaviour
             yield return new WaitForSeconds(1);
             mercenary.velocity = new Vector3(dir1, 0, dir2);
         }
+        isCoroutineRunning=false;
     }
 
+    void AttackObject()
+    {
+        GameObject CloseEnemy = GetClosest();
+        monster = CloseEnemy.GetComponent<Monster>();
+        monster.monsterData = WhichMonster(monster);
+        float distance = GetDistance(CloseEnemy);
+        if (CloseEnemy.transform.position.x < gameObject.transform.position.x)
+        {
+            renderer.flipX = true;
+        }
+        Moving(CloseEnemy, data.MovingSpeed);
+
+        if (distance < data.AttackRange)
+        {
+            monster.TakePhysicalDamage(data.Attack);
+        }
+    }
     GameObject GetClosest()
     {
         enemy = target[0];
@@ -107,12 +165,6 @@ public class MercenaryController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, destination, 0.001f * speed);
     }
 
-    void Hit(Monster target)
-    {
-        Attacking();
-        target.monsterData.MonsterHp -= data.Attack;
-    }
-
     MonsterData WhichMonster(Monster monster)
     {
         thisMonster = ScriptableObject.CreateInstance<MonsterData>();
@@ -126,18 +178,56 @@ public class MercenaryController : MonoBehaviour
                 break;
             }
         }
-        //switch (monster.monsterData.MonsterName)
-        //{
-        //    case "개":
-        //        thisMonster.MonsterHp = DataManager.Instance.monsterDatas[0].MonsterHp;
-        //        break;
-        //    case "유령":
-        //        thisMonster.MonsterHp = DataManager.Instance.monsterDatas[1].MonsterHp;
-        //        break;
-        //    case "호랑이":
-        //        thisMonster.MonsterHp = DataManager.Instance.monsterDatas[2].MonsterHp;
-        //        break;
-        //}
         return thisMonster;
+    }
+
+    bool CheckDayandNight()
+    {
+        // 지금 낮인지 밤인지 확인
+        return true;
+    }
+
+
+    public bool daynight;
+    public void DayandNight(bool daynight)
+    {
+        // 각 낮, 밤의 행동을 정의해주는 함수
+        // 낮 : 밤 시간대의 용병스포너의 좌표를 받아 그쪽으로 용병 이동 > 낮 시간대의 용병스포너의 좌표로 이동, 동시에 y축을 기준으로 뒤집기
+        if (daynight == true) // 밤일 경우
+        {
+            Vector3 destination = DaySpawner.transform.position;
+            transform.position = Vector3.Lerp(transform.position, destination, 0.01f);
+        }
+        else if (daynight == false) // 낮일 경우
+        {
+            Vector3 destination = NightSpawner.transform.position;
+            transform.position = Vector3.Lerp(transform.position, destination, 0.01f);
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "NightSpawner":
+                {
+                    gameObject.transform.position = new Vector3(DaySpawner.transform.position.x+1, DaySpawner.transform.position.y, DaySpawner.transform.position.z+1);
+                    gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
+
+                    break;
+                }
+            case "DaySpawner":
+                {
+                    gameObject.transform.position = new Vector3(NightSpawner.transform.position.x + 1, NightSpawner.transform.position.y, NightSpawner.transform.position.z + 1);
+                    gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                    break;
+                }
+        }
+    }
+    public void temp()
+    {
+        GameManager.Instance.MercenaryUI.Mercenary = data;
+        GameManager.Instance.clickMercenaryUI.PopUp(gameObject.transform.position);
     }
 }

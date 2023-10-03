@@ -26,7 +26,7 @@ public class MonsterController : MonoBehaviour
 
     [Header("level")]
     public int MonsterCount = 10;
-    public int Level = 1;
+  
 
     private void Awake()
     {
@@ -35,14 +35,37 @@ public class MonsterController : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnMonsters(Level));
+        
     }
 
     void Update()
     {
+       
         int currentChildCount = Spawnner.transform.childCount;
+
+        if(DayManager.Instance.dayNight == DayNight.Night&&DayManager.Instance.isGroundRotating == false)
+        {
+            StartCoroutine(SpawnMonsters(DayManager.Instance.DayCount - 1, currentChildCount));
+        }
+
+        if(DayManager.Instance.isSkyRotating ==false && currentChildCount>0)
+        {
+            DestroyAllChildrenObjects();
+        }
+        
+
+       
         ChangeCountText(currentChildCount);
         changeLevel(currentChildCount);
+    }
+
+
+    void DestroyAllChildrenObjects()
+    {      
+        foreach (Transform child in Spawnner.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     private Monster SpwanMonster(int Level)
@@ -55,13 +78,23 @@ public class MonsterController : MonoBehaviour
         return newMonster;
     }
 
-    IEnumerator SpawnMonsters(int Level)
+    IEnumerator SpawnMonsters(int Level, int currentChildCount)
     {
-        for (int i = 0; i < MonsterCount; i++)
+        if (currentChildCount <= 0)
         {
-            SetPosition(Level);
-            SpwanMonster(Level);
-            yield return new WaitForSeconds(1.0f);
+            for (int i = 0; i < MonsterCount; i++)
+            {
+                if (DayManager.Instance.dayNight == DayNight.Night)
+                {
+                    SetPosition(Level);
+                    SpwanMonster(Level);
+                    yield return new WaitForSeconds(1.0f);
+                }
+                else
+                {
+                    break;
+                }              
+            }
         }
     }
 
@@ -71,12 +104,12 @@ public class MonsterController : MonoBehaviour
         monsters[Level].transform.position = newPosition;
     }
 
-    private void changeLevel(int currentChildCount) // ���� ���� 0�̉�����
+    private void changeLevel(int currentChildCount) 
     {
         if (currentChildCount <= 0) { }
     }
 
-    private void ChangeCountText(int currentChildCount) // ���� �����Ӱ� ���� �������� �ڽ� ������Ʈ ������ �� �Ͽ� �ٲ�������� �ؽ�Ʈ�ٲ���
+    private void ChangeCountText(int currentChildCount) 
     {
         if (currentChildCount != previousChildCount)
         {

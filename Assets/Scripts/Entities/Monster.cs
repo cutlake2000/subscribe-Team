@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,10 +18,25 @@ public class Monster : MonoBehaviour
         if (MonsterHp <= 0)
             Die();
     }
+    void Update()
+    {
+        // 스페이스바를 누를 때 Die() 메서드를 호출합니다.
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Die();
+        }
+    }
 
     void Die()
     {
-        //ToDo �ڿ� ŉ�� ���
+
+        float randomValue = Random.value;    
+        if (randomValue <= 0.5f)
+        {  
+            DataManager.Instance.player.Gold++;
+            DataManager.Instance.player.Wood++;
+            Debug.Log("자원+");
+        }      
 
         Destroy(gameObject);
     }
