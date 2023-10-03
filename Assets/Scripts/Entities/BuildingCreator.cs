@@ -13,13 +13,13 @@ public class BuildingCreator : MonoBehaviour
     public float x, y;
     public Vector3 lastPosition;
     public LayerMask lm;
-    public BuildingType buildType = BuildingType.Inn;
+    public BuildingType buildType;
 
     public DragNDrop dnd;
 
     public bool _isEditMode = false;
 
-    public Dictionary<Vector2,bool> TileData = new Dictionary<Vector2,bool>();
+    public Dictionary<Vector2, bool> TileData = new Dictionary<Vector2, bool>();
     public Vector2 selectVec;
     // Start is called before the first frame update
     void Awake()
@@ -43,8 +43,24 @@ public class BuildingCreator : MonoBehaviour
                 {
                     //설치 가능
                     Debug.Log("설치 완료!");
-                    BuildingController.Instance.SetNewBuildingOnMap(buildType,selectObj.transform.position);
+                    // 건물 한도 체크,
+                    BuildingData buildingData = BuildingController.Instance.buildingSO.buildingDatas[(int)buildType];
 
+                    if (buildingData.buildWood > DataManager.Instance.player.Wood)
+                    {
+                        Debug.Log("건설 목재 부족");
+                        dnd.ReturnUI();
+                        return;
+                    }
+                    else if (buildingData.maxBuildLimit <= DataManager.Instance.player.GetCurrentBuildingCount(buildType))
+                    {
+                        Debug.Log("최대 한도 초과");
+                        dnd.ReturnUI();
+                        return;
+                    }
+
+                    DataManager.Instance.player.Wood -= buildingData.buildWood;
+                    BuildingController.Instance.SetNewBuildingOnMap(buildType, selectObj.transform.position);
 
                     //설치후 타일 막기
                     TileData[selectVec] = false;
@@ -64,7 +80,7 @@ public class BuildingCreator : MonoBehaviour
                 dnd.ReturnUI();
             }
         }
-      
+
 
     }
 
@@ -91,7 +107,7 @@ public class BuildingCreator : MonoBehaviour
         x = plane.localScale.x;
         y = plane.localScale.y;
 
-        for (int i = -7; i < 8; i++) 
+        for (int i = -7; i < 8; i++)
         {
             for (int j = -7; j < 8; j++)
             {

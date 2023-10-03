@@ -47,6 +47,22 @@ public class DragNDrop : MonoBehaviour
     {
         lastUIObj = obj;
         lastUIObj.SetActive(false);
+        switch (obj.name) // 추가. 건설 타입 불러오기
+        {
+            case "Inn":
+                buildingCreator.buildType = BuildingType.Inn;
+                break;
+            case "Forge":
+                buildingCreator.buildType = BuildingType.Forge;
+                break;
+            case "Market":
+                buildingCreator.buildType = BuildingType.Market;
+                break;
+            default:
+                Debug.Log("buildUI 버튼 이름 오류");
+                break;
+        }
+
         UIManger.ClosePopUpUI?.Invoke();
     }
 

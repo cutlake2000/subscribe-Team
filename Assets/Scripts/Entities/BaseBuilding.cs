@@ -1,11 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// �ǹ� ���� -> ��Ʈ�ѷ�
-// ���׷��̵� ������
-// Inn : ���� �� ����
-// Forge : ���� ���׷��̵�
-//
 public class BaseBuilding : MonoBehaviour
 {
     public BuildingData baseData;
@@ -18,9 +13,12 @@ public class BaseBuilding : MonoBehaviour
     public int maxLevel;
     public string buildingName;
     public string desc;
+
+    public int maxBuildLimit;
+    public int buildWood;
     public int upgradeWood;
 
-    // ������ �ҷ�����
+    // 초기화
     public virtual void Initialization()
     {
         buildingType = baseData.buildingType;
@@ -30,6 +28,9 @@ public class BaseBuilding : MonoBehaviour
         desc = baseData.desc;
         upgradeWood = baseData.upgradeWood;
         DefaultOptionType = baseData.optionTypeList;
+
+        maxBuildLimit = baseData.maxBuildLimit;
+        buildWood = baseData.buildWood;
     }
 
     public virtual void LevelUP()
@@ -51,4 +52,5 @@ public class BaseBuilding : MonoBehaviour
     {
         BuildingController.Instance.ActiveClickBuildingUI(this);
     }
+
 }

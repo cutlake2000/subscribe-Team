@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using static UnityEngine.GraphicsBuffer;
 
 public enum BuildingType
 {
@@ -10,15 +11,15 @@ public enum BuildingType
 public class BuildingController : MonoBehaviour
 {
     public static BuildingController Instance;
+    [SerializeField] private GameObject[] buildingPrefabs;
 
-    [SerializeField] BuildingSO buildingSO;
-    [SerializeField] GameObject[] buildingPrefabs;
+    public BuildingSO buildingSO;
     private List<BaseBuilding> buildingList;
-    private Dictionary<BuildingType, List<BaseBuilding>> typeList;
+    private Dictionary<BuildingType, List<BaseBuilding>> buildingTypeList;
 
     public ClickBuildingUI clickBuildingUI;
     public ClickBuildingUIModel clickBuildingUIModel;
-    [SerializeField] BuildingCreator buildingCreator;
+    public BuildingCreator buildingCreator;
 
     public Action DayChange;
 
@@ -26,7 +27,7 @@ public class BuildingController : MonoBehaviour
     {
         Instance = this;
         buildingList = new List<BaseBuilding>();
-        typeList = new() { { BuildingType.Inn, new() }, { BuildingType.Forge, new() }, { BuildingType.Market, new() } };
+        buildingTypeList = new() { { BuildingType.Inn, new() }, { BuildingType.Forge, new() }, { BuildingType.Market, new() } };
     }
 
     public void Start()
@@ -48,16 +49,19 @@ public class BuildingController : MonoBehaviour
     // 새로운 빌딩 게임 오브젝트 반환받기
     private BaseBuilding DeliverNewBuilding(BuildingType type)
     {
-        List<BaseBuilding> list = typeList[BuildingType.Inn];
+        List<BaseBuilding> list = buildingTypeList[type];
         BaseBuilding newBuilding;
 
-        for (int i = 0; i < buildingList.Count; i++)
+
+        for (int i = 0; i < list.Count; i++)
         {
             if (list[i].gameObject.activeSelf == true)
                 continue;
 
-            newBuilding = buildingList[i];
+            newBuilding = list[i];
             ResetBuildingData(newBuilding);
+            CheckBuildingCount(type);
+            RefreshEffect(type);
             return newBuilding;
         }
 
@@ -67,6 +71,8 @@ public class BuildingController : MonoBehaviour
         newBuilding.Initialization();
         buildingList.Add(newBuilding);
         list.Add(newBuilding);
+        CheckBuildingCount(type);
+        RefreshEffect(type);
         return newBuilding;
     }
 
@@ -122,6 +128,7 @@ public class BuildingController : MonoBehaviour
         else
             Debug.Log($"TODO : UI 출력 - 승급 완료");
 
+        RefreshEffect(target.buildingType);
         clickBuildingUI.Refresh(target);
     }
 
@@ -130,6 +137,7 @@ public class BuildingController : MonoBehaviour
     {
         BaseBuilding target = clickBuildingUIModel.clickBuilding;
         target.gameObject.SetActive(false);
+        CheckBuildingCount(target.buildingType);
         clickBuildingUI.OFF();
     }
 
@@ -175,8 +183,37 @@ public class BuildingController : MonoBehaviour
         newBuilding.gameObject.SetActive(true);
     }
 
+    // 활성화 건물 체크
+    private void CheckBuildingCount(BuildingType type)
+    {
+        List<BaseBuilding> list = buildingTypeList[type];
+        int count = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (!list[i].gameObject.activeSelf)
+                continue;
+
+            count++;
+        }
+
+        DataManager.Instance.player.SetCurrentBuildingCount(type, count);
+    }
+
+    public void RefreshEffect(BuildingType type)
+    {
+        switch (type)
+        {
+            case BuildingType.Inn:
+                RefreshInnEffect();
+                break;
+            case BuildingType.Forge:
+                RefreshForgeEffect();
+                break;
+        }
+    }
+
     // 여관 효과 갱신
-    public void RefreshInnEffect()
+    private void RefreshInnEffect()
     {
         int sum = 0;
         for (int i = 0; i < buildingList.Count; i++)
@@ -192,10 +229,12 @@ public class BuildingController : MonoBehaviour
 
         DataManager.Instance.player.MaxUnitCount = sum;
         // HUD에 갱신
+
+        Debug.Log(DataManager.Instance.player.MaxUnitCount);
     }
 
     // 대장간 효과 갱신
-    public void RefreshForgeEffect()
+    private void RefreshForgeEffect()
     {
         int sum = 0;
         for (int i = 0; i < buildingList.Count; i++)

@@ -18,6 +18,8 @@ MonoBehaviour:
     maxLevel: 3
     name: "\uC5EC\uAD00"
     desc: 
+    maxBuildLimit: 3
+    buildWood: 5
     upgradeWood: 2
     optionTypeList: 010000000200000003000000
   - buildingType: 1
@@ -25,6 +27,8 @@ MonoBehaviour:
     maxLevel: 3
     name: "\uB300\uC7A5\uAC04"
     desc: 
+    maxBuildLimit: 5
+    buildWood: 3
     upgradeWood: 1
     optionTypeList: 010000000200000003000000
   - buildingType: 2
@@ -32,5 +36,7 @@ MonoBehaviour:
     maxLevel: 1
     name: "\uC2DC\uC7A5"
     desc: 
+    maxBuildLimit: 1
+    buildWood: 10
     upgradeWood: 0
     optionTypeList: 040000000500000003000000

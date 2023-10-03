@@ -8070,7 +8070,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18.100037, y: 14.799988}
+  m_AnchoredPosition: {x: 18.1, y: 14.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &511299888
@@ -8131,10 +8131,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1165601259}
         m_TargetAssemblyTypeName: DragNDrop, Assembly-CSharp
-        m_MethodName: GetButton
+        m_MethodName: TestButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 242948647}
+          m_ObjectArgument: {fileID: 511299886}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -8143,10 +8143,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1165601259}
         m_TargetAssemblyTypeName: DragNDrop, Assembly-CSharp
-        m_MethodName: TestButton
+        m_MethodName: GetButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 511299886}
+          m_ObjectArgument: {fileID: 242948647}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -32280,7 +32280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -125.30005, y: 12.299988}
+  m_AnchoredPosition: {x: -125.30005, y: 12.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1529195558
@@ -32341,10 +32341,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1165601259}
         m_TargetAssemblyTypeName: DragNDrop, Assembly-CSharp
-        m_MethodName: GetButton
+        m_MethodName: TestButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 242948647}
+          m_ObjectArgument: {fileID: 1529195556}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -32353,10 +32353,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1165601259}
         m_TargetAssemblyTypeName: DragNDrop, Assembly-CSharp
-        m_MethodName: TestButton
+        m_MethodName: GetButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1529195556}
+          m_ObjectArgument: {fileID: 242948647}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -39972,10 +39972,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1165601259}
         m_TargetAssemblyTypeName: DragNDrop, Assembly-CSharp
-        m_MethodName: GetButton
+        m_MethodName: TestButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 242948647}
+          m_ObjectArgument: {fileID: 1602490537}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -39984,10 +39984,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1165601259}
         m_TargetAssemblyTypeName: DragNDrop, Assembly-CSharp
-        m_MethodName: TestButton
+        m_MethodName: GetButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1602490537}
+          m_ObjectArgument: {fileID: 242948647}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -40902,11 +40902,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e647a0359c3844da562506e47c908f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingSO: {fileID: 11400000, guid: 30174805bce717b45bd3c1eb33e7453b, type: 2}
   buildingPrefabs:
   - {fileID: 92522642691707451, guid: df4838ac37828f44bbb5f1b088e84e79, type: 3}
   - {fileID: 5269447685164759032, guid: 318f5fd85271cff48adbe0a3246ef15f, type: 3}
   - {fileID: 7161335936609668493, guid: 5a7e46c31c56b31488c3d1849fd6c62e, type: 3}
+  buildingSO: {fileID: 11400000, guid: 30174805bce717b45bd3c1eb33e7453b, type: 2}
   clickBuildingUI: {fileID: 958337724}
   clickBuildingUIModel: {fileID: 958337725}
   buildingCreator: {fileID: 576526341}
@@ -42286,8 +42286,8 @@ RectTransform:
   m_Children:
   - {fileID: 173598351}
   - {fileID: 1529195557}
-  - {fileID: 1602490538}
   - {fileID: 511299887}
+  - {fileID: 1602490538}
   m_Father: {fileID: 543512934}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
