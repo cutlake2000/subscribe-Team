@@ -23,7 +23,7 @@ public class DayManager : MonoBehaviour
         { 
             dayNight = value;
             UIManger.Instance.DayUI(dayNight);
-
+            GameManager.Instance.mercenaryController.CheckDay(dayNight);
             // 날짜 변경 된거 확일할 함수 추가
         } 
     }

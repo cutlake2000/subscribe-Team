@@ -78,24 +78,39 @@ public class MercenaryController : MonoBehaviour
                 }
             }
         }
+        //else
+        //{
+        //    if (DayManager.Instance.NowTime == DayManager.Instance.DayTime)
+        //    {
+        //        if (DayManager.Instance.dayNight == DayNight.Day)
+        //        {
+        //            daynight = false;
+        //        }
+        //        else if (DayManager.Instance.dayNight == DayNight.Night)
+        //        {
+        //            daynight = true;
+        //        }
+        //        DayandNight(daynight); // 낮>밤으로 바뀔때
+        //    }
+        //}
     }
 
-    private void FixedUpdate()
-    {
-        // 밤일 경우 = 변수가 true, 낮일 경우 변수 = false
-        if (DayManager.Instance.NowTime == DayManager.Instance.DayTime)
-        {
-            if (DayManager.Instance.dayNight == DayNight.Day)
-            {
-                daynight = false;
-            }
-            else if (DayManager.Instance.dayNight == DayNight.Night)
-            {
-                daynight = true;
-            }
-            DayandNight(daynight); // 낮>밤으로 바뀔때
-        }
-    }
+    //private void FixedUpdate()
+    //{
+    //    // 밤일 경우 = 변수가 true, 낮일 경우 변수 = false
+    //    if (DayManager.Instance.NowTime == DayManager.Instance.DayTime)
+    //    {
+    //        if (DayManager.Instance.dayNight == DayNight.Day)
+    //        {
+    //            daynight = false;
+    //        }
+    //        else if (DayManager.Instance.dayNight == DayNight.Night)
+    //        {
+    //            daynight = true;
+    //        }
+    //        DayandNight(daynight); // 낮>밤으로 바뀔때
+    //    }
+    //}
 
     IEnumerator MoveObject()
     {
@@ -211,7 +226,7 @@ public class MercenaryController : MonoBehaviour
                     DaySpawner.transform.position.y,
                     DaySpawner.transform.position.z + 1
                 );
-                gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
+                //gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
 
                 break;
             }
@@ -222,13 +237,25 @@ public class MercenaryController : MonoBehaviour
                     NightSpawner.transform.position.y,
                     NightSpawner.transform.position.z + 1
                 );
-                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                //gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
                 break;
             }
         }
     }
 
+    public void CheckDay(DayNight dayNight)
+    {
+        switch (dayNight)
+        {
+            case DayNight.Day:
+                DayandNight(false);
+                break;
+            case DayNight.Night:
+                DayandNight(true);
+                break;
+        }
+    }
     public void temp()
     {
         GameManager.Instance.MercenaryUI.Mercenary = data;
