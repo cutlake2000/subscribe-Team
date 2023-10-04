@@ -129,7 +129,7 @@ public class UIManger : MonoBehaviour
         switch (time)
         {
             case DayNight.Day:
-                BuildingController.Instance.DayChange.Invoke();
+                BuildingController.Instance.DayChange?.Invoke();
                 buildUI.On();
                 break;
             case DayNight.Night:

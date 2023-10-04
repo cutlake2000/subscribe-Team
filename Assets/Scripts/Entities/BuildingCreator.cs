@@ -38,7 +38,7 @@ public class BuildingCreator : MonoBehaviour
                 grid.CellToWorld(gridPosition).x,
                 1.14f,
                 grid.CellToWorld(gridPosition).z
-            ); // 변경점 : Y값 변경함
+            ); 
             Debug.Log(selectObj.transform.position);
             if (Input.GetMouseButtonDown(0))
             {
@@ -96,7 +96,7 @@ public class BuildingCreator : MonoBehaviour
 
     public bool TileChecker()
     {
-        Vector2 v = new Vector2(selectObj.transform.position.x, selectObj.transform.position.z);
+        Vector2 v = new Vector2((int)selectObj.transform.position.x, (int)selectObj.transform.position.z);
         selectVec = v;
         return TileData[v];
     }
@@ -123,10 +123,6 @@ public class BuildingCreator : MonoBehaviour
         {
             for (int j = -7; j < 8; j++)
             {
-                if (i >= 3 && i <= 3)
-                {
-
-                }
                 Vector2 v = new Vector2(i, j);
                 TileData.Add(v, true);
 

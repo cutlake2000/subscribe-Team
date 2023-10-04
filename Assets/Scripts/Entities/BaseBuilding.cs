@@ -11,13 +11,12 @@ public class BaseBuilding : MonoBehaviour
     [SerializeField]
     Animator animator;
     public BuildingType buildingType;
-    public List<ClickBtnType> DefaultOptionType;
+    public int maxBuildLimit;
     public int level;
     public int maxLevel;
     public string buildingName;
-    public string desc;
+    public List<ClickBtnType> DefaultOptionType;
 
-    public int maxBuildLimit;
     public int buildWood;
     public int upgradeWood;
 
@@ -25,15 +24,13 @@ public class BaseBuilding : MonoBehaviour
     public virtual void Initialization()
     {
         buildingType = baseData.buildingType;
+        maxBuildLimit = baseData.maxBuildLimit;
         level = baseData.level;
         maxLevel = baseData.maxLevel;
         buildingName = baseData.name;
-        desc = baseData.desc;
-        upgradeWood = baseData.upgradeWood;
         DefaultOptionType = baseData.optionTypeList;
-
-        maxBuildLimit = baseData.maxBuildLimit;
         buildWood = baseData.buildWood;
+        upgradeWood = baseData.upgradeWood;
     }
 
     public virtual void LevelUP()
