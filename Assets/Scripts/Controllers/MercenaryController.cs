@@ -43,10 +43,12 @@ public class MercenaryController : MonoBehaviour
     {
         if (DayManager.Instance.isGroundRotating == true)
         {
-            DayandNight();
+            DayandNight(true);
         }
         else if (DayManager.Instance.isGroundRotating == false)
         {
+            DayandNight(false);
+
             if (DayManager.Instance.dayNight == DayNight.Day && isCoroutineRunning == false)
             {
                 StartCoroutine(MoveObject());
@@ -76,13 +78,16 @@ public class MercenaryController : MonoBehaviour
     {
         isCoroutineRunning = true;
 
-        mercenary = GetComponent<Rigidbody>();
+        while (true)
+        {
+            mercenary = GetComponent<Rigidbody>();
 
-        float dir1 = Random.Range(-1f, 1f);
-        float dir2 = Random.Range(-1f, 1f);
-        mercenary.velocity = new Vector3(dir1, 0, dir2);
+            float dir1 = Random.Range(-1f, 1f);
+            float dir2 = Random.Range(-1f, 1f);
+            mercenary.velocity = new Vector3(dir1, 0, dir2);
 
-        yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(1);
+        }
 
         isCoroutineRunning = false;
     }
@@ -172,25 +177,25 @@ public class MercenaryController : MonoBehaviour
         return thisMonster;
     }
 
-    public void DayandNight()
+    public void DayandNight(bool isRotatiing)
     {
         // 각 낮, 밤의 행동을 정의해주는 함수
         // 낮 : 밤 시간대의 용병스포너의 좌표를 받아 그쪽으로 용병 이동 > 낮 시간대의 용병스포너의 좌표로 이동, 동시에 y축을 기준으로 뒤집기
-
-        if (DayManager.Instance.isGroundRotating == true)
+        switch (isRotatiing)
         {
-            if (isMercenaryLocationMoved == false)
-            {
-                transform.Rotate(0, 0, 180);
+            case true:
+                if (isMercenaryLocationMoved == false)
+                {
+                    transform.Rotate(0, 0, 180);
 
-                transform.position *= -1;
+                    transform.position *= -1;
 
-                isMercenaryLocationMoved = true;
-            }
-        }
-        else
-        {
-            isMercenaryLocationMoved = false;
+                    isMercenaryLocationMoved = true;
+                }
+                break;
+            case false:
+                isMercenaryLocationMoved = false;
+                break;
         }
     }
 
