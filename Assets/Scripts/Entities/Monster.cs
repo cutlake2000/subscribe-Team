@@ -24,13 +24,13 @@ public class Monster : MonoBehaviour
          healthBarFiled.fillAmount = CurHp / MonsterHp;
         if (CurHp <= 0)
             Die();
-
+        SoundManager.instance.HitSound();
         yield return new WaitForSeconds(0.1f);
     }
 
     void Update()
     {
-        // 스페이스바를 누를 때 Die() 메서드를 호출합니다.
+      
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Die();

@@ -21,7 +21,7 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI TxtMonsterCount;
 
-    private int previousChildCount = -1; //���� �������� �ڽ� ������Ʈ ����
+    private int previousChildCount = -1;
     private int CurMonsterCount;
 
     [Header("level")]

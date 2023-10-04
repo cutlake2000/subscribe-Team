@@ -7,8 +7,12 @@ public class VolumSet : MonoBehaviour
 {
     public AudioMixer mixer;
 
-    public void SetLevel(float sliderVal)
+    public void SetBGM(float sliderVal)
     {
         mixer.SetFloat("BGM", Mathf.Log10(sliderVal) * 20);
+    }
+    public void SetSFX(float sliderVal)
+    {
+        mixer.SetFloat("SFX", Mathf.Log10(sliderVal) * 20);
     }
 }

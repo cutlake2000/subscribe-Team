@@ -6,7 +6,9 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     public AudioSource BgmAudioSource;
+    public AudioSource HitAudioSource;
 
+    public AudioClip HitAudioClip;
     public AudioClip[] BgmAudioClips;
 
     enum BgmScene
@@ -38,6 +40,12 @@ public class SoundManager : MonoBehaviour
             }
             return instance;
         }
+    }
+
+    public void HitSound()
+    {
+        HitAudioSource.clip = HitAudioClip;
+        HitAudioSource.PlayOneShot(HitAudioClip);
     }
 
     private void OnEnable()
