@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BgmAudioSource: {fileID: 162261686}
   BgmAudioClips:
-  - {fileID: 8300000, guid: 9a72cc83c845a5d44883d4c4d42dd3c0, type: 3}
+  - {fileID: 8300000, guid: e5ab03f0b4182824bb14ff0621a94879, type: 3}
   - {fileID: 8300000, guid: dfb95a45bb8ecdf4cbda00a9908774d7, type: 3}
 --- !u!4 &162261688
 Transform:
