@@ -216,7 +216,7 @@ public class MercenaryController : MonoBehaviour
                 {
                     gameObject.transform.position = new Vector3(
                         NightSpawner.transform.position.x + 1,
-                        NightSpawner.transform.position.y,
+                        NightSpawner.transform.position.y+3,
                         NightSpawner.transform.position.z + 1
                     );
                     gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -226,7 +226,7 @@ public class MercenaryController : MonoBehaviour
                 {
                     gameObject.transform.position = new Vector3(
                         DaySpawner.transform.position.x + 1,
-                        DaySpawner.transform.position.y,
+                        DaySpawner.transform.position.y+3,
                         DaySpawner.transform.position.z + 1
                     );
                     //gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
