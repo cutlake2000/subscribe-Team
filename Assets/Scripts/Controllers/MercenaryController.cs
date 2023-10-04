@@ -76,20 +76,24 @@ public class MercenaryController : MonoBehaviour
 
     IEnumerator MoveObject()
     {
-        isCoroutineRunning = true;
-
         while (true)
         {
+            isCoroutineRunning = true;
+
             mercenary = GetComponent<Rigidbody>();
 
             float dir1 = Random.Range(-1f, 1f);
             float dir2 = Random.Range(-1f, 1f);
             mercenary.velocity = new Vector3(dir1, 0, dir2);
 
-            yield return new WaitForSeconds(1);
-        }
+            Debug.Log("check1");
 
-        isCoroutineRunning = false;
+            yield return new WaitForSeconds(1);
+
+            Debug.Log("check2");
+
+            isCoroutineRunning = false;
+        }
     }
 
     void AttackObject()

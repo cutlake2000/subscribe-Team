@@ -35,6 +35,9 @@ public class DayManager : MonoBehaviour
 
     private RotationController rotationController;
 
+    [SerializeField]
+    private GameObject particle;
+
     private void Awake()
     {
         Instance = this;
@@ -89,6 +92,9 @@ public class DayManager : MonoBehaviour
         }
         else if (NowTime >= DayTime)
         {
+            particle.SetActive(false);
+            particle.SetActive(true);
+
             rotationController.CallGroundRotationCoroutine();
 
             if (isDayNightChanged == false)
