@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BgmAudioSource: {fileID: 162261686}
   BgmAudioClips:
-  - {fileID: 8300000, guid: e5ab03f0b4182824bb14ff0621a94879, type: 3}
+  - {fileID: 8300000, guid: 64e19a137a29765468ef641327ed25bc, type: 3}
   - {fileID: 8300000, guid: dfb95a45bb8ecdf4cbda00a9908774d7, type: 3}
 --- !u!4 &162261688
 Transform:
