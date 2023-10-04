@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598966559307686104}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.036, y: 0.27, z: -0.032}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.036, y: 0.27, z: -0.039}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6037839257482603007}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &5395978529697902022
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -218,23 +218,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseData:
     buildingType: 0
+    maxBuildLimit: 0
     level: 0
     maxLevel: 0
     name: 
-    desc: 
-    maxBuildLimit: 0
     buildWood: 0
     upgradeWood: 0
     optionTypeList: 
   spriteRenderer: {fileID: 7135143766461122884}
   animator: {fileID: 4180368665279606971}
   buildingType: 2
-  DefaultOptionType: 
+  maxBuildLimit: 0
   level: 0
   maxLevel: 0
   buildingName: 
-  desc: 
-  maxBuildLimit: 0
+  DefaultOptionType: 
   buildWood: 0
   upgradeWood: 0
   SellResourceOption: 
