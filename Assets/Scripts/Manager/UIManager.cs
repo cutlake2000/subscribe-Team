@@ -28,8 +28,12 @@ public class UIManger : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI DayCountTextMeshPro;
 
+    [SerializeField]
+    private LogUI logUI;
+
     public BuildUI buildUI;
     public BuyMercenaryUI buyMercenaryUI;
+
 
     private float GaugeWidth;
     private float GaugeHeight;
@@ -149,5 +153,10 @@ public class UIManger : MonoBehaviour
     {
         goldText.text = DataManager.Instance.player.Gold.ToString();
         woodText.text = DataManager.Instance.player.Wood.ToString();
+    }
+
+    public void ShowLogUI(string text)
+    {
+        StartCoroutine(logUI.ActiveScreenLog(text));
     }
 }

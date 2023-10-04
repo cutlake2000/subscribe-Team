@@ -23,6 +23,15 @@ public class DayManager : MonoBehaviour
         {
             dayNight = value;
             UIManger.Instance.DayUI(dayNight);
+            if (dayNight == DayNight.Night)
+            {
+                UIManger.Instance.ShowLogUI("장림깊은 골로 대한 짐승이 내려온다~");
+            }
+            else
+            {
+                UIManger.Instance.ShowLogUI("새로운 아침이 왔다네~ 덩기덕쿵더러러");
+            }
+
         }
     }
 
