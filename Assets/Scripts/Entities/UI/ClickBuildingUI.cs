@@ -115,6 +115,9 @@ public class ClickBuildingUI : MonoBehaviour
     // 인포UI 정보 갱신
     public void Refresh(BaseBuilding target)
     {
+        if (target == null)
+            return;
+
         // 이름
         newStatusText.Clear();
         newStatusText.Append($"Lv{target.level}. {target.buildingName}");
