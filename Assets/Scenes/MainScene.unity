@@ -1271,6 +1271,7 @@ MonoBehaviour:
   isSkyRotating: 0
   isGroundRotating: 0
   isDayNightChanged: 0
+  isMercenaryLocationMoved: 0
   map: {fileID: 1218485283}
 --- !u!1 &195258032
 GameObject:
@@ -3445,7 +3446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &404184275
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14038,7 +14039,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -14097,7 +14098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: -14.93}
+  m_AnchoredPosition: {x: 30, y: -8.93}
   m_SizeDelta: {x: 280, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &1351201360
@@ -46646,7 +46647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mercenary_prefab: {fileID: 1622636051857215209, guid: 7f7bf4ead3b2726428ead110aee6c888, type: 3}
   mercenary_data: {fileID: 11400000, guid: 54d492bc8ed5a3b418c317029c136cad, type: 2}
-  MercenaryPrefabs: {fileID: 0}
+  MercenaryPrefabs: {fileID: 813827118}
 --- !u!114 &3915763726563421157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46930,7 +46931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mercenary_prefab: {fileID: 7382189635830967430, guid: 9fa73e201fc67094fb108d7bb2485b20, type: 3}
   mercenary_data: {fileID: 11400000, guid: 81f626ff6adfc0b46ba1e018e46ecf9b, type: 2}
-  MercenaryPrefabs: {fileID: 0}
+  MercenaryPrefabs: {fileID: 813827118}
 --- !u!224 &4605280463774423899
 RectTransform:
   m_ObjectHideFlags: 0
