@@ -1,22 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
     public MonsterData monsterData;
+    public Image healthBarFiled;
     float MonsterHp;
-
+    float CurHp;
     private void Start()
     {
         MonsterHp = monsterData.MonsterHp;
+        CurHp = MonsterHp;
+        healthBarFiled.fillAmount = 1f;
     }
 
-    public void TakePhysicalDamage(int damageAmount)
+    public IEnumerator TakePhysicalDamage(int damageAmount)
     {
-        MonsterHp -= damageAmount;
-        if (MonsterHp <= 0)
+      
+         CurHp -= damageAmount;
+         Debug.Log(CurHp);
+         healthBarFiled.fillAmount = CurHp / MonsterHp;
+        if (CurHp <= 0)
             Die();
+
+        yield return new WaitForSeconds(1.0f);
     }
 
     void Update()
