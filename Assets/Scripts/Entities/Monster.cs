@@ -19,7 +19,7 @@ public class Monster : MonoBehaviour
     public IEnumerator TakePhysicalDamage(int damageAmount)
     {
       
-         CurHp -= damageAmount;
+         CurHp -= damageAmount + DataManager.Instance.player.AddUnitAtk;
          Debug.Log(CurHp);
          healthBarFiled.fillAmount = CurHp / MonsterHp;
         if (CurHp <= 0)
