@@ -198,7 +198,22 @@ public class MercenaryController : MonoBehaviour
                 {
                     transform.Rotate(0, 0, 180);
 
-                    transform.position *= -1;
+                    if (DayManager.Instance.dayNight == DayNight.Night)
+                    {
+                        transform.position = new Vector3(
+                            transform.position.x,
+                            -1.5f,
+                            transform.position.z
+                        );
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(
+                            transform.position.x,
+                            1.5f,
+                            transform.position.z
+                        );
+                    }
 
                     isMercenaryLocationMoved = true;
                 }
