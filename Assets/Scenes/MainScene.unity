@@ -3749,7 +3749,7 @@ MonoBehaviour:
   buildUI: {fileID: 799007850}
   buyMercenaryUI: {fileID: 5562584898478273732}
   BuyMercenaryUI: {fileID: 6348053672562391073}
-  BuyMercenaryUIList: {fileID: 6236714537641058888}
+  BuyMercenaryUIList: {fileID: 1651260588709721813}
   goldText: {fileID: 1788898375}
   woodText: {fileID: 965749228}
 --- !u!1 &457302449 stripped
