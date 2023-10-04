@@ -22,13 +22,15 @@ public class BuildUI : MonoBehaviour
             ListUIOn();
     }
 
-    private void ListUIOn()
+    public void ListUIOn()
     {
         buildingListUI.gameObject.SetActive(true);
+        UIManger.Instance.BuyMercenaryUIList.SetActive(false);
+        UIManger.Instance.buyMercenaryUI.ChangeClicked(true);
         animator.SetTrigger("AppearList");
     }
 
-    private void ListUIOff()
+    public void ListUIOff()
     {
         buildingListUI.gameObject.SetActive(false);
     }

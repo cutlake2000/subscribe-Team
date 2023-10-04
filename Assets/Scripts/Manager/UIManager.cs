@@ -28,8 +28,8 @@ public class UIManger : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI DayCountTextMeshPro;
 
-    [SerializeField]
-    private BuildUI buildUI;
+    public BuildUI buildUI;
+    public BuyMercenaryUI buyMercenaryUI;
 
     private float GaugeWidth;
     private float GaugeHeight;
@@ -40,6 +40,9 @@ public class UIManger : MonoBehaviour
     public Action DayUsedUIOn;
     public Action DayUsedUIOff;
     public Action HUDRefresh;
+
+    public GameObject BuyMercenaryUI;
+    public GameObject BuyMercenaryUIList;
 
     [SerializeField]
     TMP_Text goldText;
@@ -130,10 +133,13 @@ public class UIManger : MonoBehaviour
         {
             case DayNight.Day:
                 BuildingController.Instance.DayChange?.Invoke();
+                BuyMercenaryUI.SetActive(true);
                 buildUI.On();
                 break;
             case DayNight.Night:
                 BuildingController.Instance.clickBuildingUI.Off();
+                BuyMercenaryUI.SetActive(false);
+                BuyMercenaryUIList.SetActive(false);
                 buildUI.Off();
                 break;
         }
