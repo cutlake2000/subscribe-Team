@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BgmAudioSource: {fileID: 162261686}
   BgmAudioClips:
-  - {fileID: 8300000, guid: 9a72cc83c845a5d44883d4c4d42dd3c0, type: 3}
+  - {fileID: 8300000, guid: e5ab03f0b4182824bb14ff0621a94879, type: 3}
   - {fileID: 8300000, guid: dfb95a45bb8ecdf4cbda00a9908774d7, type: 3}
 --- !u!4 &162261688
 Transform:
@@ -849,7 +849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 350, y: 0}
+  m_AnchoredPosition: {x: 350, y: 106.01}
   m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1073967544
@@ -1679,8 +1679,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -610, y: 260}
-  m_SizeDelta: {x: 498.6543, y: 152.0287}
+  m_AnchoredPosition: {x: -625, y: 211}
+  m_SizeDelta: {x: 621.7527, y: 189.5587}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1787069888
 MonoBehaviour:
