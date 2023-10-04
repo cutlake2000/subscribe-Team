@@ -15,9 +15,14 @@ public class CreateMercenary : MonoBehaviour
 
     public void Spawn()
     {
+        PlayerSO player = DataManager.Instance.player;
+        if (player.MaxUnitCount <= player.CurrentUnitCountt)
+            return;
+
+
+        player.CurrentUnitCountt++;
         float x = Random.Range(-1f, 1f);
         float y = Random.Range(-1f, 1f);
-        PlayerSO player = DataManager.Instance.player;
         player.Gold -= mercenary_data.MercenaryCost;
         Instantiate(mercenary_prefab);
         Vector3 pos = new Vector3(
