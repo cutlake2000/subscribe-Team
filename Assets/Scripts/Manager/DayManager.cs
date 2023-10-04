@@ -29,6 +29,7 @@ public class DayManager : MonoBehaviour
     public bool isSkyRotating;
     public bool isGroundRotating;
     public bool isDayNightChanged;
+    public bool isMercenaryLocationMoved;
 
     public GameObject map;
 
@@ -51,6 +52,7 @@ public class DayManager : MonoBehaviour
         dayNight = DayNight.Day;
         isSkyRotating = false;
         isGroundRotating = false;
+        isMercenaryLocationMoved = false;
 
         rotationController = map.GetComponent<RotationController>();
     }

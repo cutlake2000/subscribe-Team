@@ -6,6 +6,10 @@ public class CreateMercenary : MonoBehaviour
 {
     public GameObject mercenary_prefab;
     public MercenaryData mercenary_data;
+
+    [SerializeField]
+    private GameObject MercenaryPrefabs;
+
     GameObject Spawner;
 
     private void Awake()
@@ -19,12 +23,13 @@ public class CreateMercenary : MonoBehaviour
         float y = Random.Range(-1f, 1f);
         PlayerSO player = DataManager.Instance.player;
         player.Gold -= mercenary_data.MercenaryCost;
-        Instantiate(mercenary_prefab);
+        var mercenary = Instantiate(mercenary_prefab);
         Vector3 pos = new Vector3(
-            Spawner.gameObject.transform.position.x+x,
-            Spawner.gameObject.transform.position.y+0.5f,
-            Spawner.gameObject.transform.position.z+y
+            Spawner.gameObject.transform.position.x + x,
+            Spawner.gameObject.transform.position.y + 0.5f,
+            Spawner.gameObject.transform.position.z + y
         );
-        mercenary_prefab.transform.position = pos;
+        mercenary.transform.parent = MercenaryPrefabs.transform;
+        mercenary.transform.position = pos;
     }
 }

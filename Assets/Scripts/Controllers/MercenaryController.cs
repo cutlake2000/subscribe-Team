@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
-//using Unity.VisualScripting;
 using UnityEditor;
 
 using UnityEngine;
@@ -25,6 +24,8 @@ public class MercenaryController : MonoBehaviour
     public GameObject NightSpawner;
     public GameObject DaySpawner;
 
+    private bool isCoroutineRunning;
+
     public bool daynight;
 
     private void Awake()
@@ -34,6 +35,7 @@ public class MercenaryController : MonoBehaviour
         target = new List<GameObject>();
         DaySpawner = GameObject.FindGameObjectWithTag("DaySpawner");
         NightSpawner = GameObject.FindGameObjectWithTag("NightSpawner");
+        isCoroutineRunning = false;
     }
 
     private void Update()
@@ -44,7 +46,7 @@ public class MercenaryController : MonoBehaviour
         }
         else if (DayManager.Instance.isGroundRotating == false)
         {
-            if (DayManager.Instance.dayNight == DayNight.Day)
+            if (DayManager.Instance.dayNight == DayNight.Day && isCoroutineRunning == false)
             {
                 StartCoroutine(MoveObject());
             }
@@ -63,7 +65,6 @@ public class MercenaryController : MonoBehaviour
                 }
                 else if (target.Count > 0)
                 {
-                    // Invoke(nameof(AttackObject), data.AttackSpeed);
                     AttackObject();
                 }
             }
@@ -72,21 +73,23 @@ public class MercenaryController : MonoBehaviour
 
     IEnumerator MoveObject()
     {
+        isCoroutineRunning = true;
+
         mercenary = GetComponent<Rigidbody>();
 
-        while (true)
-        {
-            float dir1 = Random.Range(-1f, 1f);
-            float dir2 = Random.Range(-1f, 1f);
+        float dir1 = Random.Range(-1f, 1f);
+        float dir2 = Random.Range(-1f, 1f);
+        mercenary.velocity = new Vector3(dir1, 0, dir2);
 
-            yield return new WaitForSeconds(1);
-            mercenary.velocity = new Vector3(dir1, 0, dir2);
-        }
+        yield return new WaitForSeconds(5);
+
+        isCoroutineRunning = false;
     }
 
     void AttackObject()
     {
         GameObject CloseEnemy = GetClosest();
+
         if (CloseEnemy == null)
             return;
 
@@ -101,8 +104,6 @@ public class MercenaryController : MonoBehaviour
 
         if (distance < data.AttackRange)
         {
-            // Attack();
-            //StartCoroutine(monster.TakePhysicalDamage(data.Attack));
             Attacking();
         }
     }
@@ -149,6 +150,11 @@ public class MercenaryController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, destination, 0.001f * speed);
     }
 
+    void Attack()
+    {
+        StartCoroutine(monster.TakePhysicalDamage(data.Attack));
+    }
+
     MonsterData WhichMonster(Monster monster)
     {
         thisMonster = ScriptableObject.CreateInstance<MonsterData>();
@@ -169,15 +175,22 @@ public class MercenaryController : MonoBehaviour
     {
         // 각 낮, 밤의 행동을 정의해주는 함수
         // 낮 : 밤 시간대의 용병스포너의 좌표를 받아 그쪽으로 용병 이동 > 낮 시간대의 용병스포너의 좌표로 이동, 동시에 y축을 기준으로 뒤집기
-        if (DayManager.Instance.dayNight == DayNight.Day) // 밤일 경우
+
+        if (
+            DayManager.Instance.isGroundRotating == true
+            && DayManager.Instance.isMercenaryLocationMoved == false
+        )
         {
-            Vector3 destination = DaySpawner.transform.position;
-            transform.position = Vector3.Lerp(transform.position, destination, 0.1f);
-        }
-        else if (DayManager.Instance.dayNight == DayNight.Night) // 낮일 경우
-        {
-            Vector3 destination = NightSpawner.transform.position;
-            transform.position = Vector3.Lerp(transform.position, destination, 0.1f);
+            if (DayManager.Instance.dayNight == DayNight.Day)
+            {
+                Vector3 destination = DaySpawner.transform.position;
+                transform.position = Vector3.Lerp(transform.position, destination, 5.0f);
+            }
+            else if (DayManager.Instance.dayNight == DayNight.Night)
+            {
+                Vector3 destination = NightSpawner.transform.position;
+                transform.position = Vector3.Lerp(transform.position, destination, 0.1f);
+            }
         }
     }
 
