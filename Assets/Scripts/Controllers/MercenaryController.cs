@@ -84,7 +84,10 @@ public class MercenaryController : MonoBehaviour
 
             float dir1 = Random.Range(-1f, 1f);
             float dir2 = Random.Range(-1f, 1f);
-            mercenary.velocity = new Vector3(dir1, 0, dir2);
+
+            Vector3 newPosition = new(dir1, transform.position.y, dir2);
+
+            transform.position = Vector3.Lerp(transform.position, newPosition, 0.001f);
 
             Debug.Log("check1");
 
@@ -157,12 +160,15 @@ public class MercenaryController : MonoBehaviour
     void Moving(GameObject target, float speed)
     {
         Vector3 destination = target.transform.position;
-        transform.position = Vector3.Lerp(transform.position, destination, 0.001f * speed);
+        transform.position = Vector3.Lerp(transform.position, destination, 0.01f);
     }
 
     void Attack()
     {
-        StartCoroutine(monster.TakePhysicalDamage(data.Attack));
+        if (monster != null)
+        {
+            StartCoroutine(monster.TakePhysicalDamage(data.Attack));
+        }
     }
 
     MonsterData WhichMonster(Monster monster)
