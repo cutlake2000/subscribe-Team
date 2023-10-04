@@ -25,7 +25,7 @@ public class MercenaryController : MonoBehaviour
     public GameObject DaySpawner;
 
     private bool isCoroutineRunning;
-
+    private bool isMercenaryLocationMoved;
     public bool daynight;
 
     private void Awake()
@@ -36,6 +36,7 @@ public class MercenaryController : MonoBehaviour
         DaySpawner = GameObject.FindGameObjectWithTag("DaySpawner");
         NightSpawner = GameObject.FindGameObjectWithTag("NightSpawner");
         isCoroutineRunning = false;
+        isMercenaryLocationMoved = false;
     }
 
     private void Update()
@@ -176,21 +177,20 @@ public class MercenaryController : MonoBehaviour
         // 각 낮, 밤의 행동을 정의해주는 함수
         // 낮 : 밤 시간대의 용병스포너의 좌표를 받아 그쪽으로 용병 이동 > 낮 시간대의 용병스포너의 좌표로 이동, 동시에 y축을 기준으로 뒤집기
 
-        if (
-            DayManager.Instance.isGroundRotating == true
-            && DayManager.Instance.isMercenaryLocationMoved == false
-        )
+        if (DayManager.Instance.isGroundRotating == true)
         {
-            if (DayManager.Instance.dayNight == DayNight.Day)
+            if (isMercenaryLocationMoved == false)
             {
-                Vector3 destination = DaySpawner.transform.position;
-                transform.position = Vector3.Lerp(transform.position, destination, 5.0f);
+                transform.Rotate(0, 0, 180);
+
+                transform.position *= -1;
+
+                isMercenaryLocationMoved = true;
             }
-            else if (DayManager.Instance.dayNight == DayNight.Night)
-            {
-                Vector3 destination = NightSpawner.transform.position;
-                transform.position = Vector3.Lerp(transform.position, destination, 0.1f);
-            }
+        }
+        else
+        {
+            isMercenaryLocationMoved = false;
         }
     }
 
