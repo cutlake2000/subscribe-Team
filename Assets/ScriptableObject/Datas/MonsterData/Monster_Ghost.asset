@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Ghost
   m_EditorClassIdentifier: 
   MonsterName: "\uADC0\uC2E0"
-  MonsterHp: 15
+  MonsterHp: 40
   MonsterDF: 2
   MonsterSpeed: 3
   dropPrefab: {fileID: 0}

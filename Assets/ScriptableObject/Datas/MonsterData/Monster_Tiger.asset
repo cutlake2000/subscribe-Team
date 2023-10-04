@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Tiger
   m_EditorClassIdentifier: 
   MonsterName: "\uD638\uB791\uC774"
-  MonsterHp: 13
+  MonsterHp: 50
   MonsterDF: 2
   MonsterSpeed: 7
   dropPrefab: {fileID: 0}

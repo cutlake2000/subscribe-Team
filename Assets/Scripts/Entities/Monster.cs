@@ -25,7 +25,7 @@ public class Monster : MonoBehaviour
         if (CurHp <= 0)
             Die();
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.1f);
     }
 
     void Update()
