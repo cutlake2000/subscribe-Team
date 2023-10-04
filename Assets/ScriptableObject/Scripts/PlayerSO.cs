@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerSO : ScriptableObject
 {
     int maxUnitCount = 0;
+    int defaultUnitCount = 5;
     int currentUnitCount = 0;
     int addUnitAtk = 0;
     int gold = 1000;
@@ -19,7 +20,7 @@ public class PlayerSO : ScriptableObject
 
     public int MaxUnitCount
     {
-        get { return maxUnitCount; }
+        get { return maxUnitCount + defaultUnitCount; }
         set { maxUnitCount = value; }
     }
     public int CurrentUnitCountt
