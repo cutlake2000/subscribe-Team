@@ -209,6 +209,7 @@ public class BuildingController : MonoBehaviour
         DataManager.Instance.player.SetCurrentBuildingCount(type, count);
     }
 
+    // 효과 갱신
     public void RefreshEffect(BuildingType type)
     {
         switch (type)
@@ -260,12 +261,6 @@ public class BuildingController : MonoBehaviour
 
         DataManager.Instance.player.AddUnitAtk = sum;
         Debug.Log("TODO : HUD 갱신 추가 공격력 : " + DataManager.Instance.player.AddUnitAtk);
-    }
-
-    // 테스트용
-    public void TestDayChangeAction()
-    {
-        DayChange?.Invoke();
     }
 
     #region ClickBuildingUIModel과 상호작용 함수

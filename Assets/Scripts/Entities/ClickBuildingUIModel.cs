@@ -127,7 +127,7 @@ public class ClickBuildingUIModel : MonoBehaviour
     }
 
     // 모드를 변경하고 clickbuilding의 리스트를 리턴한다.
-    // 되돌아가기가 아니면 이전 `beforeUItype`에 기록
+    // 되돌아가기가 아니면 변경 전 타입을 `beforeUItype`에 기록
     public List<T> ChangeMode<T>(ClickUIType type, bool isGoback = false)
         where T : Enum
     {

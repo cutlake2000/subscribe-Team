@@ -34,7 +34,6 @@ public class MarketBuilding : BaseBuilding, ITradeResource
 
     public void CheckTodayPrice()
     {
-        // TODO 연결 시키기
         float per = Random.Range(0f, 1f);
         float Gaussian = Random.Range(per, 1f);
         float plusminus = Random.Range(0, 2);

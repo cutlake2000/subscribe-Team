@@ -123,11 +123,13 @@ public class UIManger : MonoBehaviour
         );
     }
 
+    // 낮밤 바뀔 때 필요한 함수들 넣으세요~ UI 쪽만
     public void DayUI(DayNight time)
     {
         switch (time)
         {
             case DayNight.Day:
+                BuildingController.Instance.DayChange.Invoke();
                 buildUI.On();
                 break;
             case DayNight.Night:

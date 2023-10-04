@@ -36,6 +36,4 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = false;
     }
-
-    private void Update() { }
 }
