@@ -127,7 +127,7 @@ public class MercenaryController : MonoBehaviour
 
     GameObject GetClosest()
     {
-        if (target.Count ==0 || target[0] == null)
+        if (target.Count == 0 || target[0] == null)
             return null;
 
         enemy = target[0];
@@ -154,9 +154,9 @@ public class MercenaryController : MonoBehaviour
     {
         StartCoroutine(monster.TakePhysicalDamage(data.Attack));
     }
+
     void Attacking()
     {
-       
         animator.SetTrigger("Attack");
     }
 
