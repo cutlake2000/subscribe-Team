@@ -76,6 +76,8 @@ public class BuildingCreator : MonoBehaviour
 
                     //설치후 타일 막기
                     TileData[selectVec] = false;
+                    dnd.ReturnUI();
+
                 }
                 else
                 {
