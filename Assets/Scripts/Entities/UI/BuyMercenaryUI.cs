@@ -10,6 +10,9 @@ public class BuyMercenaryUI : MonoBehaviour
 
     public void ShowUI()
     {
+        if (isClicked == true)
+            UIManger.Instance.buildUI.ListUIOff();
+
         BuyUI.SetActive(isClicked);
     }
 
@@ -22,5 +25,10 @@ public class BuyMercenaryUI : MonoBehaviour
         {
             isClicked = true;
         }
+    }
+
+    public void ChangeClicked(bool isClicked)
+    {
+        this.isClicked = isClicked;
     }
 }

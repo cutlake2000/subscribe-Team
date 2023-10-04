@@ -28,8 +28,8 @@ public class UIManger : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI DayCountTextMeshPro;
 
-    [SerializeField]
-    private BuildUI buildUI;
+    public BuildUI buildUI;
+    public BuyMercenaryUI buyMercenaryUI;
 
     private float GaugeWidth;
     private float GaugeHeight;
