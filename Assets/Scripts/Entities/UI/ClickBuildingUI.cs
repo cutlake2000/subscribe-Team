@@ -124,10 +124,12 @@ public class ClickBuildingUI : MonoBehaviour
         switch (target.buildingType)
         {
             case BuildingType.Inn:
-                newStatusText.Append($"인구 수 <sprite=1>: {((InnBuilding)target).MaxUnitValue}");
+                newStatusText.Append($"용병 수 <sprite=1>: {((InnBuilding)target).MaxUnitValue}");
+                newStatusText.Append($"\n현재 용병 : {DataManager.Instance.player.CurrentUnitCountt}/{DataManager.Instance.player.MaxUnitCount} ");
                 break;
             case BuildingType.Forge:
                 newStatusText.Append($"공격력 <sprite=1>: {((ForgeBuilding)target).AddUnitAtk}");
+                newStatusText.Append($"\n추가 합계 : {DataManager.Instance.player.AddUnitAtk} ");
                 break;
             case BuildingType.Market:
                 MarketBuilding market = (MarketBuilding)target;
