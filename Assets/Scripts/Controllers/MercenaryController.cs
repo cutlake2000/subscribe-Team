@@ -119,7 +119,8 @@ public class MercenaryController : MonoBehaviour
 
         if (distance < data.AttackRange)
         {
-            StartCoroutine(monster.TakePhysicalDamage(data.Attack));
+            // Attack();
+            //StartCoroutine(monster.TakePhysicalDamage(data.Attack));
             Attacking();
         }
     }
@@ -149,8 +150,13 @@ public class MercenaryController : MonoBehaviour
         return enemy;
     }
 
+    void Attack()
+    {
+        StartCoroutine(monster.TakePhysicalDamage(data.Attack));
+    }
     void Attacking()
     {
+       
         animator.SetTrigger("Attack");
     }
 
