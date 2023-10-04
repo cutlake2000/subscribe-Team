@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEditor;
 
 using UnityEngine;
@@ -65,7 +65,8 @@ public class MercenaryController : MonoBehaviour
                 }
                 else if (target.Count > 0)
                 {
-                    Invoke(nameof(AttackObject), data.AttackSpeed);
+                    // Invoke(nameof(AttackObject), data.AttackSpeed);
+                    AttackObject();
                 }
             }
         }
@@ -118,7 +119,7 @@ public class MercenaryController : MonoBehaviour
 
         if (distance < data.AttackRange)
         {
-            monster.TakePhysicalDamage(data.Attack);
+            StartCoroutine(monster.TakePhysicalDamage(data.Attack));
             Attacking();
         }
     }
